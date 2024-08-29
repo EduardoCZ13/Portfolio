@@ -1,0 +1,6 @@
+"","gbifID","institutionCode","catalogNumber","kingdom","phylum","order","family","genus","species","lat","lon","year","country"
+"1","2629258497","ENCB-IPN","P4893","Animalia","Chordata","Cyprinodontiformes","Poeciliidae","Xiphophorus","Xiphophorus nigrensis",21.75,-98.957778,2000,"Mexico"
+"2","46414828","IBUNAM","10558","Animalia","Chordata","Cyprinodontiformes","Poeciliidae","Xiphophorus","Xiphophorus nigrensis",21.799999,-98.900001,1989,"Mexico"
+"3","1932813165","TNHC","000017119","Animalia","Chordata","Cyprinodontiformes","Poeciliidae","Xiphophorus","Xiphophorus nigrensis",21.9897,-98.8792,1989,"Mexico"
+"4","1889079471","UMMZ","177301","Animalia","Chordata","Cyprinodontiformes","Poeciliidae","Xiphophorus","Xiphophorus nigrensis",22.083333,-98.966667,1957,"Mexico"
+"5","624147898","UF","96571","Animalia","Chordata","Cyprinodontiformes","Poeciliidae","Xiphophorus","Xiphophorus nigrensis",21.712569,-99.016667,NA,"Mexico"

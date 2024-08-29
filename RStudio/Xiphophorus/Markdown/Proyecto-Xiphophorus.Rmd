@@ -1,0 +1,1241 @@
+---
+title: "Proyecto Xiphophorus"
+author: "Eduardo Cortés"
+date: "`r Sys.Date()`"
+output: html_document
+---
+<body style="background-color:57d7d9ff;">
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(fastreeR)
+library(ade4)
+library(ecospat)    
+library(dismo)
+library(rJava)
+library(biomod2)
+library(sp)
+library(spocc)
+library(rgbif)
+library(ENMeval)
+library(ROCR)
+library(rgbif)
+library(ape)
+library(seqinr)
+library(foreign)
+library(corrplot)
+library(usdm)
+library(parallel)
+library(geodata)
+library(tidyverse)
+library(factoextra) 
+library(raster)
+library(data.table)
+library(msa)
+library(bioseq)
+library(parallel)
+
+```
+
+# Proyecto Xiphophorus
+El proyecto consiste en comparar las diferentes especies del género Xiphophorus en la cuenca del Pánuco. Se utiliza comparación de nichos para estimar la equivalencia de estas especies, y con ayuda de distancias géneticas, se pretende utilizar esta información para responder a la pregunta de si estas especies pueden ser consideradas como una misma entidad filogenética, o si efectivamente las especies presentan suficientes diferencias para ser consideradas por separado
+
+##1 Descarga de datos de ocurrencias de las especies.
+
+###1.1 Descarga de datos de la especie *X. birchmanni*
+####1.1.1 Obtenemos y limpiamos los datos
+```{r}
+species1<- gbif("Xiphophorus", "birchmanni*", geo=FALSE)
+data <- subset(species1, !is.na(lon) & !is.na(lat))
+dups <- duplicated(data[, c("species", "lon", "lat")])# primer paso para quitar duplicados
+dups2<- duplicated(data[, c("lon", "lat")])# segundo paso para quitar duplicados
+sum(dups2)# number of duplicates
+data3 <- data[!dups2, ]# keep the records that are _not_ duplicated
+data3[,1:13]
+data4 <- subset(data3, !is.na(lon) & !is.na(lat))
+colnames(data4)
+write.csv(data4, file = "Xiphophorus_birchmanni_orig.csv") ### para guardar el archivo de puntos
+resol <- 0.041665 ### QUITAR LOS DATOS REPETIDOS ESPACIALMENTE en un radio de 5km2
+clean_dup <- function(data,longitude,latitude,threshold=0.0){  data <- data[!is.na(data[,longitude]),]
+dat_sp <- SpatialPointsDataFrame(data[,c(longitude ,latitude)],data)
+dat_sp1 <- remove.duplicates(dat_sp, zero = threshold)
+return(dat_sp1@data)}
+data5 <- clean_dup(data4,longitude = "lon",latitude = "lat",threshold = resol)### datos espacilamente limpios
+```
+
+####1.1.2 Para armar el archivo .CSV que dara la data de la especie
+
+```{r}
+gbifID<-data5$gbifID
+institutionCode<-data5$institutionCode
+catalogNumber<-data5$catalogNumber
+kingdom<-data5$kingdom
+class<-data5$class
+order<-data5$order
+family<-data5$family
+phylum<-data5$phylum
+genus<-data5$genus
+lat<-data5$lat
+species<-data5$species
+lon<-data5$lon
+year<-data5$year
+country<-data5$country
+Specie_estudied<-data.frame(gbifID,institutionCode,catalogNumber,kingdom,phylum,order,family,genus,species,lat,lon,year,country)
+write.csv(Specie_estudied, file = "Xiphophorus_birchmanni.csv") ### para guardar el archivo de puntos
+birchmanni<-data.frame(species, lat, lon)
+colnames(birchmanni)<-c("Especie", "Y", "X")
+write.csv(birchmanni, file = "X_birchmanni_coords.csv")##guardar coordenadas
+```
+
+###1.2 Descarga de datos de la especie *X. continens*
+####1.2.1 Obtenemos y limpiamos los datos
+```{r}
+species1<- gbif("Xiphophorus", "continens*", geo=FALSE)
+data <- subset(species1, !is.na(lon) & !is.na(lat))
+dups <- duplicated(data[, c("species", "lon", "lat")])# primer paso para quitar duplicados
+dups2<- duplicated(data[, c("lon", "lat")])# segundo paso para quitar duplicados
+sum(dups2)# number of duplicates
+data3 <- data[!dups2, ]# keep the records that are _not_ duplicated
+data3[,1:13]
+data4 <- subset(data3, !is.na(lon) & !is.na(lat))
+colnames(data4)
+write.csv(data4, file = "Xiphophorus_continens_orig.csv") ### para guardar el archivo de puntos
+resol <- 0.041665 ### QUITAR LOS DATOS REPETIDOS ESPACIALMENTE en un radio de 5km2
+clean_dup <- function(data,longitude,latitude,threshold=0.0){  data <- data[!is.na(data[,longitude]),]
+dat_sp <- SpatialPointsDataFrame(data[,c(longitude ,latitude)],data)
+dat_sp1 <- remove.duplicates(dat_sp, zero = threshold)
+return(dat_sp1@data)}
+data5 <- clean_dup(data4,longitude = "lon",latitude = "lat",threshold = resol)### datos espacilamente limpios
+#### Para armar el archivo .CSV que dara la data de la especie
+gbifID<-data5$gbifID
+institutionCode<-data5$institutionCode
+catalogNumber<-data5$catalogNumber
+kingdom<-data5$kingdom
+class<-data5$class
+order<-data5$order
+family<-data5$family
+phylum<-data5$phylum
+genus<-data5$genus
+lat<-data5$lat
+species<-data5$species
+lon<-data5$lon
+year<-data5$year
+country<-data5$country
+Specie_estudied<-data.frame(gbifID,institutionCode,catalogNumber,kingdom,phylum,order,family,genus,species,lat,lon,year,country)
+```
+####1.2.2 Para armar el archivo .CSV que dara la data de la especie
+```{r}
+gbifID<-data5$gbifID
+institutionCode<-data5$institutionCode
+catalogNumber<-data5$catalogNumber
+kingdom<-data5$kingdom
+class<-data5$class
+order<-data5$order
+family<-data5$family
+phylum<-data5$phylum
+genus<-data5$genus
+lat<-data5$lat
+species<-data5$species
+lon<-data5$lon
+year<-data5$year
+country<-data5$country
+Specie_estudied<-data.frame(gbifID,institutionCode,catalogNumber,kingdom,phylum,order,family,genus,species,lat,lon,year,country)
+write.csv(Specie_estudied, file = "Xiphophorus_continens.csv") ### para guardar el archivo de puntos
+continens<-data.frame(species, lat, lon)
+colnames(continens)<-c("Especie", "Y", "X")
+write.csv(continens, file = "X_continens_coords.csv")##guardar coordenadas
+```
+
+###1.3 Descarga de datos de la especie *X. cortezi*
+####1.3.1 Obtenemos y limpiamos los datos
+```{r}
+
+species1<- gbif("Xiphophorus", "cortezi*", geo=FALSE)
+data <- subset(species1, !is.na(lon) & !is.na(lat))
+dups <- duplicated(data[, c("species", "lon", "lat")])# primer paso para quitar duplicados
+dups2<- duplicated(data[, c("lon", "lat")])# segundo paso para quitar duplicados
+sum(dups2)# number of duplicates
+data3 <- data[!dups2, ]# keep the records that are _not_ duplicated
+data3[,1:13]
+data4 <- subset(data3, !is.na(lon) & !is.na(lat))
+colnames(data4)
+write.csv(data4, file = "Xiphophorus_cortezi_orig.csv") ### para guardar el archivo de puntos
+resol <- 0.041665 ### QUITAR LOS DATOS REPETIDOS ESPACIALMENTE en un radio de 5km2
+clean_dup <- function(data,longitude,latitude,threshold=0.0){  data <- data[!is.na(data[,longitude]),]
+dat_sp <- SpatialPointsDataFrame(data[,c(longitude ,latitude)],data)
+dat_sp1 <- remove.duplicates(dat_sp, zero = threshold)
+return(dat_sp1@data)}
+data5 <- clean_dup(data4,longitude = "lon",latitude = "lat",threshold = resol) ### datos espacilamente limpios
+```
+
+####1.3.2 Para armar el archivo .CSV que dara la data de la especie
+```{r}
+gbifID<-data5$gbifID
+institutionCode<-data5$institutionCode
+catalogNumber<-data5$catalogNumber
+kingdom<-data5$kingdom
+phylum<-data5$phylum
+order<-data5$order
+family<-data5$family
+genus<-data5$genus
+species<-data5$species
+lat<-data5$lat
+lon<-data5$lon
+year<-data5$year
+country<-data5$country
+Specie_estudied<-data.frame(gbifID,institutionCode,catalogNumber,kingdom,phylum,order,family,genus,species,lat,lon,year,country)
+write.csv(Specie_estudied, file = "Xiphophorus_cortezi.csv") ### para guardar el archivo de datos
+cortezi<-data.frame(species, lat, lon)
+colnames(cortezi)<-c("Especie", "Y", "X")
+write.csv(cortezi, file = "X_cortezi_coords.csv")##guardar coordenadas
+
+```
+
+###1.4 Descarga de datos de la especie *X. malinche*
+####1.4.1 Obtenemos y limpiamos los datos
+```{r}
+species1<- gbif("Xiphophorus", "malinche*", geo=FALSE)
+data <- subset(species1, !is.na(lon) & !is.na(lat))
+dups <- duplicated(data[, c("species", "lon", "lat")])# primer paso para quitar duplicados
+dups2<- duplicated(data[, c("lon", "lat")])# segundo paso para quitar duplicados
+sum(dups2)# number of duplicates
+data3 <- data[!dups2, ]# keep the records that are _not_ duplicated
+data3[,1:13]
+data4 <- subset(data3, !is.na(lon) & !is.na(lat))
+colnames(data4)
+write.csv(data4, file = "Xiphophorus_malinche_orig.csv") ### para guardar el archivo de puntos
+resol <- 0.041665 ### QUITAR LOS DATOS REPETIDOS ESPACIALMENTE en un radio de 5km2
+clean_dup <- function(data,longitude,latitude,threshold=0.0){  data <- data[!is.na(data[,longitude]),]
+dat_sp <- SpatialPointsDataFrame(data[,c(longitude ,latitude)],data)
+dat_sp1 <- remove.duplicates(dat_sp, zero = threshold)
+return(dat_sp1@data)}
+data5 <- clean_dup(data4,longitude = "lon",latitude = "lat",threshold = resol)### datos espacilamente limpios
+```
+####1.4.2 Para armar el archivo .CSV que dara la data de la especie
+```{r}
+gbifID<-data5$gbifID
+institutionCode<-data5$institutionCode
+catalogNumber<-data5$catalogNumber
+kingdom<-data5$kingdom
+class<-data5$class
+order<-data5$order
+family<-data5$family
+phylum<-data5$phylum
+genus<-data5$genus
+lat<-data5$lat
+species<-data5$species
+lon<-data5$lon
+year<-data5$year
+country<-data5$country
+Specie_estudied<-data.frame(gbifID,institutionCode,catalogNumber,kingdom,phylum,order,family,genus,species,lat,lon,year,country)
+write.csv(Specie_estudied, file = "Xiphophorus_malinche.csv") ### para guardar el archivo de puntos
+malinche<-data.frame(species, lat, lon)
+colnames(malinche)<-c("Especie", "Y", "X")
+write.csv(malinche, file = "X_malinche_coords.csv")##guardar coordenadas
+```
+
+###1.5 Descarga de datos de la especie *X. multilineatus*
+####1.5.1 Obtenemos y limpiamos los datos
+```{r}
+species1<- gbif("Xiphophorus", "multilineatus*", geo=FALSE)
+data <- subset(species1, !is.na(lon) & !is.na(lat))
+dups <- duplicated(data[, c("species", "lon", "lat")])# primer paso para quitar duplicados
+dups2<- duplicated(data[, c("lon", "lat")])# segundo paso para quitar duplicados
+sum(dups2)# number of duplicates
+data3 <- data[!dups2, ]# keep the records that are _not_ duplicated
+data3[,1:13]
+data4 <- subset(data3, !is.na(lon) & !is.na(lat))
+colnames(data4)
+write.csv(data4, file = "Xiphophorus_multilineatus_orig.csv") ### para guardar el archivo de puntos
+resol <- 0.041665 ### QUITAR LOS DATOS REPETIDOS ESPACIALMENTE en un radio de 5km2
+clean_dup <- function(data,longitude,latitude,threshold=0.0){  data <- data[!is.na(data[,longitude]),]
+dat_sp <- SpatialPointsDataFrame(data[,c(longitude ,latitude)],data)
+dat_sp1 <- remove.duplicates(dat_sp, zero = threshold)
+return(dat_sp1@data)}
+data5 <- clean_dup(data4,longitude = "lon",latitude = "lat",threshold = resol)### datos espacilamente limpios
+```
+
+####1.5.2 Para armar el archivo .CSV que dara la data de la especie
+
+```{r}
+gbifID<-data5$gbifID
+institutionCode<-data5$institutionCode
+catalogNumber<-data5$catalogNumber
+kingdom<-data5$kingdom
+class<-data5$class
+order<-data5$order
+family<-data5$family
+phylum<-data5$phylum
+genus<-data5$genus
+lat<-data5$lat
+species<-data5$species
+lon<-data5$lon
+year<-data5$year
+country<-data5$country
+Specie_estudied<-data.frame(gbifID,institutionCode,catalogNumber,kingdom,phylum,order,family,genus,species,lat,lon,year,country)
+write.csv(Specie_estudied, file = "Xiphophorus_multilineatus.csv") ### para guardar el archivo de puntos
+multilineatus<-data.frame(species, lat, lon)
+colnames(multilineatus)<-c("Especie", "Y", "X")
+write.csv(multilineatus, file = "X_multilineatus_coords.csv")##guardar coordenadas
+```
+
+###1.6 Descarga de datos de la especie *X. nezahualcoyotl*
+####1.6.1 Obtenemos y limpiamos los datos
+
+```{r}
+species1<- gbif("Xiphophorus", "nezahualcoyotl*", geo=FALSE)
+data <- subset(species1, !is.na(lon) & !is.na(lat))
+dups <- duplicated(data[, c("species", "lon", "lat")])# primer paso para quitar duplicados
+dups2<- duplicated(data[, c("lon", "lat")])# segundo paso para quitar duplicados
+sum(dups2)# number of duplicates
+data3 <- data[!dups2, ]# keep the records that are _not_ duplicated
+data3[,1:13]
+data4 <- subset(data3, !is.na(lon) & !is.na(lat))
+colnames(data4)
+write.csv(data4, file = "Xiphophorus_nezahualcoyotl_orig.csv") ### para guardar el archivo de puntos
+resol <- 0.041665 ### QUITAR LOS DATOS REPETIDOS ESPACIALMENTE en un radio de 5km2
+clean_dup <- function(data,longitude,latitude,threshold=0.0){  data <- data[!is.na(data[,longitude]),]
+dat_sp <- SpatialPointsDataFrame(data[,c(longitude ,latitude)],data)
+dat_sp1 <- remove.duplicates(dat_sp, zero = threshold)
+return(dat_sp1@data)}
+data5 <- clean_dup(data4,longitude = "lon",latitude = "lat",threshold = resol)### datos espacilamente limpios
+```
+
+####1.6.2 Para armar el archivo .CSV que dara la data de la especie
+```{r}
+gbifID<-data5$gbifID
+institutionCode<-data5$institutionCode
+catalogNumber<-data5$catalogNumber
+kingdom<-data5$kingdom
+phylum<-data5$phylum
+class<-data5$class
+family<-data5$family
+order<-data5$order
+genus<-data5$genus
+species<-data5$species
+lat<-data5$lat
+lon<-data5$lon
+year<-data5$year
+country<-data5$country
+Specie_estudied<-data.frame(gbifID,institutionCode,catalogNumber,kingdom,phylum,order,family,genus,species,lat,lon,year,country)
+write.csv(Specie_estudied, file = "Xiphophorus_nezahualcoyotl.csv") ### para guardar el archivo de puntos
+neza<-data.frame(species, lat, lon)
+colnames(neza)<-c("Especie", "Y", "X")
+write.csv(neza, file = "X_nezahualcoyotl_coords.csv")##guardar coordenadas
+```
+
+###1.7 Descarga de datos de la especie *X. nigrensis*
+####1.7.1 Obtenemos y limpiamos los datos
+```{r}
+species1<- gbif("Xiphophorus", "nigrensis*", geo=FALSE)
+data <- subset(species1, !is.na(lon) & !is.na(lat))
+dups <- duplicated(data[, c("species", "lon", "lat")])# primer paso para quitar duplicados
+dups2<- duplicated(data[, c("lon", "lat")])# segundo paso para quitar duplicados
+sum(dups2)# number of duplicates
+data3 <- data[!dups2, ]# keep the records that are _not_ duplicated
+data3[,1:13]
+data4 <- subset(data3, !is.na(lon) & !is.na(lat))
+colnames(data4)
+write.csv(data4, file = "Xiphophorus_nigrensis_orig.csv") ### para guardar el archivo de puntos
+resol <- 0.041665 ### QUITAR LOS DATOS REPETIDOS ESPACIALMENTE en un radio de 5km2
+clean_dup <- function(data,longitude,latitude,threshold=0.0){  data <- data[!is.na(data[,longitude]),]
+dat_sp <- SpatialPointsDataFrame(data[,c(longitude ,latitude)],data)
+dat_sp1 <- remove.duplicates(dat_sp, zero = threshold)
+return(dat_sp1@data)}
+data5 <- clean_dup(data4,longitude = "lon",latitude = "lat",threshold = resol)### datos espacilamente limpios
+```
+
+####1.7.2 Para armar el archivo .CSV que dara la data de la especie
+```{r}
+gbifID<-data5$gbifID
+institutionCode<-data5$institutionCode
+catalogNumber<-data5$catalogNumber
+kingdom<-data5$kingdom
+class<-data5$class
+order<-data5$order
+family<-data5$family
+phylum<-data5$phylum
+genus<-data5$genus
+lat<-data5$lat
+species<-data5$species
+lon<-data5$lon
+year<-data5$year
+country<-data5$country
+Specie_estudied<-data.frame(gbifID,institutionCode,catalogNumber,kingdom,phylum,order,family,genus,species,lat,lon,year,country)
+write.csv(Specie_estudied, file = "Xiphophorus_nigrensis.csv") ### para guardar el archivo de puntos
+nigrensis<-data.frame(species, lat, lon)
+colnames(nigrensis)<-c("Especie", "Y", "X")
+write.csv(nigrensis, file = "X_nigrensis_coords.csv")##guardar coordenadas
+```
+
+###1.8 Descarga de datos de la especie *X. pygmaeus*
+####1.8.1 Obtenemos y limpiamos los datos
+```{r}
+species1<- gbif("Xiphophorus", "pygmaeus*", geo=FALSE)
+data <- subset(species1, !is.na(lon) & !is.na(lat))
+dups <- duplicated(data[, c("species", "lon", "lat")])# primer paso para quitar duplicados
+dups2<- duplicated(data[, c("lon", "lat")])# segundo paso para quitar duplicados
+sum(dups2)# number of duplicates
+data3 <- data[!dups2, ]# keep the records that are _not_ duplicated
+data3[,1:13]
+data4 <- subset(data3, !is.na(lon) & !is.na(lat))
+colnames(data4)
+write.csv(data4, file = "Xiphophorus_pygmaeus_orig.csv") ### para guardar el archivo de puntos
+resol <- 0.041665 ### QUITAR LOS DATOS REPETIDOS ESPACIALMENTE en un radio de 5km2
+clean_dup <- function(data,longitude,latitude,threshold=0.0){  data <- data[!is.na(data[,longitude]),]
+dat_sp <- SpatialPointsDataFrame(data[,c(longitude ,latitude)],data)
+dat_sp1 <- remove.duplicates(dat_sp, zero = threshold)
+return(dat_sp1@data)}
+#Datos espacilamente limpios
+data5 <- clean_dup(data4,longitude = "lon",latitude = "lat",threshold = resol)
+```
+
+####1.8.2 Para armar el archivo .CSV que dara la data de la especie
+```{r}
+gbifID<-data5$gbifID
+institutionCode<-data5$institutionCode
+catalogNumber<-data5$catalogNumber
+kingdom<-data5$kingdom
+class<-data5$class
+order<-data5$order
+family<-data5$family
+phylum<-data5$phylum
+genus<-data5$genus
+lat<-data5$lat
+species<-data5$species
+lon<-data5$lon
+year<-data5$year
+country<-data5$country
+Specie_estudied<-data.frame(gbifID,institutionCode,catalogNumber,kingdom,phylum,order,family,genus,species,lat,lon,year,country)
+
+write.csv(Specie_estudied, file = "Xiphophorus_pygmaeus.csv") 
+pygmaeus<-data.frame(species, lat, lon)
+colnames(pygmaeus)<-c("Especie", "Y", "X")
+write.csv(pygmaeus, file = "X_pygmaeus_coords.csv")
+```
+
+###1.9 Descarga de datos de la especie *X. variatus*
+####1.9.1 Obtenemos y limpiamos los datos
+```{r}
+species1<- gbif("Xiphophorus", "variatus*", geo=FALSE)
+data <- subset(species1, !is.na(lon) & !is.na(lat))
+dups <- duplicated(data[, c("species", "lon", "lat")])# primer paso para quitar duplicados
+dups2<- duplicated(data[, c("lon", "lat")])# segundo paso para quitar duplicados
+sum(dups2)# number of duplicates
+data3 <- data[!dups2, ]# keep the records that are _not_ duplicated
+data3[,1:13]
+data4 <- subset(data3, !is.na(lon) & !is.na(lat))
+colnames(data4)
+write.csv(data4, file = "Xiphophorus_variatus_orig.csv") ### para guardar el archivo de puntos
+resol <- 0.041665 ### QUITAR LOS DATOS REPETIDOS ESPACIALMENTE en un radio de 5km2
+clean_dup <- function(data,longitude,latitude,threshold=0.0){  data <- data[!is.na(data[,longitude]),]
+dat_sp <- SpatialPointsDataFrame(data[,c(longitude ,latitude)],data)
+dat_sp1 <- remove.duplicates(dat_sp, zero = threshold)
+return(dat_sp1@data)}
+data5 <- clean_dup(data4,longitude = "lon",latitude = "lat",threshold = resol)### datos espacilamente limpios
+```
+
+####1.9.2 Para armar el archivo .CSV que dara la data de la especie
+```{r}
+gbifID<-data5$gbifID
+institutionCode<-data5$institutionCode
+catalogNumber<-data5$catalogNumber
+kingdom<-data5$kingdom
+class<-data5$class
+order<-data5$order
+family<-data5$family
+phylum<-data5$phylum
+genus<-data5$genus
+lat<-data5$lat
+species<-data5$species
+lon<-data5$lon
+year<-data5$year
+country<-data5$country
+Specie_estudied<-data.frame(gbifID,institutionCode,catalogNumber,kingdom,phylum,order,family,genus,species,lat,lon,year,country)
+write.csv(Specie_estudied, file = "Xiphophorus_variatus.csv") ### para guardar el archivo de puntos
+variatus<-data.frame(species, lat, lon)
+colnames(variatus)<-c("Especie", "Y", "X")
+write.csv(variatus, file = "X_variatus_coords.csv")##guardar coordenadas
+```
+
+##2 Creación de las capas que usaremos para delimitar el área de estudio.
+###2.1 Obtención de las capas climáticas.
+```{r}
+geodata_path("~/Portfolio/RStudio/Xiphophorus/Markdown")
+country_codes(query = "Mex")
+bioclimvar <- geodata::worldclim_country("MEXICO", var = "bio", res = 0.00833333279799999, download = F)
+plot(bioclimvar)
+```
+
+###2.2 Cortamos las capas obtenidas.
+```{r}
+mascara<-shapefile("Panuco.shp")
+plot(mascara) #asegurarse que sea cargada correctamente
+
+Bioclimexp<-c(BIO1 = "Annual Mean Temperature", BIO2 = "Mean Diurnal Range (Mean of monthly (max temp - min temp))", BIO3 = "Isothermality (BIO2/BIO7) (×100)",
+              BIO4 = "Temperature Seasonality (standard deviation ×100)", BIO5 = "Max Temperature of Warmest Month", BIO6 = "Min Temperature of Coldest Month",
+              BIO7 = "Temperature Annual Range (BIO5-BIO6)", BIO8 = "Mean Temperature of Wettest Quarter", BIO9 = "Mean Temperature of Driest Quarter",
+              BIO10 = "Mean Temperature of Warmest Quarter", BIO11 = "Mean Temperature of Coldest Quarter", BIO12 = "Annual Precipitation",
+              BIO13 = "Precipitation of Wettest Month", BIO14 = "Precipitation of Driest Month", BIO15 = "Precipitation Seasonality (Coefficient of Variation)", 
+              BIO16 = "Precipitation of Wettest Quarter", BIO17 = "Precipitation of Driest Quarter", BIO18 = "Precipitation of Warmest Quarter",
+              BIO19 = "Precipitation of Coldest Quarter")
+
+for(i in 1:19){
+  rastr<-raster(bioclimvar[[bioclimvar@ptr[["names"]][i]]])
+  corteclim<-raster::crop(rastr, mascara)
+  corteclim = raster::mask(rastr, mascara)
+  writeRaster(corteclim, paste("BIO",i,".asc",sep=""), overwrite=TRUE)
+  }
+
+
+```
+
+
+###2.3 Remoción de capas climáticas no necesarias.
+
+Removéremos variables climáticas de acuerdo a su valor de inflación de varianza (VIF)
+Para saber cuáles quitar mediante el Factor de inflación de Varianza (VIF). si VIF>4.0 implica multicolinearidad, hay que remover esas variables. Sin embargo, algunos autores recomiendan que esta bien con valores de VIF>10 [Montgomery and Peck (1992)], esto sugiere que la colinearidad entre estas variables ya no es un problema. Otros autores sugieren que idealmente debe ser menor a 1.5, ver Zuur et al. 2009. Mixed Effects Models and Extensions in Ecology with R. pp.478 para referencias
+De ser alta (mayor a 10 o el valor que se fije por el usuario) entonces se usa una reducción en pasos para ir eliminándolas
+```{r}
+pca_path <- list.files(".",pattern = "*.asc$",full.names = T)###crea el stack de las variables climaticas del presente
+capas_presente<- stack(pca_path)
+especies<-c("birchmanni", "continens", "cortezi", "malinche", "multilineatus", "neza", "nigrensis", "pygmaeus", "variatus")
+
+for(i in 1:length(especies)){
+especiecurrent<-as.character(especies[i])
+especieinv<-paste(especies[i], "inv", sep = "")
+frame<-data.frame(get(especiecurrent)$Especie, get(especiecurrent)$X, get(especiecurrent)$Y)
+eval(call("<-", as.name(especieinv), frame))
+
+
+
+presencias_clima <- data.frame(raster::extract(capas_presente,get(especieinv)[,2:3]))###extrae los valores climaticos para cada uno de los puntos de presencia
+presencias_clima2 <-data.frame(get(especieinv),presencias_clima)
+presencias_clima3 <- na.omit(presencias_clima2)## omite mis datos de presencia sin valores climaticos.
+write.csv(presencias_clima3[,1:3], file = paste(get(especiecurrent)[1,1], ".csv", sep = "")) ### para guardar el archivo de puntos
+
+if (nrow(get(especieinv)) < 5){
+  next
+}
+
+#### Matriz de colinearidad y estimación del Factor de inflación de Varianza (VIF)
+cormatriz <- cor(presencias_clima3[,4:ncol(presencias_clima3)])#Definir cu?les son las columnas con las variables para hacer la correlaci?n (de la 1 a la 19)
+eval(call("<-", as.name(paste("cormatriz", especiecurrent, sep = "")), cormatriz))
+
+corrplot(cormatriz, outline = TRUE, tl.col = "black", mar = c(2,0,1,1.5), title = get(especiecurrent)[1,1]) 
+
+vif(presencias_clima3[,4:ncol(presencias_clima3)])# Priemro vemos si hay alta colinearidad entre variables
+
+no_corr <- vifstep(presencias_clima3[,4:ncol(presencias_clima3)], th=10) # th: es el valor de umbral deseado;Para ver cuáles fueron las variables que quedaron sin colinearidad
+no_corr
+
+capascons<-c(no_corr@results[["Variables"]])
+paste(especiecurrent, "capascons", sep = "")
+
+eval(call("<-", as.name(paste(especiecurrent, "capascons", sep = "")), capascons))
+
+}
+
+capasconscomp<-list(birchmannicapascons, cortezicapascons, malinchecapascons, multilineatuscapascons, nezacapascons, pygmaeuscapascons, variatuscapascons)
+comparar <- table(unlist(lapply(capasconscomp, unique)))
+
+compdf<-as.data.frame(sort(comparar, decreasing = TRUE))#vemos el número de veces que se repite cada variable climática 
+borrar <- which(compdf$Freq < 2)
+compdf <- compdf[-borrar,]#y removemos las que tengan menos observaciones.  
+capascons<- c(compdf$Var1) #estas son las variables que conservaríamos
+
+corrplot(cormatrizbirchmanni, outline = TRUE, tl.col = "black", mar = c(2,0,1,1.5), title = "Xiphophorus birchmani")
+corrplot(cormatrizcortezi, outline = TRUE, tl.col = "black", mar = c(2,0,1,1.5), title = "Xiphophorus cortezi")
+corrplot(cormatrizmalinche, outline = TRUE, tl.col = "black", mar = c(2,0,1,1.5), title = "Xiphophorus malinche")
+corrplot(cormatrizmultilineatus, outline = TRUE, tl.col = "black", mar = c(2,0,1,1.5), title = "Xiphophorus multilineatus")
+corrplot(cormatrizneza, outline = TRUE, tl.col = "black", mar = c(2,0,1,1.5), title = "Xiphophorus nezahualcoyotl")
+corrplot(cormatriznigrensis, outline = TRUE, tl.col = "black", mar = c(2,0,1,1.5), title = "Xiphophorus nigrensis")
+corrplot(cormatrizpygmaeus, outline = TRUE, tl.col = "black", mar = c(2,0,1,1.5), title = "Xiphophorus pygmaeus")
+corrplot(cormatrizvariatus, outline = TRUE, tl.col = "black", mar = c(2,0,1,1.5), title = "Xiphophorus variatus")
+capascons
+
+
+```
+
+###2.4 DEFINICIÓN DE ESPACIO AMBIENTAL (VARIABLES Y COORDENADAS)
+```{r}
+capasusar<-stack(paste(capascons[1:length(capascons)],".asc",sep=""))
+resol <- res(capasusar)[1]
+
+```
+
+
+
+Generamos una tabla que para cada pixel (coordenada x, y) me diga el valor de todas las variables ambientales
+```{r}
+climpunto <- rasterToPoints(capasusar[[1]], fun=NULL, spatial=TRUE)
+
+```
+
+Extraemos datos ambientales para cada capa en capasusar de cada coordenada en climpunto
+```{r}
+clim <- raster::extract(capasusar, climpunto)
+
+```
+
+Damos formato a clim para que sea una tabla normal con dos primeras columnas X y Y
+```{r}
+clim <- data.frame(coordinates(climpunto),clim)
+clim <- subset(clim, !is.na(colnames(clim)[3:ncol(clim)]))
+```
+Creamos los objetos para cada una de las especies
+```{r}
+occ.sp1 <- birchmanniinv[2:3]
+occ.sp2 <- corteziinv[2:3]
+occ.sp3 <- malincheinv[2:3]
+occ.sp4 <- multilineatusinv[2:3]
+occ.sp5 <- nezainv[2:3]
+occ.sp6 <- nigrensisinv[2:3]
+occ.sp7 <- pygmaeusinv[2:3]
+occ.sp8 <- variatusinv[2:3]
+```
+
+####2.4.1 Anadir variables climaticas a datos
+```{r}
+occ_sp1<-na.exclude(ecospat.sample.envar(dfsp=occ.sp1,colspxy=1:2, colspkept=1:2,dfvar=clim, colvarxy=1:2,colvar="all",resolution=0.008333))
+occ_sp2<-na.exclude(ecospat.sample.envar(dfsp=occ.sp2,colspxy=1:2, colspkept=1:2,dfvar=clim, colvarxy=1:2,colvar="all",resolution=0.008333))
+occ_sp3<-na.exclude(ecospat.sample.envar(dfsp=occ.sp3,colspxy=1:2, colspkept=1:2,dfvar=clim, colvarxy=1:2,colvar="all",resolution=0.008333))
+occ_sp4<-na.exclude(ecospat.sample.envar(dfsp=occ.sp4,colspxy=1:2, colspkept=1:2,dfvar=clim, colvarxy=1:2,colvar="all",resolution=0.008333))
+occ_sp5<-na.exclude(ecospat.sample.envar(dfsp=occ.sp5,colspxy=1:2, colspkept=1:2,dfvar=clim, colvarxy=1:2,colvar="all",resolution=0.008333))
+occ_sp6<-na.exclude(ecospat.sample.envar(dfsp=occ.sp6,colspxy=1:2, colspkept=1:2,dfvar=clim, colvarxy=1:2,colvar="all",resolution=0.008333))
+occ_sp7<-na.exclude(ecospat.sample.envar(dfsp=occ.sp7,colspxy=1:2, colspkept=1:2,dfvar=clim, colvarxy=1:2,colvar="all",resolution=0.008333))
+occ_sp8<-na.exclude(ecospat.sample.envar(dfsp=occ.sp8,colspxy=1:2, colspkept=1:2,dfvar=clim, colvarxy=1:2,colvar="all",resolution=0.008333))
+```
+
+##3 Calculo de una versión simplificada del modelo de nicho ecológico y comparaciones.
+###3.1 PCA-AMBIENTE 
+
+Estos valores serán más importantes para los tests de equivalencia y de similaridad
+
+Se realiza un PCA para convertir los valores de las múltiples variables ambientales asociadas a cada ocurrencia en variables no correlacionadas que son más fáciles de manipular para los tests de equivalencia y similaridad.V
+
+Vector de peso 0 para las ocurrencias y 1 para todos los sitios del area de estudio
+```{r}
+w<-c(rep(1,nrow(clim)),rep(0,nrow(occ_sp1)),rep(0,nrow(occ_sp2)), rep(0,nrow(occ_sp3)), rep(0,nrow(occ_sp4)),  rep(0,nrow(occ_sp5)),  rep(0,nrow(occ_sp6)),  rep(0,nrow(occ_sp7)), rep(0,nrow(occ_sp8))) # para las especies
+
+```
+
+El PCA se realiza con todos los datos del area de estudio
+Las presencias no son usadas para la calibracion del PCA pero sus coordenadas en los PCA son calculadas
+```{r}
+data<-rbind(clim[,3:ncol(clim)],occ_sp1[,3:ncol(occ_sp1)],occ_sp2[,3:ncol(occ_sp2)], occ_sp3[,3:ncol(occ_sp3)], occ_sp4[,3:ncol(occ_sp4)], occ_sp5[,3:ncol(occ_sp5)], occ_sp6[,3:ncol(occ_sp6)], occ_sp7[,3:ncol(occ_sp7)], occ_sp8[,3:ncol(occ_sp8)]) # para las especies
+data <- subset(data, !is.na(colnames(clim)[3:ncol(clim)]))
+pca.cal <-dudi.pca(data, row.w = w, center = T, scale = T, scannf = F, nf = 2)
+pca.cal
+```
+
+Filas en que estan los datos de clim y de cada una de las especies:
+```{r}
+row.clim <- 1:nrow(clim)
+row.sp1 <- (1+nrow(clim)):(nrow(clim) + nrow(occ_sp1))
+row.sp2 <- (1 + nrow(clim) + nrow(occ_sp1)) : (nrow(clim) + nrow(occ_sp1) + nrow(occ_sp2))
+row.sp3 <- (1 + nrow(clim) + nrow(occ_sp1) + nrow(occ_sp2)) : (nrow(clim) + nrow(occ_sp1) + nrow(occ_sp2) + nrow(occ_sp3))
+row.sp4 <- (1 + nrow(clim) + nrow(occ_sp1) + nrow(occ_sp2) + nrow(occ_sp3)) : (nrow(clim) + nrow(occ_sp1) + nrow(occ_sp2) + nrow(occ_sp3) + nrow(occ_sp4))
+row.sp5 <- (1 + nrow(clim) + nrow(occ_sp1) + nrow(occ_sp2) + nrow(occ_sp3) + nrow(occ_sp4)) : (nrow(clim) + nrow(occ_sp1) + nrow(occ_sp2) + nrow(occ_sp3) + nrow(occ_sp4) + nrow(occ_sp5))
+row.sp6 <- (1 + nrow(clim) + nrow(occ_sp1) + nrow(occ_sp2) + nrow(occ_sp3) + nrow(occ_sp4) + nrow(occ_sp5)) : (nrow(clim) + nrow(occ_sp1) + nrow(occ_sp2) + nrow(occ_sp3) + nrow(occ_sp4) + nrow(occ_sp5) + nrow(occ_sp6))
+row.sp7 <- (1 + nrow(clim) + nrow(occ_sp1) + nrow(occ_sp2) + nrow(occ_sp3) + nrow(occ_sp4) + nrow(occ_sp5) + nrow(occ_sp6)) : (nrow(clim) + nrow(occ_sp1) + nrow(occ_sp2) + nrow(occ_sp3) + nrow(occ_sp4) + nrow(occ_sp5) + nrow(occ_sp6) + nrow(occ_sp7))
+row.sp8 <- (1 + nrow(clim) + nrow(occ_sp1) + nrow(occ_sp2) + nrow(occ_sp3) + nrow(occ_sp4) + nrow(occ_sp5) + nrow(occ_sp6) +  nrow(occ_sp7)) : (nrow(clim) + nrow(occ_sp1) + nrow(occ_sp2) + nrow(occ_sp3) + nrow(occ_sp4) + nrow(occ_sp5) + nrow(occ_sp6) + nrow(occ_sp7) +  nrow(occ_sp8))
+
+```
+
+Las coordenadas en cada uno de los ejes del PCA para los datos de toda el area de estudio y de cada una de las especies
+```{r}
+scores.clim <- pca.cal$li[row.clim,] #coordenadas para todas las celdas
+scores.sp1  <- pca.cal$li[row.sp1,]   #coordenadas para sp1
+scores.sp2  <- pca.cal$li[row.sp2,]   #coordenadas para sp2
+scores.sp3  <- pca.cal$li[row.sp3,]   #coordenadas para sp3
+scores.sp4  <- pca.cal$li[row.sp4,]   #coordenadas para sp4
+scores.sp5  <- pca.cal$li[row.sp5,]   #coordenadas para sp5
+scores.sp6  <- pca.cal$li[row.sp6,]   #coordenadas para sp6
+scores.sp7  <- pca.cal$li[row.sp7,]   #coordenadas para sp7
+scores.sp8  <- pca.cal$li[row.sp8,]   #coordenadas para sp8
+
+ecospat.plot.contrib(contrib=pca.cal$co, eigen=pca.cal$eig)
+```
+
+###3.2 SUPERFICIE DE DENSIDAD DE OCURRENCIAS
+
+Generar superficies de densidad de ocurrencias en espacio ambiental (maximos dos ejes), utiliza los valores climaticos.
+Esta funcion calcula la densidad de ocurrencias de cada especie, para cada combinación de condiciones (la gradilla) y nos da un objeto que puede ser utilizado para calcular el sobrelape y similaridad.
+```{r}
+z1<-ecospat.grid.clim.dyn (scores.clim, scores.clim, scores.sp1, R=100) #Birchmani
+z2<-ecospat.grid.clim.dyn (scores.clim, scores.clim, scores.sp2, R=100) #Cortezi
+z3<-ecospat.grid.clim.dyn (scores.clim, scores.clim, scores.sp3, R=100) #Malinche
+z4<-ecospat.grid.clim.dyn (scores.clim, scores.clim, scores.sp4, R=100) #Multilineatus
+z5<-ecospat.grid.clim.dyn (scores.clim, scores.clim, scores.sp5, R=100) #Nezahualcoyotl
+z6<-ecospat.grid.clim.dyn (scores.clim, scores.clim, scores.sp6, R=100) #Nigrensis
+z7<-ecospat.grid.clim.dyn (scores.clim, scores.clim, scores.sp7, R=100) #Pygmaeus
+z8<-ecospat.grid.clim.dyn (scores.clim, scores.clim, scores.sp8, R=100) #Variatus
+```
+
+Grafico de densidad de ocurrencias en espacio ambiental, esto es una simplificación en dos planos del Nicho ecológico de cada especie, de acuerdo con las variables climáticas seleccionadas. 
+```{r}
+ecospat.plot.niche (z2, title="X_cortezi", name.axis1="PC1", name.axis2="PC2", cor=F)
+ecospat.plot.niche (z1, title="X_birchmani", name.axis1="PC1", name.axis2="PC2", cor=F)
+ecospat.plot.niche (z3, title="X_malinche", name.axis1="PC1", name.axis2="PC2", cor=F)
+ecospat.plot.niche (z4, title="X_multilineatus", name.axis1="PC1", name.axis2="PC2", cor=F)
+ecospat.plot.niche (z5, title="X_nezahualcoyotl", name.axis1="PC1", name.axis2="PC2", cor=F)
+ecospat.plot.niche (z6, title="X_nigrensis", name.axis1="PC1", name.axis2="PC2", cor=F)
+ecospat.plot.niche (z7, title="X_pygmaeus", name.axis1="PC1", name.axis2="PC2", cor=F)
+ecospat.plot.niche (z8, title="X_variatus", name.axis1="PC1", name.axis2="PC2", cor=F)
+```
+
+###3.3 Sobrelape de nicho
+Metricos de sobrelape de nicho observado (D - el metrico de Schoener e I - el metrico de Warren)
+Ambos métricos se calculan comparando las difrencias en densidad de cada especie y ambos van de 0 (sin sobrelape)a 1 (sobrelape absoluto). Esta es una medida menos confiable que los tests de equivalencia y de similaridad debido a que considera unicamente el espacio geográfico. Esta función simplemente presenta los valores D e I.
+```{r}
+met.cortezivsbirchmani<-ecospat.niche.overlap(z1=z2, z2=z1, cor=TRUE)
+met.cortezivsmalinche<-ecospat.niche.overlap(z1=z2, z2=z3, cor=TRUE)
+met.cortezivsmultilineatus<-ecospat.niche.overlap(z1=z2, z2=z4, cor=TRUE)
+met.cortezivsneza<-ecospat.niche.overlap(z1=z2, z2=z5, cor=TRUE)
+met.cortezivsnigrensis<-ecospat.niche.overlap(z1=z2, z2=z6, cor=TRUE)
+met.cortezivspygmaeus<-ecospat.niche.overlap(z1=z2, z2=z7, cor=TRUE)
+met.cortezivsvariatus<-ecospat.niche.overlap(z1=z2, z2=z8, cor=TRUE)
+
+met.cortezivsbirchmani
+met.cortezivsmalinche
+met.cortezivsmultilineatus
+met.cortezivsneza
+met.cortezivsnigrensis
+met.cortezivspygmaeus
+met.cortezivsvariatus
+```
+
+Unicamente sirve como ejemplo, pues hay mejores metricos para comparar los nichos, como son el test de equivalencia y de similaridad.
+
+
+###3.4 TEST DE EQUIVALENCIA DE NICHO
+ 
+Test de equivalencia de nicho, quiere decir, son dos nichos identicos? 
+Esta prueba aleatoriza la identidad de las especies entre los puntos de ocurrencia.
+La hipotesis nula es que los nichos son identicos lo que significa que si un valor de P menor a 0.05 nos indicaría que los nichos son más diferentes entre si, de lo que se esperaría por azar. 
+Se recomienda hacer al menos 1000 repeticiones en esta prueba, pero para ahorrar poder computacional, hagamoslo solo 20 veces. 
+
+####3.4.1 *X. birchmani*
+```{r}
+cores<-detectCores()-2
+
+eq.birchmanivscortezi<-ecospat.niche.equivalency.test(z1=z1 , z2=z2, rep=100, ncores = cores)
+eq.birchmanivsmalinche<-ecospat.niche.equivalency.test(z1=z1 , z2=z3, rep=100, ncores = cores)
+eq.birchmanivsmultilineatus<-ecospat.niche.equivalency.test(z1=z1 , z2=z4, rep=100, ncores = cores)
+eq.birchmanivsneza<-ecospat.niche.equivalency.test(z1=z1 , z2=z5, rep=100, ncores = cores)
+eq.birchmanivsnigrensis<-ecospat.niche.equivalency.test(z1=z1 , z2=z6, rep=100, ncores = cores)
+eq.birchmanivspygmaeus<-ecospat.niche.equivalency.test(z1=z1 , z2=z7, rep=100, ncores = cores)
+eq.birchmanivsvariatus<-ecospat.niche.equivalency.test(z1=z1 , z2=z8, rep=100, ncores = cores)
+```
+
+
+
+
+#####3.4.1.1 GRAFICO PARA EL TEST DE EQUIVALENCIA DE NICHO
+```{r}
+par(mfrow=c(1,7))
+ecospat.plot.overlap.test(eq.birchmanivscortezi,"D","X. cortezi")
+ecospat.plot.overlap.test(eq.birchmanivsmalinche,"D","X. malinche")
+ecospat.plot.overlap.test(eq.birchmanivsmultilineatus,"D","X. multilineatus")
+ecospat.plot.overlap.test(eq.birchmanivsneza,"D","X. nezahualcoyotl")
+ecospat.plot.overlap.test(eq.birchmanivsnigrensis,"D","X. nigrensis")
+ecospat.plot.overlap.test(eq.birchmanivspygmaeus,"D","X. pygmaeus")
+ecospat.plot.overlap.test(eq.birchmanivsvariatus,"D","X. variatus")
+mtext("Test de equivalencia X. birchmani", side = 3, line = -1.5, outer = TRUE)
+
+```
+En el primer caso, de comparación de la especie *X. birchmani* contra el resto de las especies, observamos un valor de D relativamente bajos, lo que nos indicaría poco sobrelape entre las ocurrencias de esta especie comparada con las demás. Sin embargo, los valores de P son muy elevados, lo que significa que los nichos no son más diferentes que por azar. Esto ¿qué significa? Que aunque no existe mucho sobrelape entre las nubes de puntos de ocurrencias (inciso 3.2), los valores predichos para cada una de las especies no son muy diferentes entre si. Lo cual no nos permite descartar la posibilidad de que sus nichos sean diferentes. 
+
+####3.4.2 *X. cortezi*
+```{r}
+eq.cortezivsbirchmani<-ecospat.niche.equivalency.test(z1=z2 , z2=z1, rep=100, ncores = cores)
+eq.cortezivsmalinche<-ecospat.niche.equivalency.test(z1=z2 , z2=z3, rep=100, ncores = cores)
+eq.cortezivsmultilineatus<-ecospat.niche.equivalency.test(z1=z2 , z2=z4, rep=100, ncores = cores)
+eq.cortezivsneza<-ecospat.niche.equivalency.test(z1=z2 , z2=z5, rep=100, ncores = cores)
+eq.cortezivsnigrensis<-ecospat.niche.equivalency.test(z1=z2 , z2=z6, rep=100, ncores = cores)
+eq.cortezivspygmaeus<-ecospat.niche.equivalency.test(z1=z2 , z2=z7, rep=100, ncores = cores)
+eq.cortezivsvariatus<-ecospat.niche.equivalency.test(z1=z2 , z2=z8, rep=100, ncores = cores)
+```
+
+
+
+
+#####3.4.2.1 GRAFICO PARA EL TEST DE EQUIVALENCIA DE NICHO
+```{r}
+par(mfrow=c(1,7))
+ecospat.plot.overlap.test(eq.cortezivsbirchmani,"D","X. birchmani")
+ecospat.plot.overlap.test(eq.cortezivsmalinche,"D","X. malinche")
+ecospat.plot.overlap.test(eq.cortezivsmultilineatus,"D","X. multilineatus")
+ecospat.plot.overlap.test(eq.cortezivsneza,"D","X. nezahualcoyotl")
+ecospat.plot.overlap.test(eq.cortezivsnigrensis,"D","X. nigrensis")
+ecospat.plot.overlap.test(eq.cortezivspygmaeus,"D","X. pygmaeus")
+ecospat.plot.overlap.test(eq.cortezivsvariatus,"D","X. variatus")
+mtext("Test de equivalencia X. cortezi", side = 3, line = -1.5, outer = TRUE)
+
+```
+####3.4.3 *X. malinche*
+```{r}
+eq.malinchevsbirchmani<-ecospat.niche.equivalency.test(z1=z3 , z2=z1, rep=100, ncores = cores)
+eq.malinchevscortezi<-ecospat.niche.equivalency.test(z1=z3 , z2=z2, rep=100, ncores = cores)
+eq.malinchevsmultilineatus<-ecospat.niche.equivalency.test(z1=z3 , z2=z4, rep=100, ncores = cores)
+eq.malinchevsneza<-ecospat.niche.equivalency.test(z1=z3 , z2=z5, rep=100, ncores = cores)
+eq.malinchevsnigrensis<-ecospat.niche.equivalency.test(z1=z3 , z2=z6, rep=100, ncores = cores)
+eq.malinchevspygmaeus<-ecospat.niche.equivalency.test(z1=z3 , z2=z7, rep=100, ncores = cores)
+eq.malinchevsvariatus<-ecospat.niche.equivalency.test(z1=z3 , z2=z8, rep=100, ncores = cores)
+```
+
+#####3.4.3.1 GRAFICO PARA EL TEST DE EQUIVALENCIA DE NICHO
+```{r}
+par(mfrow=c(1,7))
+ecospat.plot.overlap.test(eq.malinchevsbirchmani,"D","X. birchmani")
+ecospat.plot.overlap.test(eq.malinchevscortezi,"D","X. cortezi")
+ecospat.plot.overlap.test(eq.malinchevsmultilineatus,"D","X. multilineatus")
+ecospat.plot.overlap.test(eq.malinchevsneza,"D","X. nezahualcoyotl")
+ecospat.plot.overlap.test(eq.malinchevsnigrensis,"D","X. nigrensis")
+ecospat.plot.overlap.test(eq.malinchevspygmaeus,"D","X. pygmaeus")
+ecospat.plot.overlap.test(eq.malinchevsvariatus,"D","X. variatus")
+mtext("Test de equivalencia X. malinche", side = 3, line = -1.5, outer = TRUE)
+
+```
+
+
+####3.4.4 *X. multilineatus*
+```{r}
+eq.multilineatusvsbirchmani<-ecospat.niche.equivalency.test(z1=z4 , z2=z1, rep=100, ncores = cores)
+eq.multilineatusvscortezi<-ecospat.niche.equivalency.test(z1=z4 , z2=z2, rep=100, ncores = cores)
+eq.multilineatusvsmalinche<-ecospat.niche.equivalency.test(z1=z4 , z2=z3, rep=100, ncores = cores)
+eq.multilineatusvsneza<-ecospat.niche.equivalency.test(z1=z4 , z2=z5, rep=100, ncores = cores)
+eq.multilineatusvsnigrensis<-ecospat.niche.equivalency.test(z1=z4 , z2=z6, rep=100, ncores = cores)
+eq.multilineatusvspygmaeus<-ecospat.niche.equivalency.test(z1=z4 , z2=z7, rep=100, ncores = cores)
+eq.multilineatusvsvariatus<-ecospat.niche.equivalency.test(z1=z4 , z2=z8, rep=100, ncores = cores)
+```
+
+#####3.4.4.1 GRAFICO PARA EL TEST DE EQUIVALENCIA DE NICHO
+```{r}
+par(mfrow=c(1,7))
+ecospat.plot.overlap.test(eq.multilineatusvsbirchmani,"D","X. birchmani")
+ecospat.plot.overlap.test(eq.multilineatusvscortezi,"D","X. cortezi")
+ecospat.plot.overlap.test(eq.multilineatusvsmalinche,"D","X. malinche")
+ecospat.plot.overlap.test(eq.multilineatusvsneza,"D","X. nezahualcoyotl")
+ecospat.plot.overlap.test(eq.multilineatusvsnigrensis,"D","X. nigrensis")
+ecospat.plot.overlap.test(eq.multilineatusvspygmaeus,"D","X. pygmaeus")
+ecospat.plot.overlap.test(eq.multilineatusvsvariatus,"D","X. variatus")
+mtext("Test de equivalencia X. multilineatus", side = 3, line = -1.5, outer = TRUE)
+
+```
+
+####3.4.5 *X. nezahualcoyotl*
+```{r}
+eq.nezavsbirchmani<-ecospat.niche.equivalency.test(z1=z5 , z2=z1, rep=100, ncores = cores)
+eq.nezavscortezi<-ecospat.niche.equivalency.test(z1=z5 , z2=z2, rep=100, ncores = cores)
+eq.nezavsmalinche<-ecospat.niche.equivalency.test(z1=z5 , z2=z3, rep=100, ncores = cores)
+eq.nezavsmultilineatus<-ecospat.niche.equivalency.test(z1=z5 , z2=z4, rep=100, ncores = cores)
+eq.nezavsnigrensis<-ecospat.niche.equivalency.test(z1=z5 , z2=z6, rep=100, ncores = cores)
+eq.nezavspygmaeus<-ecospat.niche.equivalency.test(z1=z5 , z2=z7, rep=100, ncores = cores)
+eq.nezavsvariatus<-ecospat.niche.equivalency.test(z1=z5 , z2=z8, rep=100, ncores = cores)
+
+```
+
+#####3.4.5.1 GRAFICO PARA EL TEST DE EQUIVALENCIA DE NICHO
+```{r}
+par(mfrow=c(1,7))
+ecospat.plot.overlap.test(eq.nezavsbirchmani,"D","X. birchmani")
+ecospat.plot.overlap.test(eq.nezavscortezi,"D","X. cortezi")
+ecospat.plot.overlap.test(eq.nezavsmalinche,"D","X. malinche")
+ecospat.plot.overlap.test(eq.nezavsmultilineatus,"D","X. multilineatus")
+ecospat.plot.overlap.test(eq.nezavsnigrensis,"D","X. nigrensis")
+ecospat.plot.overlap.test(eq.nezavspygmaeus,"D","X. pygmaeus")
+ecospat.plot.overlap.test(eq.nezavsvariatus,"D","X. variatus")
+mtext("Test de equivalencia X. nezahualcoyotl", side = 3, line = -1.5, outer = TRUE)
+
+```
+
+####3.4.6 *X. nigrensis*
+```{r}
+eq.nigrensisvsbirchmani<-ecospat.niche.equivalency.test(z1=z6 , z2=z1, rep=100, ncores = cores)
+eq.nigrensisvscortezi<-ecospat.niche.equivalency.test(z1=z6 , z2=z2, rep=100, ncores = cores)
+eq.nigrensisvsmalinche<-ecospat.niche.equivalency.test(z1=z6 , z2=z3, rep=100, ncores = cores)
+eq.nigrensisvsmultilineatus<-ecospat.niche.equivalency.test(z1=z6 , z2=z4, rep=100, ncores = cores)
+eq.nigrensisvsneza<-ecospat.niche.equivalency.test(z1=z6 , z2=z5, rep=100, ncores = cores)
+eq.nigrensisvspygmaeus<-ecospat.niche.equivalency.test(z1=z6 , z2=z7, rep=100, ncores = cores)
+eq.nigrensisvsvariatus<-ecospat.niche.equivalency.test(z1=z6 , z2=z8, rep=100, ncores = cores)
+
+```
+
+#####3.4.6.1 GRAFICO PARA EL TEST DE EQUIVALENCIA DE NICHO
+```{r}
+par(mfrow=c(1,7))
+ecospat.plot.overlap.test(eq.nigrensisvsbirchmani,"D","X. birchmani")
+ecospat.plot.overlap.test(eq.nigrensisvscortezi,"D","X. cortezi")
+ecospat.plot.overlap.test(eq.nigrensisvsmalinche,"D","X. malinche")
+ecospat.plot.overlap.test(eq.nigrensisvsmultilineatus,"D","X. multilineatus")
+ecospat.plot.overlap.test(eq.nigrensisvsneza,"D","X. nezahualcoyotl")
+ecospat.plot.overlap.test(eq.nigrensisvspygmaeus,"D","X. pygmaeus")
+ecospat.plot.overlap.test(eq.nigrensisvsvariatus,"D","X. variatus")
+mtext("Test de equivalencia X. nigrensis", side = 3, line = -1.5, outer = TRUE)
+
+```
+
+####3.4.7 *X. pygmaeus*
+```{r}
+eq.pygmaeusvsbirchmani<-ecospat.niche.equivalency.test(z1=z7 , z2=z1, rep=100, ncores = cores)
+eq.pygmaeusvscortezi<-ecospat.niche.equivalency.test(z1=z7 , z2=z2, rep=100, ncores = cores)
+eq.pygmaeusvsmalinche<-ecospat.niche.equivalency.test(z1=z7 , z2=z3, rep=100, ncores = cores)
+eq.pygmaeusvsmultilineatus<-ecospat.niche.equivalency.test(z1=z7 , z2=z4, rep=100, ncores = cores)
+eq.pygmaeusvsneza<-ecospat.niche.equivalency.test(z1=z7 , z2=z5, rep=100, ncores = cores)
+eq.pygmaeusvsnigrensis<-ecospat.niche.equivalency.test(z1=z7 , z2=z6, rep=100, ncores = cores)
+eq.pygmaeusvsvariatus<-ecospat.niche.equivalency.test(z1=z7 , z2=z8, rep=100, ncores = cores)
+```
+
+
+
+
+#####3.4.7.1 GRAFICO PARA EL TEST DE EQUIVALENCIA DE NICHO
+```{r}
+par(mfrow=c(1,7))
+ecospat.plot.overlap.test(eq.pygmaeusvsbirchmani,"D","X. birchmani")
+ecospat.plot.overlap.test(eq.pygmaeusvscortezi,"D","X. cortezi")
+ecospat.plot.overlap.test(eq.pygmaeusvsmalinche,"D","X. malinche")
+ecospat.plot.overlap.test(eq.pygmaeusvsmultilineatus,"D","X. multilineatus")
+ecospat.plot.overlap.test(eq.pygmaeusvsneza,"D","X. nezahualcoyotl")
+ecospat.plot.overlap.test(eq.pygmaeusvsnigrensis,"D","X. nigrensis")
+ecospat.plot.overlap.test(eq.pygmaeusvsvariatus,"D","X. variatus")
+mtext("Test de equivalencia X. pygmaeus", side = 3, line = -1.5, outer = TRUE)
+
+
+```
+
+
+####3.4.8 *X. variatus*
+```{r}
+eq.variatusvsbirchmani<-ecospat.niche.equivalency.test(z1=z8 , z2=z1, rep=100, ncores = cores)
+eq.variatusvscortezi<-ecospat.niche.equivalency.test(z1=z8 , z2=z2, rep=100, ncores = cores)
+eq.variatusvsmalinche<-ecospat.niche.equivalency.test(z1=z8 , z2=z3, rep=100, ncores = cores)
+eq.variatusvsmultilineatus<-ecospat.niche.equivalency.test(z1=z8 , z2=z4, rep=100, ncores = cores)
+eq.variatusvsneza<-ecospat.niche.equivalency.test(z1=z8 , z2=z5, rep=100, ncores = cores)
+eq.variatusvsnigrensis<-ecospat.niche.equivalency.test(z1=z8 , z2=z6, rep=100, ncores = cores)
+eq.variatusvspygmaeus<-ecospat.niche.equivalency.test(z1=z8 , z2=z7, rep=100, ncores = cores)
+
+```
+
+#####3.4.8.1 GRAFICO PARA EL TEST DE EQUIVALENCIA DE NICHO
+```{r}
+par(mfrow=c(1,7))
+ecospat.plot.overlap.test(eq.variatusvsbirchmani,"D","X. birchmani")
+ecospat.plot.overlap.test(eq.variatusvscortezi,"D","X. cortezi")
+ecospat.plot.overlap.test(eq.variatusvsmalinche,"D","X. malinche")
+ecospat.plot.overlap.test(eq.variatusvsmultilineatus,"D","X. multilineatus")
+ecospat.plot.overlap.test(eq.variatusvsneza,"D","X. nezahualcoyotl")
+ecospat.plot.overlap.test(eq.variatusvsnigrensis,"D","X. nigrensis")
+ecospat.plot.overlap.test(eq.variatusvspygmaeus,"D","X. pygmaeus")
+mtext("Test de equivalencia X. multilineatus", side = 3, line = -1.5, outer = TRUE)
+
+```
+###3.4.9 Conclusiones respecto a la equivalencia
+En general en la comparación de cada especie contra el resto de las especies del grupo, se observan valores de D relativamente bajos, lo que nos indicaría poco sobrelape entre las ocurrencias de esta especie comparada con las demás. El valor de D lo que nos dice es qué tan bien se puede usar el modelo de la especie A para predecir el modelo de la especie B. En este caso si una de las dos especies tiene menos puntos, o la información disponible no nos permite predecir correctamente su respuesta a cambios ambientales, el valor de D se reduce. Sin embargo, los valores de P son muy elevados, lo que significa que los nichos no son más diferentes que por azar. Esto ¿qué significa? Que aunque no existe mucho sobrelape entre las nubes de puntos de ocurrencias (inciso 3.2), los valores predichos para cada una de las especies no son muy diferentes entre si. Lo cual no nos permite descartar la posibilidad de que sus nichos sean diferentes.
+
+###3.5 TEST DE SIMILARIDAD DE NICHO
+
+Test de similaridad de nicho, por ejemplo, son dos nichos mas o menos similares de lo esperado bajo un modelo nulo? Esta prueba aleatoriza las coordenadas de una especie en el area de estudio y deja las de la otra fijas.
+La hipotesis es que las diferencias son explicadas por la distribucion del ambiente en el area de estudio
+Se rechaza si el sobrelape observado es mayor o menor a lo esperado bajo el modelo nulo.En este caso valores de P menores a 0.05 son indicadores de que hay mayor similitud entre las muestras. Ósea el sobrelape de nicho es más similar que lo observado por azar. 
+
+####3.5.1 *X. birchmani*
+```{r}
+similaridadbirchmanivscortezi<-ecospat.niche.equivalency.test(z1=z1 , z2=z2, rep=100, ncores = cores)
+similaridadbirchmanivsmalinche<-ecospat.niche.equivalency.test(z1=z1 , z2=z3, rep=100, ncores = cores)
+similaridadbirchmanivsmultilineatus<-ecospat.niche.equivalency.test(z1=z1 , z2=z4, rep=100, ncores = cores)
+similaridadbirchmanivsneza<-ecospat.niche.equivalency.test(z1=z1 , z2=z5, rep=100, ncores = cores)
+similaridadbirchmanivsnigrensis<-ecospat.niche.equivalency.test(z1=z1 , z2=z6, rep=100, ncores = cores)
+similaridadbirchmanivspygmaeus<-ecospat.niche.equivalency.test(z1=z1 , z2=z7, rep=100, ncores = cores)
+similaridadbirchmanivsvariatus<-ecospat.niche.equivalency.test(z1=z1 , z2=z8, rep=100, ncores = cores)
+
+```
+
+#####3.5.1.1 GRAFICO PARA EL TEST DE SIMILARIDAD DE NICHO
+
+```{r}
+par(mfrow=c(1,7))
+ecospat.plot.overlap.test(similaridadbirchmanivscortezi,"D","X. cortezi")
+ecospat.plot.overlap.test(similaridadbirchmanivsmalinche,"D","X. malinche")
+ecospat.plot.overlap.test(similaridadbirchmanivsmultilineatus,"D","X. multilineatus")
+ecospat.plot.overlap.test(similaridadbirchmanivsneza,"D","X. nezahualcoyotl")
+ecospat.plot.overlap.test(similaridadbirchmanivsnigrensis,"D","X. nigrensis")
+ecospat.plot.overlap.test(similaridadbirchmanivspygmaeus,"D","X. pygmaeus")
+ecospat.plot.overlap.test(similaridadbirchmanivsvariatus,"D","X. variatus")
+mtext("Test de similaridad X. birchmani", side = 3,  line = -1.5, outer = TRUE)
+
+
+```
+
+####3.5.2 *X. cortezi*
+```{r}
+
+similaridadcortezivsbirchmani<-ecospat.niche.equivalency.test(z1=z2 , z2=z1, rep=100, ncores = cores)
+similaridadcortezivsmalinche<-ecospat.niche.equivalency.test(z1=z2 , z2=z3, rep=100, ncores = cores)
+similaridadcortezivsmultilineatus<-ecospat.niche.equivalency.test(z1=z2 , z2=z4, rep=100, ncores = cores)
+similaridadcortezivsneza<-ecospat.niche.equivalency.test(z1=z2 , z2=z5, rep=100, ncores = cores)
+similaridadcortezivsnigrensis<-ecospat.niche.equivalency.test(z1=z2 , z2=z6, rep=100, ncores = cores)
+similaridadcortezivspygmaeus<-ecospat.niche.equivalency.test(z1=z2 , z2=z7, rep=100, ncores = cores)
+similaridadcortezivsvariatus<-ecospat.niche.equivalency.test(z1=z2 , z2=z8, rep=100, ncores = cores)
+
+
+```
+
+#####3.5.2.1 GRAFICO PARA EL TEST DE SIMILARIDAD DE NICHO
+```{r}
+par(mfrow=c(1,7))
+ecospat.plot.overlap.test(similaridadcortezivsbirchmani,"D","X. birchmani")
+ecospat.plot.overlap.test(similaridadcortezivsmalinche,"D","X. malinche")
+ecospat.plot.overlap.test(similaridadcortezivsmultilineatus,"D","X. multilineatus")
+ecospat.plot.overlap.test(similaridadcortezivsneza,"D","X. nezahualcoyotl")
+ecospat.plot.overlap.test(similaridadcortezivsnigrensis,"D","X. nigrensis")
+ecospat.plot.overlap.test(similaridadcortezivspygmaeus,"D","X. pygmaeus")
+ecospat.plot.overlap.test(similaridadcortezivsvariatus,"D","X.variatus")
+mtext("Test de similaridad X. cortezi", side = 3,  line = -1.5, outer = TRUE)
+
+```
+####3.5.3 *X. malinche*
+```{r}
+similaridadmalinchevsbirchmani<-ecospat.niche.equivalency.test(z1=z3 , z2=z1, rep=100, ncores = cores)
+similaridadmalinchevscortezi<-ecospat.niche.equivalency.test(z1=z3 , z2=z2, rep=100, ncores = cores)
+similaridadmalinchevsmultilineatus<-ecospat.niche.equivalency.test(z1=z3 , z2=z4, rep=100, ncores = cores)
+similaridadmalinchevsneza<-ecospat.niche.equivalency.test(z1=z3 , z2=z5, rep=100, ncores = cores)
+similaridadmalinchevsnigrensis<-ecospat.niche.equivalency.test(z1=z3 , z2=z6, rep=100, ncores = cores)
+similaridadmalinchevspygmaeus<-ecospat.niche.equivalency.test(z1=z3 , z2=z7, rep=100, ncores = cores)
+similaridadmalinchevsvariatus<-ecospat.niche.equivalency.test(z1=z3 , z2=z8, rep=100, ncores = cores)
+
+
+```
+
+
+
+#####3.5.3.1 GRAFICO PARA EL TEST DE SIMILARIDAD DE NICHO
+```{r}
+
+par(mfrow=c(1,7))
+ecospat.plot.overlap.test(similaridadmalinchevsbirchmani,"D","X. birchmani")
+ecospat.plot.overlap.test(similaridadmalinchevscortezi,"D","X. cortezi")
+ecospat.plot.overlap.test(similaridadmalinchevsmultilineatus,"D","X. multilineatus")
+ecospat.plot.overlap.test(similaridadmalinchevsneza,"D","X. nezahualcoyotl")
+ecospat.plot.overlap.test(similaridadmalinchevsnigrensis,"D","X. nigrensis")
+ecospat.plot.overlap.test(similaridadmalinchevspygmaeus,"D","X. pygmaeus")
+ecospat.plot.overlap.test(similaridadmalinchevsvariatus,"D","X. variatus")
+mtext("Test de similaridad X. malinche", side = 3,  line = -1.5, outer = TRUE)
+
+
+```
+
+####3.5.4 *X. multilineatus*
+```{r}
+similaridadmultilineatusvsbirchmani<-ecospat.niche.equivalency.test(z1=z4 , z2=z1, rep=100, ncores = cores)
+similaridadmultilineatusvscortezi<-ecospat.niche.equivalency.test(z1=z4 , z2=z2, rep=100, ncores = cores)
+similaridadmultilineatusvsmalinche<-ecospat.niche.equivalency.test(z1=z4 , z2=z3, rep=100, ncores = cores)
+similaridadmultilineatusvsneza<-ecospat.niche.equivalency.test(z1=z4 , z2=z5, rep=100, ncores = cores)
+similaridadmultilineatusvsnigrensis<-ecospat.niche.equivalency.test(z1=z4 , z2=z6, rep=100, ncores = cores)
+similaridadmultilineatusvspygmaeus<-ecospat.niche.equivalency.test(z1=z4 , z2=z7, rep=100, ncores = cores)
+similaridadmultilineatusvsvariatus<-ecospat.niche.equivalency.test(z1=z4 , z2=z8, rep=100, ncores = cores)
+
+```
+
+#####3.5.4.1 GRAFICO PARA EL TEST DE SIMILARIDAD DE NICHO
+```{r}
+par(mfrow=c(1,7))
+ecospat.plot.overlap.test(similaridadmultilineatusvsbirchmani,"D","X. birchmani")
+ecospat.plot.overlap.test(similaridadmultilineatusvscortezi,"D","X. cortezi")
+ecospat.plot.overlap.test(similaridadmultilineatusvsmalinche,"D","X. malinche")
+ecospat.plot.overlap.test(similaridadmultilineatusvsneza,"D","X. nezahualcoyotl")
+ecospat.plot.overlap.test(similaridadmultilineatusvsnigrensis,"D","X. nigrensis")
+ecospat.plot.overlap.test(similaridadmultilineatusvspygmaeus,"D","X. pygmaeus")
+ecospat.plot.overlap.test(similaridadmultilineatusvsvariatus,"D","X. variatus")
+mtext("Test de similaridad X. multilineatus", side = 3,  line = -1.5, outer = TRUE)
+
+
+```
+
+
+####3.5.5 *X. nezahualcoyotl*
+```{r}
+similaridadnezavsbirchmani<-ecospat.niche.equivalency.test(z1=z5 , z2=z1, rep=100, ncores = cores)
+similaridadnezavscortezi<-ecospat.niche.equivalency.test(z1=z5 , z2=z2, rep=100, ncores = cores)
+similaridadnezavsmalinche<-ecospat.niche.equivalency.test(z1=z5 , z2=z3, rep=100, ncores = cores)
+similaridadnezavsmultilineatus<-ecospat.niche.equivalency.test(z1=z5 , z2=z4, rep=100, ncores = cores)
+similaridadnezavsnigrensis<-ecospat.niche.equivalency.test(z1=z5 , z2=z6, rep=100, ncores = cores)
+similaridadnezavspygmaeus<-ecospat.niche.equivalency.test(z1=z5 , z2=z7, rep=100, ncores = cores)
+similaridadnezavsvariatus<-ecospat.niche.equivalency.test(z1=z5 , z2=z8, rep=100, ncores = cores)
+
+```
+
+#####3.5.5.1 GRAFICO PARA EL TEST DE SIMILARIDAD DE NICHO
+```{r}
+par(mfrow=c(1,7))
+ecospat.plot.overlap.test(similaridadnezavsbirchmani,"D","X. birchmani")
+ecospat.plot.overlap.test(similaridadnezavscortezi,"D","X. cortezi")
+ecospat.plot.overlap.test(similaridadnezavsmalinche,"D","X. malinche")
+ecospat.plot.overlap.test(similaridadnezavsmultilineatus,"D","X. multilineatus")
+ecospat.plot.overlap.test(similaridadnezavsnigrensis,"D","X.nigrensis")
+ecospat.plot.overlap.test(similaridadnezavspygmaeus,"D","X. pygmaeus")
+ecospat.plot.overlap.test(similaridadnezavsvariatus,"D","X. variatus")
+mtext("Test de similaridad X. nezahualcoyotl", side = 3,  line = -1.5, outer = TRUE)
+
+```
+
+####3.5.6 *X. nigrensis*
+```{r}
+similaridadnigrensisvsbirchmani<-ecospat.niche.equivalency.test(z1=z6 , z2=z1, rep=100, ncores = cores)
+similaridadnigrensisvscortezi<-ecospat.niche.equivalency.test(z1=z6 , z2=z2, rep=100, ncores = cores)
+similaridadnigrensisvsmalinche<-ecospat.niche.equivalency.test(z1=z6 , z2=z3, rep=100, ncores = cores)
+similaridadnigrensisvsmultilineatus<-ecospat.niche.equivalency.test(z1=z6 , z2=z4, rep=100, ncores = cores)
+similaridadnigrensisvsneza<-ecospat.niche.equivalency.test(z1=z6 , z2=z5, rep=100, ncores = cores)
+similaridadnigrensisvspygmaeus<-ecospat.niche.equivalency.test(z1=z6 , z2=z7, rep=100, ncores = cores)
+similaridadnigrensisvsvariatus<-ecospat.niche.equivalency.test(z1=z6 , z2=z8, rep=100, ncores = cores)
+```
+
+#####3.5.6.1 GRAFICO PARA EL TEST DE SIMILARIDAD DE NICHO
+
+```{r}
+par(mfrow=c(1,7))
+ecospat.plot.overlap.test(similaridadnigrensisvsbirchmani,"D","X. birchmani")
+ecospat.plot.overlap.test(similaridadnigrensisvscortezi,"D","X. cortezi")
+ecospat.plot.overlap.test(similaridadnigrensisvsmalinche,"D","X. malinche")
+ecospat.plot.overlap.test(similaridadnigrensisvsmultilineatus,"D","X. multilineatus")
+ecospat.plot.overlap.test(similaridadnigrensisvsneza,"D","X. nezahualcoyotl")
+ecospat.plot.overlap.test(similaridadnigrensisvspygmaeus,"D","X. pygmaeus")
+ecospat.plot.overlap.test(similaridadnigrensisvsvariatus,"D","X. variatus")
+mtext("Test de similaridad X. nigrensis", side = 3,  line = -1.5, outer = TRUE)
+```
+####3.5.7 *X. pygmaeus*
+```{r}
+similaridadpygmaeusvsbirchmani<-ecospat.niche.equivalency.test(z1=z7 , z2=z1, rep=100, ncores = cores)
+similaridadpygmaeusvscortezi<-ecospat.niche.equivalency.test(z1=z7 , z2=z2, rep=100, ncores = cores)
+similaridadpygmaeusvsmalinche<-ecospat.niche.equivalency.test(z1=z7 , z2=z3, rep=100, ncores = cores)
+similaridadpygmaeusvsmultilineatus<-ecospat.niche.equivalency.test(z1=z7 , z2=z4, rep=100, ncores = cores)
+similaridadpygmaeusvsneza<-ecospat.niche.equivalency.test(z1=z7 , z2=z5, rep=100, ncores = cores)
+similaridadpygmaeusvsnigrensis<-ecospat.niche.equivalency.test(z1=z7 , z2=z6, rep=100, ncores = cores)
+similaridadpygmaeusvsvariatus<-ecospat.niche.equivalency.test(z1=z7 , z2=z8, rep=100, ncores = cores)
+
+```
+
+#####3.5.7.1 GRAFICO PARA EL TEST DE SIMILARIDAD DE NICHO
+
+```{r}
+par(mfrow=c(1,7))
+ecospat.plot.overlap.test(similaridadpygmaeusvsbirchmani,"D","X. birchmani")
+ecospat.plot.overlap.test(similaridadpygmaeusvscortezi,"D","X. cortezi")
+ecospat.plot.overlap.test(similaridadpygmaeusvsmalinche,"D","X. malinche")
+ecospat.plot.overlap.test(similaridadpygmaeusvsmultilineatus,"D","X. multilineatus")
+ecospat.plot.overlap.test(similaridadpygmaeusvsneza,"D","X. nezahualcoyotl")
+ecospat.plot.overlap.test(similaridadpygmaeusvsnigrensis,"D","X. nigrensis")
+ecospat.plot.overlap.test(similaridadpygmaeusvsvariatus,"D","X. variatus")
+mtext("Test de similaridad X. pygmaeus", side = 3,  line = -1.5, outer = TRUE)
+
+```
+
+####3.5.8 *X. variatus*
+```{r}
+similaridadvariatusvsbirchmani<-ecospat.niche.equivalency.test(z1=z8 , z2=z1, rep=100, ncores = cores)
+similaridadvariatusvscortezi<-ecospat.niche.equivalency.test(z1=z8 , z2=z2, rep=100, ncores = cores)
+similaridadvariatusvsmalinche<-ecospat.niche.equivalency.test(z1=z8 , z2=z3, rep=100, ncores = cores)
+similaridadvariatusvsmultilineatus<-ecospat.niche.equivalency.test(z1=z8 , z2=z4, rep=100, ncores = cores)
+similaridadvariatusvsneza<-ecospat.niche.equivalency.test(z1=z8 , z2=z5, rep=100, ncores = cores)
+similaridadvariatusvsnigrensis<-ecospat.niche.equivalency.test(z1=z8 , z2=z6, rep=100, ncores = cores)
+similaridadvariatusvspygmaeus<-ecospat.niche.equivalency.test(z1=z8 , z2=z7, rep=100, ncores = cores)
+
+```
+
+#####3.5.8.1 GRAFICO PARA EL TEST DE SIMILARIDAD DE NICHO
+```{r}
+
+par(mfrow=c(1,7))
+ecospat.plot.overlap.test(similaridadvariatusvsbirchmani,"D","X. birchmani")
+ecospat.plot.overlap.test(similaridadvariatusvscortezi,"D","X. cortezi")
+ecospat.plot.overlap.test(similaridadvariatusvsmalinche,"D","X. malinche")
+ecospat.plot.overlap.test(similaridadvariatusvsmultilineatus,"D","X. multilineatus")
+ecospat.plot.overlap.test(similaridadvariatusvsneza,"D","X. nezahualcoyotl")
+ecospat.plot.overlap.test(similaridadvariatusvsnigrensis,"D","X. nigrensis")
+ecospat.plot.overlap.test(similaridadvariatusvspygmaeus,"D","x. pygmaeus")
+mtext("Test de similaridad X. variatus", side = 3,  line = -1.5, outer = TRUE)
+
+
+```
+
+####3.5.9 Conclusiones respecto a las pruebas de similaridad.
+En estos casos el valor de D en general es bastante bajo, indicando que no existe suficiente conservadurismo entre los nichos de las especies. Los valores de D en estas pruebas, pero la P de D si, debido a que cada uno de las pruebas intentan probar cosas diferentes. Equivalencia nos dice si nuestros sobrelapes son más diferentes que el azar, y la similitud nos indica si el sobrelape es más similar que lo esperado por azar. En este caso la P sigue siendo bastante mala, lo cual puede ser producto de las pocas ocurrencias que hay para cada una de las especies al momento de obtener los valores usados para el calculo del modelo de nicho. Quizá usando un modelo más robusto, o con más ocurrencias, o inclusive usando mayor número de repeticiones sería mejorar P para comprobar que los resultados son estadísticamente significativos. Sin embargo, logramos comprobar que existen diferencias importantes en los nichos predichos para cada una de las especies. Aúnque las especies coexistan en un mismo lugar, el hecho de que cada una tenga valores diferentes para las condiciones bioclimáticas que necesita, nos muestra que existen factores que consiguen separar a estas especies unas de otras. 
+
+
+##4 Análisis filogenéticos
+###4.1 Obtención de secuencias FASTA las secuencias son usadas en análisis filogenéticos
+Es recomendable utilizar dos o más genes para esta clase de pruebas.En este caso utilizaremos ND2 (subunidad 2 de la deshidrogenasa NADH) y CYTB (citocromo B) por ser genes con buen grado de conservación. Necesitamos que los genes no sufran demasiadas mutaciones o sean propensos al cambio, para que los resultados sean más confiables. 
+
+####4.1.1 Para el gen ND2
+```{r}
+Xiphophorusnd2_accession_numbers <- c("KJ697263", "KJ697261", "KJ697260", "KJ697259", "KJ697249", "KJ697250", "KJ697258", "KJ697251", "AF031390") #Crea un vector con los números de acceso requeridos
+Xiphophorusnd2_sequences <- read.GenBank(Xiphophorusnd2_accession_numbers)  #Lee las secuencias y las guarda como un objeto bin
+Xiphophorusnd2_sequences    #Un resumen de lo que es el objeto, incluyendo su composición en bases
+Xiphophorusnd2_sequences_GenBank_IDs <- paste(attr(Xiphophorusnd2_sequences, "species"), names(Xiphophorusnd2_sequences), sep ="_ND2_") #constuye un vector con la especie, el número de acceso de la secuencia en Genbank
+write.dna(Xiphophorusnd2_sequences, file ="SECUENCIASND2.fasta", format = "fasta", append = FALSE, nbcol = 6, colsep = " ", colw = 10) #Escribe el archivo en formato FASTA
+
+Xiphophorusnd2_seq_seqinr_format <- read.fasta(file = "SECUENCIASND2.fasta", seqtype = "DNA", as.string = TRUE, forceDNAtolower = FALSE) #Lee el archivo FASTA usando el paquete seqinr
+write.fasta(sequences = Xiphophorusnd2_seq_seqinr_format, names = Xiphophorusnd2_sequences_GenBank_IDs, nbchar = 10, file.out = "SecuenciasfinalND2.fasta")  #Reescribe el archivo FASTA usando un nombre de vector que se creo antes
+
+```
+
+####4.1.1 Para el gen CYTB
+```{r}
+XiphophorusCYTB_accession_numbers <- c("KJ696865", "KJ696863", "KJ696862", "KJ696861", "KJ696850", "KJ696852", "KJ696860", "KJ696853", "KJ696840") #Crea un vector con los números de acceso requeridos
+XiphophorusCYTB_sequences <- read.GenBank(XiphophorusCYTB_accession_numbers)  #Lee las secuencias y las guarda como un objeto bin
+XiphophorusCYTB_sequences_GenBank_IDs <- paste(attr(XiphophorusCYTB_sequences, "species"), names(XiphophorusCYTB_sequences), sep ="_CYTB_") #constuye un vector con la especie, el número de acceso de la secuencia en Genbank
+write.dna(XiphophorusCYTB_sequences, file ="SECUENCIASCYTB.fasta", format = "fasta", append = FALSE, nbcol = 6, colsep = " ", colw = 10) #Escribe el archivo en formato FASTA
+
+XiphophorusCYTB_seq_seqinr_format <- read.fasta(file = "SECUENCIASCYTB.fasta", seqtype = "DNA", as.string = TRUE, forceDNAtolower = FALSE) #Lee el archivo FASTA usando el paquete seqinr
+write.fasta(sequences = XiphophorusCYTB_seq_seqinr_format, names = XiphophorusCYTB_sequences_GenBank_IDs, nbchar = 10, file.out = "SecuenciasfinalCYTB.fasta")  #Reescribe el archivo FASTA usando un nombre de vector que se creo antes
+```
+
+
+
+###4.2 Alineamiento de sequencias
+Es necesario alinear las secuencias, ya que los genes no siempre estan en el acomodo apropiado, debido a cambios que pueden haber sufrido durante su evolución. Por lo que hay que alinear ambas secuencias para poder ser comparadas apropiadamente. 
+```{r}
+Xiphophorusnd2_seq<-readDNAStringSet("SecuenciasfinalND2.fasta")
+Xiphophorusnd2_align<-msa(Xiphophorusnd2_seq)
+Xiphophorusnd2_align
+Xiphophorusnd2_DNAbin<-msaConvert(Xiphophorusnd2_align, type = "ape::DNAbin")
+Xiphophorusnd2_DNA<-as_dna(Xiphophorusnd2_DNAbin)
+
+XiphophorusCYTB_seq<-readDNAStringSet("SecuenciasfinalCYTB.fasta")
+XiphophorusCYTB_align<-msa(XiphophorusCYTB_seq)
+XiphophorusCYTB_DNAbin<-msaConvert(XiphophorusCYTB_align, type = "ape::DNAbin")
+XiphophorusCYTB_DNA<-as_dna(XiphophorusCYTB_DNAbin)
+```
+###4.3 Concatenación de secuencias
+Una vez alineadas nuestras secuencias, las concatenamos para calcular las distancias.Concatenamos para que puedan evaluarse ambos genes al mismo tiempo.
+```{r}
+XiphophorusCYTB_ND2<-seq_combine(XiphophorusCYTB_DNA, Xiphophorusnd2_DNA)
+
+write.dna(XiphophorusCYTB_sequences, file ="SECUENCIASND2CYTB.fasta", format = "fasta", append = FALSE, nbcol = 6, colsep = " ", colw = 10) 
+XiphophorusCYTB_ND2_seq_seqinr_format <- read.fasta(file = "SECUENCIASND2CYTB.fasta", seqtype = "DNA", as.string = TRUE, forceDNAtolower = FALSE) 
+write.fasta(sequences = XiphophorusCYTB_seq_seqinr_format, names = c("X.vari", "X.pygm","X.nigr","X.neza","X.birch","X.cont","X.multi","X.cortezi","P.sphen"), nbchar = 10, file.out = "Secuenciasfinal_ND2_CYTB.fasta")
+```
+
+###4.4 Cálculo de las distancias genéticas.
+Calculamos las distancias tipo d2_S que es un tipo de metrica de disimilitud entre secuencias. 
+```{r}
+distancias<-fasta2dist("Secuenciasfinal_ND2_CYTB.fasta", outputFile = NULL,  threads = 2,  kmer = 6,  normalize = FALSE,  compress = TRUE)
+distancias
+
+```
+Aquí podemos observar que si bien la distancia entre secuencias es poca (lo que es de esperarse, considerando que son miembros de una mismo género), es suficiente para soportar la idea de que son especies distintas. Para mayor contexto, una distancia superior a 0.02 suele ser el umbral inferior a partir del cual comienzan a considerarse especies, y valores mayores a 0.11 ya ameritan el reconocimiento de especies distintas.La razón por la que se consideran a *Poecilia sphenops*, es para el siguiente paso, que es la creación de un árbol.
+ 
+###4.5 Generación de árboles basado en distancias con la secuencia FASTA
+Agrupamiento gerárcico de las distancias y generación de un árbol a través del método del vecino más cercano.
+
+```{r}
+disttree<-dist2tree(distancias) #Agrupamiento gerárcico de las distancias y generación de un árbol a través del método del vecino más cercano.
+mytree<-ape::read.tree(text = disttree)
+plot.phylo(mytree)
+```
+En este caso, este árbol nos muestra las relaciones de parentezco entre las especies estudiadas. La longitud de las ramas es proporcional a las distancias genéticas entre cada grupo (donde se forman bifurcaciones). La razón por la que es importante considerar a *P. sphenops* es para conformar lo que se conoce como un taxon externo, el cual nos ayuda a confirmar que las relaciones de parentezco estén bien representadas. Este taxon externo ayuda a enraizar nuestro árbol, y conforma un punto de partida a partir del cual podemos empezar a construir el árbol. Ya que todos los miembros del grupo de estudio deberían quedar agrupados juntos, por separado de nuestro taxon externo. 
+
+##5 Conclusiones
+En general es necesario obtener más información y de mayor calidad para llegar a una conclusión firme. Sin embargo, el conjunto de datos obtenidos gracias a las pruebas estadísticas realizadas, nos permiten sostener la hipótesis de que efectivamente estamos tratando con especies distintas. Que si bien es difícil encontrar estas diferencias, eso es normal en conjuntos de especies de un mismo género, especialmente con especies tan cercanas.  
