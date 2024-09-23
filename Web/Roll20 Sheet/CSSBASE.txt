@@ -1,0 +1,346 @@
+
+
+/*Configure the tab buttons*/
+.sheet-atributos,
+.sheet-habilidades,
+.sheet-inventario {
+	display: none;
+}
+
+/* show the selected tab */
+.sheet-tabstoggle[value="atributos"] ~ div.sheet-atributos,
+.sheet-tabstoggle[value="habilidades"] ~ div.sheet-habilidades,
+.sheet-tabstoggle[value="inventario"] ~ div.sheet-inventario {
+	display: block;
+}
+
+div.sheet-col{
+    display: flex;
+    width: 12%;
+}
+
+
+div.sheet-caracteres{
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    width: 100%;
+}
+
+div.sheet-diosyrasgo{
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+}
+
+div.sheet-reducciones{
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+}
+
+div.sheet-canalizacion{
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+}
+
+div.sheet-danos{
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+}
+
+div.sheet-equipamento{
+    justify-content: evenly;
+    width: 100%;
+ 
+}
+
+div.sheet-skill-block{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    justify-content: center;
+}
+
+div.sheet-item-block{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    justify-content: center;
+}
+
+div.sheet-rareza{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 50%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+div.sheet-rareza-dur{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    margin-left: -1%;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+div.sheet-detalles{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100%;
+    width: 20%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+div.sheet-arma-detalle{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100%;
+    width: 20%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+div.sheet-efecto{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 60%;
+    text-align: center;
+    justify-content: center;
+
+}
+
+
+
+div.sheet-dano-arma{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 20%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+div.sheet-modificador-arma{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 8%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+div.sheet-arma{
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+}
+
+div.sheet-equip{
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+}
+
+div.sheet-estadisticas{
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+div.sheet-caracteres{
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+div.sheet-row{
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+div.sheet-botones{
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+}
+
+div.sheet-defensas{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 20%;
+    text-align: center;
+    padding-right: 1%;
+    justify-content: center;
+ 
+}
+
+div.sheet-estadisticas-personaje{
+     display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 100%;
+    text-align: center;
+    justify-content: space-evenly;
+}
+
+
+div.sheet-habilidades-clase{
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+}
+
+div.sheet-habilidad{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 30%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+div.sheet-nivel{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 10%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+div.sheet-dano-habilidad{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 20%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+div.sheet-costo{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 10%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+
+
+div.sheet-innatas{
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+}
+
+div.sheet-innatas-pet{
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+div.sheet-repeating-row1{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 24%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+div.sheet-repeating-cant-row1{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 10%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+div.sheet-repetable{
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+
+div.sheet-monedas{
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    justify-content: center;
+ 
+}
+
+
+
+.sheet-block-a,
+.sheet-block-switch:checked ~ .sheet-block-b {
+  display: block;
+   }
+
+.sheet-block-b,
+.sheet-block-switch:checked ~ .sheet-block-a {
+  display: none;
+   }

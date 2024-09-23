@@ -1,0 +1,362 @@
+
+
+/*Configure the tab buttons*/
+body {
+	background-color: grey;
+}
+
+.atributos,
+.habilidades,
+.inventario {
+	display: none;
+}
+
+/* show the selected tab */
+.sheetTab[value="1"] ~ div.atributos,
+.sheetTab[value="2"] ~ div.habilidades,
+.sheetTab[value="3"] ~ div.inventario {
+	display: block;
+}
+
+div.cualidades_personaje{
+    width: 100%;
+}
+
+div.detalles{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+
+div.estadisticas{
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+
+
+.stat-block{
+    align-items: center;
+    text-align: right;
+    justify-content: center;
+	width: 14%;
+}
+
+div.caracteres{
+    display: block;
+    align-items: stretch;
+    text-align: center;
+	height: 10%;
+    width: 100%;
+}
+
+div.diosyrasgo{
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+}
+
+div.reducciones{
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+}
+
+div.canalizacion{
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+}
+
+div.danos{
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+}
+
+div.equipamento{
+    justify-content: evenly;
+    width: 100%;
+ 
+}
+
+div.skill-block{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    justify-content: center;
+}
+
+div.item-block{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    justify-content: center;
+}
+
+div.rareza{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 50%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+div.rareza-dur{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    margin-left: -1%;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+
+
+div.arma-detalle{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100%;
+    width: 20%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+div.efecto{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 60%;
+    text-align: center;
+    justify-content: center;
+
+}
+
+
+
+div.dano-arma{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 20%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+div.modificador-arma{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 8%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+div.arma{
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+}
+
+div.equip{
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+}
+
+
+
+div.caracteres{
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+div.row{
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+div.botones{
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+}
+
+div.defensas{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 20%;
+    text-align: center;
+    padding-right: 1%;
+    justify-content: center;
+ 
+}
+
+div.estadisticas-personaje{
+     display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 100%;
+    text-align: center;
+    justify-content: space-evenly;
+}
+
+
+div.habilidades-clase{
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+}
+
+div.habilidad{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 30%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+div.nivel{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 10%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+div.dano-habilidad{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 20%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+div.costo{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 10%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+
+
+div.innatas{
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+}
+
+div.innatas-pet{
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+div.repeating-row1{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 24%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+div.repeating-cant-row1{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    width: 10%;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+div.repetable{
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+
+div.monedas{
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    justify-content: center;
+ 
+}
+
+
+
+.block-a,
+.block-switch:checked ~ .block-b {
+  display: block;
+   }
+
+.block-b,
+.block-switch:checked ~ .block-a {
+  display: none;
+   }

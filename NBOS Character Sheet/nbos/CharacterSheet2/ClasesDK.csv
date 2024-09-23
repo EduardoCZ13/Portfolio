@@ -1,0 +1,48 @@
+Clases,PS,sPS,PE,sPE,DIF
+Guerrero,7,3,2,1,11+Agi
+Caballero,9,4,2,1,9+Fue
+Monje,4,2,4,2,13+Agi
+Hechicero,2,1,5,2,13+Sab
+Paladin,10,5,3,1,8+Vit
+Clerigo,2,1,5,2,14+Int
+Pirata,5,2,2,1,14+Agi
+Asesino,3,1,2,1,15+Agi
+Druida,4,2,4,2,14+Car
+Berserk,7,3,2,1,8+Fue
+Juglar,7,3,2,1,10+Car
+Shaman,4,2,4,2,11+Int
+Invocador,4,2,5,2,11+Int
+Herrero,8,4,2,1,9+Vit
+Alquimista,5,2,4,2,11+Int
+Explorador,4,2,3,1,14+Agi
+Runico,8,4,4,2,10+Sab
+Dragonesa,6,3,3,1,11+Vit
+DrauxVrah,9,4,3,1,9+Fue
+Mecanista,7,3,3,1,10+Vit
+Arenero,7,3,5,2,11+Vit
+Oraculo,2,1,4,2,12+Int
+Espiritú Naturaleza,4,2,4,2,13+Agi
+Gladiador,9,4,1,1,8+Fue
+Corruptor,5,2,5,2,12+Sab
+Echo,7,3,3,1,5+Lv/2
+Guardian Bosque,8,4,5,2,10+Agi
+Caballero Guardia,20,10,5,2,5+Vit
+Espiritista,,0,,0,
+Picaro,8,4,6,3,11+Car
+Forjador,15,7,5,2,7+Vit
+Valkyr,10,5,8,4,7+Vit
+Creador,14,7,9,4,8+Int
+Draux Loth,18,9,6,3,6+Fue
+H Verde,12,6,8,4,12+Dex
+H Blanco,10,5,10,5,7+Int
+H Oscuro,10,5,10,5,7+Sab
+H Azul,15,7,7,3,12+Lv/5
+Lobo,1,1,1,1,8+Des
+Juez,10,5,5,2,10+Car
+Forja Hielo,8,4,5,2,6+Vit
+Ninja,4,2,4,2,14+Agi
+Samurai,6,3,3,1,12+Agi
+Pistolero,4,2,3,1,14+Car
+Elementalista,7,3,5,2,10+Sab
+Telekineta,1,1,5,2,11+Int
+Arcanista,3,1,5,2,14+Int

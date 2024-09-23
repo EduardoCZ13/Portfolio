@@ -1,0 +1,41 @@
+
+OUTSIDER SAYS:
+
+This is a mod of the sentient robot known as Ultron. It has the artificial intelligence and excellent powers & abilities to destroy any enemy, and be an ideal ally for the Alliance. Though Ultron is sometimes called a "he" or "him," I call Ultron an "it." But nevermind that.
+
+One unit of the mutant hunting Sentinels now acts as a stand-alone mod. It has some of Ultron's powers, but also some of its' own, so it plays different. Check it.
+_____________________________________________
+
+FEATURES (Ultron):
+-5 powers, 2 boosts, and an Xtreme.
+-Abilities of Might, Artificial Intelligence, Flight, Tracking Monitor, and Dominance.
+-Uses its' in-game skin and HUD, as well as Ultimo.
+-3 skins, 3 HUDs, loading screen, icons, mannequin, and sound/voice file featuring his voice from Avengers Assemble.
+-Uses official number #34.
+
+FEATURES (Sentinel):
+-5 powers, 2 boosts, and an Xtreme.
+-Abilities of Might, Flight, and Superior Programming.
+-9 skins, 6 HUDs, loading screen, icons, 3 mannequins, and sound/voice file featuring his voice from Marvel vs Capcom 3.
+-Also uses assigned number #34.
+
+NOTE:
+Check the "xtras" folder for more skins and mannequins. Please note that only ONE mannequin can be used for this mod. You have to choose either Ultron or Sentinel.
+
+CREDITS:
+Outsider - Mod creation & coding, Sentinel Nimrod HUD, icons, loading screens, sounds, effects recolor etc.
+Andersonbrazil - All primary Sentinel skins & HUDs (except Nimrod), Sentinel mannequins
+Lionsden99 - All xtra Sentinel skins
+Julio Cabral - Contest of Champions & Movie skins
+UltraMegaMagnus - Ultron mannequin, animation mixing
+Scabbia - Wasp effects
+_____________________________________________
+
+HOW TO:
+Just extract the folder and move the files into your Marvel - Ultimate Alliance folder. Then decompile the herostat.engb file and sub out a hero for either.
+
+BUGS:
+None so far.
+
+WARNING:
+Back up your original files, as I'm not responsible if something goes wrong. Do not sell, modify, or reupload this work without my consent. Exclusive to Marvel Mods.

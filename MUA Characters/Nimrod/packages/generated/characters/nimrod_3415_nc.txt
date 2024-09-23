@@ -1,0 +1,23 @@
+XMLB packagedef {
+   actorskin {
+   filename = 3415 ;
+   }
+
+   actoranimdb {
+   filename = 341_nimrod ;
+   }
+
+   texture {
+   filename = textures/ui/sent_icons ;
+   }
+
+   xml_talents {
+   filename = data/talents/nimrod ;
+   }
+
+   model {
+   filename = HUD/hud_head_3405 ;
+   }
+
+}
+

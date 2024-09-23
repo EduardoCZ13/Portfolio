@@ -1,0 +1,1844 @@
+XMLB talents {
+talent {
+   fightstyle = true ;
+   name = fightstyle_mysto ;
+      level {
+      }
+
+   }
+
+   talent {
+   descname = Superior Programming ;
+   description = Nimrods are the ultimate mutant-hunting destroyers. This unit is immune to being thrown, stunned, reprogrammed, or knocked down. Its internal systems can track enemy targets. ;
+   name = sent_resist ;
+   type = ability ;
+      level {
+      count = 1 ;
+         powerup {
+         class = sense ;
+         enemy = true ;
+         life = -1 ;
+         }
+
+         powerup {
+         life = -1 ;
+            affecter {
+            affect_type = scale ;
+            attribute = def_mind_control ;
+            level = 0 ;
+            }
+
+            affecter {
+            attribute = def_grab ;
+            }
+
+            affecter {
+            attribute = def_pickup ;
+            }
+
+            affecter {
+            affect_type = scale ;
+            attribute = def_stunfreeze ;
+            level = 0 ;
+            }
+
+            affecter {
+            affect_type = scale ;
+            attribute = def_knockback ;
+            level = 0 ;
+            }
+
+         }
+
+      }
+
+   }
+
+talent {
+   descname = Life Support ;
+   description = Due to its powerful adaptative capabilities, nimrod has a 50% chance of rebooting herself if shut down in action.  ;
+   name = omgsn_reboot ;
+   type = ability ;
+   }
+
+   talent {
+   descname = Concussive Blast ;
+   description = Shoots a blast of energy that have a 50% chance to stun enemies. ;
+   descshort = Projectile ;
+   icon = 0 ;
+   icon_texture = textures/ui/apocalypse_icons1.png ;
+   name = nim_p1 ;
+   power = power1 ;
+      talentvalues {
+         talentvalue {
+         level = 1 ;
+         name = nim_p1_req ;
+         value = 1 ;
+         }
+
+         talentvalue {
+         level = 5 ;
+         name = nim_p1_req ;
+         value = 13 ;
+         }
+
+         talentvalue {
+         level = 6 ;
+         name = nim_p1_req ;
+         value = 16 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_p1_req ;
+         value = 25 ;
+         }
+
+         talentvalue {
+         level = 10 ;
+         name = nim_p1_req ;
+         value = 28 ;
+         }
+
+         talentvalue {
+         level = 14 ;
+         name = nim_p1_req ;
+         value = 52 ;
+         }
+
+         talentvalue {
+         level = 15 ;
+         name = nim_p1_req ;
+         value = 72 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p1_pwr ;
+         value = 8 ;
+         }
+
+         talentvalue {
+         level = 5 ;
+         name = nim_p1_pwr ;
+         value = 18 ;
+         }
+
+         talentvalue {
+         level = 6 ;
+         name = nim_p1_pwr ;
+         value = 20 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_p1_pwr ;
+         value = 26 ;
+         }
+
+         talentvalue {
+         level = 10 ;
+         name = nim_p1_pwr ;
+         value = 28 ;
+         }
+
+         talentvalue {
+         level = 14 ;
+         name = nim_p1_pwr ;
+         value = 44 ;
+         }
+
+         talentvalue {
+         level = 15 ;
+         name = nim_p1_pwr ;
+         value = 56 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p1_dmg ;
+         value = 15 18 ;
+         }
+
+         talentvalue {
+         level = 5 ;
+         name = nim_p1_dmg ;
+         value = 26 29 ;
+         }
+
+         talentvalue {
+         level = 6 ;
+         name = nim_p1_dmg ;
+         value = 36 39 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_p1_dmg ;
+         value = 51 57 ;
+         }
+
+         talentvalue {
+         level = 10 ;
+         name = nim_p1_dmg ;
+         value = 66 74 ;
+         }
+
+         talentvalue {
+         level = 14 ;
+         name = nim_p1_dmg ;
+         value = 112 125 ;
+         }
+
+         talentvalue {
+         level = 15 ;
+         name = nim_p1_dmg ;
+         value = 164 180 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p1_lif ;
+         value = 10 ;
+         }
+
+         talentvalue {
+         level = 3 ;
+         name = nim_p1_lif ;
+         value = 13 ;
+         }
+
+         talentvalue {
+         level = 4 ;
+         name = nim_p1_lif ;
+         value = 15 ;
+         }
+
+         talentvalue {
+         level = 7 ;
+         name = nim_p1_lif ;
+         value = 19 ;
+         }
+
+         talentvalue {
+         level = 8 ;
+         name = nim_p1_lif ;
+         value = 21 ;
+         }
+
+         talentvalue {
+         level = 12 ;
+         name = nim_p1_lif ;
+         value = 25 ;
+         }
+
+         talentvalue {
+         level = 13 ;
+         name = nim_p1_lif ;
+         value = 30 ;
+         }
+
+      }
+
+      level {
+      description = %nim_p1_dmg $DMG\n%nim_p1_lif Seconds\n%nim_p1_pwr $EP ;
+         tier {
+         cost = 1 ;
+         count = 5 ;
+         }
+
+         tier {
+         cost = 2 ;
+         count = 4 ;
+         }
+
+         tier {
+         cost = 3 ;
+         count = 1 ;
+         }
+
+         tier {
+         cost = 3 ;
+         count = 4 ;
+         difficulty = hard ;
+         }
+
+         tier {
+         cost = 4 ;
+         count = 1 ;
+         difficulty = hard ;
+         }
+
+         require {
+         cat = level ;
+         level = %nim_p1_req ;
+         }
+
+      }
+
+   }
+
+   talent {
+   descname = Virtual Armor ;
+   description = Rescue uses an app in her suit that boosts her defense and health recovery for a time. The J.A.R.V.I.S. system allows this app to spread to her allies as well. ;
+   descshort = Boost ;
+   icon = 2 ;
+   icon_texture = textures/ui/rescue_icons.png ;
+   name = nim_p2 ;
+   power = power2 ;
+      talentvalues {
+         talentvalue {
+         level = 1 ;
+         name = nim_p2_req ;
+         value = 10 ;
+         }
+
+         talentvalue {
+         level = 3 ;
+         name = nim_p2_req ;
+         value = 13 ;
+         }
+
+         talentvalue {
+         level = 4 ;
+         name = nim_p2_req ;
+         value = 16 ;
+         }
+
+         talentvalue {
+         level = 7 ;
+         name = nim_p2_req ;
+         value = 25 ;
+         }
+
+         talentvalue {
+         level = 8 ;
+         name = nim_p2_req ;
+         value = 28 ;
+         }
+
+         talentvalue {
+         level = 12 ;
+         name = nim_p2_req ;
+         value = 52 ;
+         }
+
+         talentvalue {
+         level = 13 ;
+         name = nim_p2_req ;
+         value = 73 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p2_def ;
+         value = 2 ;
+         }
+
+         talentvalue {
+         level = 3 ;
+         name = nim_p2_def ;
+         value = 3 ;
+         }
+
+         talentvalue {
+         level = 5 ;
+         name = nim_p2_def ;
+         value = 4 ;
+         }
+
+         talentvalue {
+         level = 7 ;
+         name = nim_p2_def ;
+         value = 5 ;
+         }
+
+         talentvalue {
+         level = 8 ;
+         name = nim_p2_def ;
+         value = 6 ;
+         }
+
+         talentvalue {
+         level = 12 ;
+         name = nim_p2_def ;
+         value = 7 ;
+         }
+
+         talentvalue {
+         level = 13 ;
+         name = nim_p2_def ;
+         value = 8 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p2_hlth ;
+         value = 0.01 ;
+         }
+
+         talentvalue {
+         level = 3 ;
+         name = nim_p2_hlth ;
+         value = 0.015 ;
+         }
+
+         talentvalue {
+         level = 4 ;
+         name = nim_p2_hlth ;
+         value = 0.02 ;
+         }
+
+         talentvalue {
+         level = 7 ;
+         name = nim_p2_hlth ;
+         value = 0.025 ;
+         }
+
+         talentvalue {
+         level = 8 ;
+         name = nim_p2_hlth ;
+         value = 0.03 ;
+         }
+
+         talentvalue {
+         level = 12 ;
+         name = nim_p2_hlth ;
+         value = 0.035 ;
+         }
+
+         talentvalue {
+         level = 13 ;
+         name = nim_p2_hlth ;
+         value = 0.04 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p2_shw ;
+         value = 1 ;
+         }
+
+         talentvalue {
+         level = 3 ;
+         name = nim_p2_shw ;
+         value = 1.5 ;
+         }
+
+         talentvalue {
+         level = 4 ;
+         name = nim_p2_shw ;
+         value = 2 ;
+         }
+
+         talentvalue {
+         level = 7 ;
+         name = nim_p2_shw ;
+         value = 2.5 ;
+         }
+
+         talentvalue {
+         level = 8 ;
+         name = nim_p2_shw ;
+         value = 3 ;
+         }
+
+         talentvalue {
+         level = 12 ;
+         name = nim_p2_shw ;
+         value = 3.5 ;
+         }
+
+         talentvalue {
+         level = 13 ;
+         name = nim_p2_shw ;
+         value = 4 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p2_lif ;
+         value = 10 ;
+         }
+
+         talentvalue {
+         level = 3 ;
+         name = nim_p2_lif ;
+         value = 20 ;
+         }
+
+         talentvalue {
+         level = 4 ;
+         name = nim_p2_lif ;
+         value = 30 ;
+         }
+
+         talentvalue {
+         level = 7 ;
+         name = nim_p2_lif ;
+         value = 40 ;
+         }
+
+         talentvalue {
+         level = 8 ;
+         name = nim_p2_lif ;
+         value = 50 ;
+         }
+
+         talentvalue {
+         level = 12 ;
+         name = nim_p2_lif ;
+         value = 65 ;
+         }
+
+         talentvalue {
+         level = 13 ;
+         name = nim_p2_lif ;
+         value = 80 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p2_pwr ;
+         value = 15 ;
+         }
+
+         talentvalue {
+         level = 3 ;
+         name = nim_p2_pwr ;
+         value = 21 ;
+         }
+
+         talentvalue {
+         level = 4 ;
+         name = nim_p2_pwr ;
+         value = 24 ;
+         }
+
+         talentvalue {
+         level = 7 ;
+         name = nim_p2_pwr ;
+         value = 30 ;
+         }
+
+         talentvalue {
+         level = 8 ;
+         name = nim_p2_pwr ;
+         value = 33 ;
+         }
+
+         talentvalue {
+         level = 12 ;
+         name = nim_p2_pwr ;
+         value = 51 ;
+         }
+
+         talentvalue {
+         level = 13 ;
+         name = nim_p2_pwr ;
+         value = 60 ;
+         }
+         talentvalue {
+         level = 1 ;
+         name = nim_p2_life ;
+         value = 20 ;
+         }
+
+         talentvalue {
+         level = 15 ;
+         name = nim_p2_life ;
+         value = 180 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p2_dmg_ref ;
+         value = 0.15 ;
+         }
+
+         talentvalue {
+         level = 20 ;
+         name = nim_p2_dmg_ref ;
+         value = 0.57 ;
+         }
+
+      }
+
+
+
+      level {
+      description = %nim_p2_shw:f% $HP regenerated per second, +%nim_p2_def $DR\n%nim_p2_lif seconds\%nim_p2_dmg_ref:p $DMG_MELEE\n%nim_p2_life seconds\ %nim_p2_pwr $EP ;
+         tier {
+         cost = 1 ;
+         count = 3 ;
+         }
+
+         tier {
+         cost = 2 ;
+         count = 4 ;
+         }
+
+         tier {
+         cost = 3 ;
+         count = 1 ;
+         }
+
+         tier {
+         cost = 3 ;
+         count = 4 ;
+         difficulty = hard ;
+         }
+
+         tier {
+         cost = 4 ;
+         count = 1 ;
+         difficulty = hard ;
+         }
+
+         require {
+         cat = level ;
+         level = %nim_p2_req ;
+         }
+
+      }
+}
+
+
+   talent {
+   descname = Shocking Slam ;
+   description = An energy-fueled ground slam that sends out a radial blast of damage. ;
+   descshort = Radial ;
+   icon = 1 ;
+   icon_texture = textures/ui/juggernaut_icons.png ;
+   name = nim_p3 ;
+   power = power3 ;
+      talentvalues {
+         talentvalue {
+         level = 1 ;
+         name = nim_p3_req ;
+         value = 5 ;
+         }
+
+         talentvalue {
+         level = 5 ;
+         name = nim_p3_req ;
+         value = 14 ;
+         }
+
+         talentvalue {
+         level = 6 ;
+         name = nim_p3_req ;
+         value = 17 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_p3_req ;
+         value = 26 ;
+         }
+
+         talentvalue {
+         level = 10 ;
+         name = nim_p3_req ;
+         value = 29 ;
+         }
+
+         talentvalue {
+         level = 14 ;
+         name = nim_p3_req ;
+         value = 53 ;
+         }
+
+         talentvalue {
+         level = 15 ;
+         name = nim_p3_req ;
+         value = 73 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p3_dmg ;
+         value = 17 19 ;
+         }
+
+         talentvalue {
+         level = 5 ;
+         name = nim_p3_dmg ;
+         value = 34 38 ;
+         }
+
+         talentvalue {
+         level = 6 ;
+         name = nim_p3_dmg ;
+         value = 48 53 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_p3_dmg ;
+         value = 65 71 ;
+         }
+
+         talentvalue {
+         level = 10 ;
+         name = nim_p3_dmg ;
+         value = 82 90 ;
+         }
+
+         talentvalue {
+         level = 14 ;
+         name = nim_p3_dmg ;
+         value = 132 147 ;
+         }
+
+         talentvalue {
+         level = 15 ;
+         name = nim_p3_dmg ;
+         value = 190 210 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p3_pwr ;
+         value = 12 ;
+         }
+
+         talentvalue {
+         level = 5 ;
+         name = nim_p3_pwr ;
+         value = 20 ;
+         }
+
+         talentvalue {
+         level = 6 ;
+         name = nim_p3_pwr ;
+         value = 22 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_p3_pwr ;
+         value = 30 ;
+         }
+
+         talentvalue {
+         level = 10 ;
+         name = nim_p3_pwr ;
+         value = 32 ;
+         }
+
+         talentvalue {
+         level = 14 ;
+         name = nim_p3_pwr ;
+         value = 50 ;
+         }
+
+         talentvalue {
+         level = 15 ;
+         name = nim_p3_pwr ;
+         value = 62 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p3_rad ;
+         value = 120 ;
+         }
+
+         talentvalue {
+         level = 15 ;
+         name = nim_p3_rad ;
+         value = 144 ;
+         }
+
+      }
+
+      level {
+      description = %nim_p3_dmg $DMG_ENERGY\n%nim_p3_pwr $EP ;
+         tier {
+         cost = 1 ;
+         count = 5 ;
+         }
+
+         tier {
+         cost = 2 ;
+         count = 4 ;
+         }
+
+         tier {
+         cost = 3 ;
+         count = 1 ;
+         }
+
+         tier {
+         cost = 3 ;
+         count = 4 ;
+         difficulty = hard ;
+         }
+
+         tier {
+         cost = 4 ;
+         count = 1 ;
+         difficulty = hard ;
+         }
+
+         require {
+         cat = level ;
+         level = %nim_p3_req ;
+         }
+
+      }
+
+   }
+
+   talent {
+   descname = Hunter's Rush ;
+   description = Charge against enemies, and objects, knocking them back. $PT_HOLD ;
+   descshort = Charge ;
+   icon = 2 ;
+   icon_texture = textures/ui/juggernaut_icons.png ;
+   name = nim_p4 ;
+   power = power4 ;
+      talentvalues {
+         talentvalue {
+         level = 1 ;
+         name = nim_p4_req ;
+         value = 17 ;
+         }
+
+         talentvalue {
+         level = 4 ;
+         name = nim_p4_req ;
+         value = 26 ;
+         }
+
+         talentvalue {
+         level = 5 ;
+         name = nim_p4_req ;
+         value = 29 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_p4_req ;
+         value = 53 ;
+         }
+
+         talentvalue {
+         level = 10 ;
+         name = nim_p4_req ;
+         value = 73 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p4_dmg ;
+         value = 34 38 ;
+         }
+
+         talentvalue {
+         level = 4 ;
+         name = nim_p4_dmg ;
+         value = 44 49 ;
+         }
+
+         talentvalue {
+         level = 5 ;
+         name = nim_p4_dmg ;
+         value = 58 64 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_p4_dmg ;
+         value = 92 101 ;
+         }
+
+         talentvalue {
+         level = 10 ;
+         name = nim_p4_dmg ;
+         value = 132 147 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p4_pwr ;
+         value = 13 ;
+         }
+
+         talentvalue {
+         level = 4 ;
+         name = nim_p4_pwr ;
+         value = 18 ;
+         }
+
+         talentvalue {
+         level = 5 ;
+         name = nim_p4_pwr ;
+         value = 19 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_p4_pwr ;
+         value = 30 ;
+         }
+
+         talentvalue {
+         level = 10 ;
+         name = nim_p4_pwr ;
+         value = 37 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p4_kb ;
+         value = 245 ;
+         }
+
+         talentvalue {
+         level = 10 ;
+         name = nim_p4_kb ;
+         value = 620 ;
+         }
+
+      }
+
+      level {
+      description = %nim_p4_dmg $DMG_PHYSICAL\n%nim_p4_kb $KB\n%nim_p4_pwr $EP/s ;
+         tier {
+         cost = 2 ;
+         count = 4 ;
+         }
+
+         tier {
+         cost = 3 ;
+         count = 1 ;
+         }
+
+         tier {
+         cost = 3 ;
+         count = 4 ;
+         difficulty = hard ;
+         }
+
+         tier {
+         cost = 4 ;
+         count = 1 ;
+         difficulty = hard ;
+         }
+
+         require {
+         cat = level ;
+         level = %nim_p4_req ;
+         }
+
+      }
+
+   }
+
+   talent {
+   descname = Destructive Ray ;
+   description = Nimrod fires a continuous beam of energy that causes great damage to the enemy. $PT_HOLD ;
+   descshort = Continuous Beam ;
+   icon = 2 ;
+   icon_texture = textures/ui/mysto_icons.png ;
+   name = nim_p5 ;
+   power = power5 ;
+      talentvalues {
+         talentvalue {
+         level = 1 ;
+         name = nim_p5_req ;
+         value = 10 ;
+         }
+
+         talentvalue {
+         level = 3 ;
+         name = nim_p5_req ;
+         value = 13 ;
+         }
+
+         talentvalue {
+         level = 4 ;
+         name = nim_p5_req ;
+         value = 16 ;
+         }
+
+         talentvalue {
+         level = 7 ;
+         name = nim_p5_req ;
+         value = 25 ;
+         }
+
+         talentvalue {
+         level = 8 ;
+         name = nim_p5_req ;
+         value = 28 ;
+         }
+
+         talentvalue {
+         level = 12 ;
+         name = nim_p5_req ;
+         value = 52 ;
+         }
+
+         talentvalue {
+         level = 13 ;
+         name = nim_p5_req ;
+         value = 72 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p5_dmg ;
+         value = 10 15 ;
+         }
+
+         talentvalue {
+         level = 13 ;
+         name = nim_p5_dmg ;
+         value = 110 130 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p5_pwr ;
+         value = 15 ;
+         }
+
+         talentvalue {
+         level = 13 ;
+         name = nim_p5_pwr ;
+         value = 60 ;
+         }
+
+      }
+
+      level {
+      description = %nim_p5_dmg $DMG/sec\n%nim_p5_pwr $EP/sec ;
+         tier {
+         cost = 1 ;
+         count = 3 ;
+         }
+
+         tier {
+         cost = 2 ;
+         count = 4 ;
+         }
+
+         tier {
+         cost = 3 ;
+         count = 1 ;
+         }
+
+         tier {
+         cost = 3 ;
+         count = 4 ;
+         difficulty = hard ;
+         }
+
+         tier {
+         cost = 4 ;
+         count = 1 ;
+         difficulty = hard ;
+         }
+
+         require {
+         cat = level ;
+         level = %nim_p5_req ;
+         }
+
+      }
+
+   }
+
+   talent {
+   descname = Damage Adaptation ;
+   description = Creates a Shield that reflects damage back to the attacker, and gains heavy resistance over the last damage type that damaged the unit. ;
+   descshort = Boost ;
+   icon = 6 ;
+   icon_texture = textures/ui/sent_icons.png ;
+   name = nim_p6 ;
+   power = power6 ;
+   type = boost ;
+      talentvalues {
+         talentvalue {
+         level = 1 ;
+         name = nim_p6_req ;
+         value = 14 ;
+         }
+
+         talentvalue {
+         level = 2 ;
+         name = nim_p6_req ;
+         value = 17 ;
+         }
+
+         talentvalue {
+         level = 5 ;
+         name = nim_p6_req ;
+         value = 26 ;
+         }
+
+         talentvalue {
+         level = 6 ;
+         name = nim_p6_req ;
+         value = 29 ;
+         }
+
+         talentvalue {
+         level = 10 ;
+         name = nim_p6_req ;
+         value = 53 ;
+         }
+
+         talentvalue {
+         level = 11 ;
+         name = nim_p6_req ;
+         value = 73 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p6_res ;
+         value = 0.5 ;
+         }
+
+         talentvalue {
+         level = 2 ;
+         name = nim_p6_res ;
+         value = 0.6 ;
+         }
+
+         talentvalue {
+         level = 5 ;
+         name = nim_p6_res ;
+         value = 0.7 ;
+         }
+
+         talentvalue {
+         level = 6 ;
+         name = nim_p6_res ;
+         value = 0.8 ;
+         }
+
+         talentvalue {
+         level = 10 ;
+         name = nim_p6_res ;
+         value = 0.9 ;
+         }
+
+         talentvalue {
+         level = 11 ;
+         name = nim_p6_res ;
+         value = 1.0 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p6_lif ;
+         value = 40 ;
+         }
+
+         talentvalue {
+         level = 2 ;
+         name = nim_p6_lif ;
+         value = 50 ;
+         }
+
+         talentvalue {
+         level = 5 ;
+         name = nim_p6_lif ;
+         value = 65 ;
+         }
+
+         talentvalue {
+         level = 6 ;
+         name = nim_p6_lif ;
+         value = 80 ;
+         }
+
+         talentvalue {
+         level = 10 ;
+         name = nim_p6_lif ;
+         value = 120 ;
+         }
+
+         talentvalue {
+         level = 11 ;
+         name = nim_p6_lif ;
+         value = 180 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p6_pwr ;
+         value = 60 ;
+         }
+
+         talentvalue {
+         level = 2 ;
+         name = nim_p6_pwr ;
+         value = 64 ;
+         }
+
+         talentvalue {
+         level = 5 ;
+         name = nim_p6_pwr ;
+         value = 88 ;
+         }
+
+         talentvalue {
+         level = 6 ;
+         name = nim_p6_pwr ;
+         value = 92 ;
+         }
+
+         talentvalue {
+         level = 10 ;
+         name = nim_p6_pwr ;
+         value = 140 ;
+         }
+
+         talentvalue {
+         level = 11 ;
+         name = nim_p6_pwr ;
+         value = 172 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p6_dmg_ref ;
+         value = 0.15 ;
+         }
+
+         talentvalue {
+         level = 20 ;
+         name = nim_p6_dmg_ref ;
+         value = 0.57 ;
+         }
+
+ }
+
+      level {
+      description = %nim_p6_dmg_ref:p $DMG_MELEE\%nim_p6_res:p damage type resistance\n%nim_p6_lif Seconds\n%nim_p6_pwr $EP ;
+         tier {
+         cost = 1 ;
+         count = 1 ;
+         }
+
+         tier {
+         cost = 2 ;
+         count = 4 ;
+         }
+
+         tier {
+         cost = 3 ;
+         count = 1 ;
+         }
+
+         tier {
+         cost = 3 ;
+         count = 4 ;
+         difficulty = hard ;
+         }
+
+         tier {
+         cost = 4 ;
+         count = 1 ;
+         difficulty = hard ;
+         }
+
+         require {
+         cat = level ;
+         level = %nim_p6_req ;
+         }
+
+      }
+
+   }
+
+   talent {
+   descname = Prime Directive ;
+   description = Throws out several incapacitating traps that for a time will deliver $DMG_ENERGY to the enemies caught in them. ;
+   descshort = Special ;
+   icon = 1 ;
+   icon_texture = textures/ui/spiderwoman_icons.png ;
+   name = nim_power7 ;
+   power = power7 ;
+      talentvalues {
+         talentvalue {
+         level = 1 ;
+         name = nim_p7_req ;
+         value = 5 ;
+         }
+
+         talentvalue {
+         level = 5 ;
+         name = nim_p7_req ;
+         value = 14 ;
+         }
+
+         talentvalue {
+         level = 6 ;
+         name = nim_p7_req ;
+         value = 17 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_p7_req ;
+         value = 26 ;
+         }
+
+         talentvalue {
+         level = 10 ;
+         name = nim_p7_req ;
+         value = 29 ;
+         }
+
+         talentvalue {
+         level = 14 ;
+         name = nim_p7_req ;
+         value = 53 ;
+         }
+
+         talentvalue {
+         level = 15 ;
+         name = nim_p7_req ;
+         value = 73 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p7_pwr ;
+         value = 11 ;
+         }
+
+         talentvalue {
+         level = 5 ;
+         name = nim_p7_pwr ;
+         value = 18 ;
+         }
+
+         talentvalue {
+         level = 6 ;
+         name = nim_p7_pwr ;
+         value = 19 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_p7_pwr ;
+         value = 25 ;
+         }
+
+         talentvalue {
+         level = 10 ;
+         name = nim_p7_pwr ;
+         value = 28 ;
+         }
+
+         talentvalue {
+         level = 14 ;
+         name = nim_p7_pwr ;
+         value = 42 ;
+         }
+
+         talentvalue {
+         level = 15 ;
+         name = nim_p7_pwr ;
+         value = 52 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p7_dmg ;
+         value = 17 19 ;
+         }
+
+         talentvalue {
+         level = 5 ;
+         name = nim_p7_dmg ;
+         value = 34 38 ;
+         }
+
+         talentvalue {
+         level = 6 ;
+         name = nim_p7_dmg ;
+         value = 48 53 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_p7_dmg ;
+         value = 65 71 ;
+         }
+
+         talentvalue {
+         level = 10 ;
+         name = nim_p7_dmg ;
+         value = 85 94 ;
+         }
+
+         talentvalue {
+         level = 14 ;
+         name = nim_p7_dmg ;
+         value = 132 147 ;
+         }
+
+         talentvalue {
+         level = 15 ;
+         name = nim_p7_dmg ;
+         value = 190 210 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p7_lif ;
+         value = 7 ;
+         }
+
+         talentvalue {
+         level = 5 ;
+         name = nim_p7_lif ;
+         value = 11 ;
+         }
+
+         talentvalue {
+         level = 6 ;
+         name = nim_p7_lif ;
+         value = 13 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_p7_lif ;
+         value = 16 ;
+         }
+
+         talentvalue {
+         level = 10 ;
+         name = nim_p7_lif ;
+         value = 18 ;
+         }
+
+         talentvalue {
+         level = 14 ;
+         name = nim_p7_lif ;
+         value = 23 ;
+         }
+
+         talentvalue {
+         level = 15 ;
+         name = nim_p7_lif ;
+         value = 25 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p7_balls ;
+         value = 1 ;
+         }
+
+         talentvalue {
+         level = 5 ;
+         name = nim_p7_balls ;
+         value = 2 ;
+         }
+
+         talentvalue {
+         level = 6 ;
+         name = nim_p7_balls ;
+         value = 2 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_p7_balls ;
+         value = 4 ;
+         }
+
+         talentvalue {
+         level = 10 ;
+         name = nim_p7_balls ;
+         value = 5 ;
+         }
+
+         talentvalue {
+         level = 14 ;
+         name = nim_p7_balls ;
+         value = 5 ;
+         }
+
+         talentvalue {
+         level = 15 ;
+         name = nim_p7_balls ;
+         value = 6 ;
+         }
+
+      }
+
+      level {
+      description = %nim_p7_dmg $DMG_ENERGY/s\n%nim_p7_balls Trap(s)\n%nim_p7_lif Seconds\n%nim_p7_pwr $EP ;
+         tier {
+         cost = 1 ;
+         count = 5 ;
+         }
+
+         tier {
+         cost = 2 ;
+         count = 4 ;
+         }
+
+         tier {
+         cost = 3 ;
+         count = 1 ;
+         }
+
+         tier {
+         cost = 3 ;
+         count = 4 ;
+         difficulty = hard ;
+         }
+
+         tier {
+         cost = 4 ;
+         count = 1 ;
+         difficulty = hard ;
+         }
+
+         require {
+         cat = level ;
+         level = %nim_p7_req ;
+         }
+
+      }
+
+   }
+
+   talent {
+   descname = Reflective Armor ;
+   description = Nimrod adapts its armor for a small window of time to absorb and convert the energy of the next attack into health, reflecting some of the damage back at the enemy. ;
+   descshort = Counter ;
+   icon = 4 ;
+   icon_texture = textures/ui/ultron_icons.png ;
+   name = nim_p9 ;
+   power = power9 ;
+      talentvalues {
+         talentvalue {
+         level = 1 ;
+         name = nim_p9_req ;
+         value = 20 ;
+         }
+
+         talentvalue {
+         level = 3 ;
+         name = nim_p9_req ;
+         value = 26 ;
+         }
+
+         talentvalue {
+         level = 4 ;
+         name = nim_p9_req ;
+         value = 29 ;
+         }
+
+         talentvalue {
+         level = 8 ;
+         name = nim_p9_req ;
+         value = 53 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_p9_req ;
+         value = 73 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p9_pwr ;
+         value = 22 ;
+         }
+
+         talentvalue {
+         level = 3 ;
+         name = nim_p9_pwr ;
+         value = 28 ;
+         }
+
+         talentvalue {
+         level = 4 ;
+         name = nim_p9_pwr ;
+         value = 31 ;
+         }
+
+         talentvalue {
+         level = 8 ;
+         name = nim_p9_pwr ;
+         value = 52 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_p9_pwr ;
+         value = 60 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p9_ref ;
+         value = 0.1 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_p9_ref ;
+         value = 1.0 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_p9_hlt ;
+         value = 0.05 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_p9_hlt ;
+         value = 0.5 ;
+         }
+
+      }
+
+      level {
+      description = %nim_p9_ref:p $DMG reflected\n%nim_p9_hlt:p $HP restored\n%nim_p9_pwr $EP ;
+         tier {
+         cost = 2 ;
+         count = 3 ;
+         }
+
+         tier {
+         cost = 3 ;
+         count = 1 ;
+         }
+
+         tier {
+         cost = 3 ;
+         count = 4 ;
+         difficulty = hard ;
+         }
+
+         tier {
+         cost = 4 ;
+         count = 1 ;
+         difficulty = hard ;
+         }
+
+         require {
+         cat = level ;
+         level = %nim_p9_req ;
+         }
+
+      }
+
+   }
+
+   talent {
+   descname = Plasma Storm ;
+   description = Sentinel uses its internal power generator to summon massive energy to then blast away enemies in a given radius. Best used in true size. ;
+   descshort = Xtreme ;
+   icon = 7 ;
+   icon_texture = textures/ui/sent_icons.png ;
+   name = sent_p8 ;
+   power = team_xtreme ;
+   type = team_xtreme ;
+      talentvalues {
+         talentvalue {
+         level = 1 ;
+         name = sent_p8_req ;
+         value = 10 ;
+         }
+
+         talentvalue {
+         level = 8 ;
+         name = sent_p8_req ;
+         value = 45 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = sent_p8_atk ;
+         value = 28 30 ;
+         }
+
+         talentvalue {
+         level = 8 ;
+         name = sent_p8_atk ;
+         value = 135 150 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = sent_p8_dmg ;
+         value = 51 54 ;
+         }
+
+         talentvalue {
+         level = 8 ;
+         name = sent_p8_dmg ;
+         value = 259 280 ;
+         }
+
+      }
+
+      level {
+      description = %sent_p8_atk $DMG_ENERGY while charging up\n%sent_p8_dmg $DMG_ENERGY during release ;
+         tier {
+         cost = 2 ;
+         count = 1 ;
+         }
+
+         tier {
+         cost = 0 ;
+         count = 7 ;
+         }
+
+         require {
+         cat = level ;
+         level = %sent_p8_req ;
+         }
+
+      }
+
+   }
+
+   talent {
+   descname = Reactive Armor ;
+   description = Nimrods nanite technology allow it to reconstruct its armor rapidly. ;
+   icon = 30 ;
+   icon_texture = textures/ui/talent_icons.png ;
+   name = nim_outfit11 ;
+   skin = 0 ;
+   type = passive ;
+      talentvalues {
+         talentvalue {
+         level = 1 ;
+         name = nim_outfit11_hlt ;
+         value = 0.004 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_outfit11_hlt ;
+         value = 0.012 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_outfit11_shw ;
+         value = 0.4 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_outfit11_shw ;
+         value = 1.2 ;
+         }
+
+      }
+
+      level {
+      count = 9 ;
+      description = +%nim_outfit11_shw:f% Max $HP regenerated per sec ;
+         powerup {
+         life = -1 ;
+            affecter {
+            affect_type = scale ;
+            attribute = health_regen_pct ;
+            level = %nim_outfit11_hlt ;
+            }
+
+         }
+
+      }
+
+   }
+
+   talent {
+   descname = Critical Chance ;
+   description = Nimrod's scanning systems allow it to find the oponents weak spots easily, increasing its chances of landing a critical hit. ;
+   icon = 1 ;
+   icon_texture = textures/ui/talent_icons.png ;
+   name = nim_outfit12 ;
+   skin = 0 ;
+   type = passive ;
+      talentvalues {
+         talentvalue {
+         level = 1 ;
+         name = nim_outfit12_pct ;
+         value = 0.05 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_outfit12_pct ;
+         value = 0.3 ;
+         }
+
+      }
+
+      level {
+      count = 9 ;
+      description = +%nim_outfit12_pct:p Critical chance ;
+         powerup {
+         life = -1 ;
+            affecter {
+            attribute = atk_critical ;
+            level = %nim_outfit12_pct ;
+            }
+
+         }
+
+      }
+
+   }
+
+   talent {
+   descname = Space Age Polymer ;
+   description = Nimrod's armor is made of a powerful alloy, increasing allo of its resistances. ;
+   icon = 16 ;
+   icon_texture = textures/ui/talent_icons.png ;
+   name = nim_outfit13 ;
+   skin = 0 ;
+   type = passive ;
+      talentvalues {
+         talentvalue {
+         level = 1 ;
+         name = nim_outfit13_pct ;
+         value = 0.05 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_outfit13_pct ;
+         value = 0.3 ;
+         }
+
+         talentvalue {
+         level = 1 ;
+         name = nim_outfit13_shw ;
+         value = 2 ;
+         }
+
+         talentvalue {
+         level = 9 ;
+         name = nim_outfit13_shw ;
+         value = 10 ;
+         }
+
+      }
+
+   }
+}

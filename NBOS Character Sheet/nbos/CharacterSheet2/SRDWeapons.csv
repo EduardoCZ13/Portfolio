@@ -1,0 +1,66 @@
+Weapon,Damage,Crit
+"Dagger",1d4,19-20/X2
+"Dagger, punching",1d4,X3
+"Gauntlet, spiked",1d4,X2
+"Mace, light",1d6,X2
+"Sickle",1d6,X2
+"Club",1d6,X2
+"Halfspear",1d6,X3
+"Mace, heavy",1d8,X2
+"Morningstar",1d8,X2
+"Quarterstaff",1d6,X2
+"Shortspear",1d8,X3
+"Crossbow, light",1d8,19-20/X2
+"Dart",1d4,X2
+"Sling",1d4,X2
+"Crossbow, heavy",1d10, 19-20/X2
+"Javelin",1d6,X2
+"Axe, throwing",1d6,X2
+"Hammer, light",1d4,X2
+"Handaxe",1d6,X3
+"Lance, light",1d6,X3
+"Pick, light",1d4,X4
+"Sap",1d6,X2
+"Sword, short",1d6,19-20/X2
+"Battleaxe",1d8,X3
+"Flail, light",1d8,X2
+"Lance, heavy",1d8,X3
+"Longsword",1d8,19-20/X2
+"Pick, heavy",1d6,X4
+"Rapier",1d6,18-20/X2
+"Scimitar",1d6,18-20/X2
+"Trident",1d8,X2
+"Warhammer",1d8,X3
+"Falchion",2d4,18-20/X2
+"Flail, heavy",1d10, 19-20/X2
+"Glaive",1d10, X3
+"Greataxe",1d12, X3
+"Greatclub",1d10,X2
+"Greatsword",2d6,19-20/X2
+"Guisarme",2d4,X3
+"Halberd",1d10,X3
+"Longspear",1d8,X3
+"Ranseur",2d4,X3
+"Scythe",2d4,X4
+"Shortbow",1d6,X3
+"Shortbow, composite",1d6,X3
+"Longbow",1d8,X3
+"Longbow, composite",1d8,X3
+"Kama,halfling",1d4,X2
+"Kukri",1d4,18-20/X2
+"Nunchaku,halfling",1d4,X2
+"Siangham,halfling",1d4,X2
+"Kama",1d6,X2
+"Nunchaku",1d6,X2
+"Siangham",1d6,X2
+"Sword, bastard",1d10, 19-20/X2
+"Waraxe, dwarven",1d10, X3
+"Axe, orc double",1d8,X3
+"Chain, spiked",2d4,X2
+"Flail, dire",1d8,X2
+"Sword,two-bladed",1d8,19-20/X2
+"Crossbow, hand",1d4,19-20/X2
+"Shuriken",1, X2
+"Whip",1d2, X2
+"Crossbow, repeating",1d8,19-20/X2
+"Net",0,

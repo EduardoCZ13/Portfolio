@@ -1,0 +1,2361 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+	<link rel="stylesheet" href="charactersheet.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script type="text/worker">
+
+    on("change:ps_dice change:ps_extra change:pe_dice change:pe_extra change:vitalidad_bonus change:sabiduria_bonus change:inteligencia_bonus sheet:open", function() {
+        
+        getAttrs(["ps_dice", "ps_extra", "pe_dice", "pe_extra", "vitalidad_bonus", "sabiduria_bonus", "inteligencia_bonus"], function(values) {
+            var psbase = parseInt(values["ps_dice"],10) || 0;
+            var pebase = parseInt(values["pe_dice"],10) || 0;
+            var psbon = values.ps_extra;
+            var pebon = values.pe_extra;
+            let vit = parseInt(values["vitalidad_bonus"],10) || 0;
+            let sab = parseInt(values["sabiduria_bonus"],10) || 0;
+            let int = parseInt(values["inteligencia_bouns"],10) || 0;
+            var psvit = vit * psbon;
+            var pesab = Math.floor((sab + int)/2) * pebon;
+            var psmax = psbase + psvit;
+            var pemax = pebase + pesab + (sab * 2);
+            
+            
+            
+            
+            setAttrs({
+                "ps_current": psmax,
+                "pe_current": pemax,
+                "ps_max": psmax,
+                "pe_max": pemax
+            });
+            
+        });
+    });
+
+</script>
+
+
+
+<script>
+   
+    on("change:clase change:nivel change:fuerza_bonus change:vitalidad_bonus change:sabiduria_bonus change:inteligencia_bonus change:destreza_bonus change:agilidad_bonus change:carisma_bonus sheet:open", function() {
+        
+        getAttrs(["clase", "nivel", "fuerza_bonus", "vitalidad_bonus", "sabiduria_bonus", "inteligencia_bonus", "destreza_bonus", "agilidad_bonus", "carisma_bonus"], function(values) {
+            var clase = parseInt(values["clase"],10) || 0;
+            var fue = parseInt(values["fuerza_bonus"],10) || 0;
+			var vit = parseInt(values["vitalidad_bonus"],10) || 0;
+			var sab = parseInt(values["sabiduria_bonus"],10) || 0;
+            var inte = parseInt(values["inteligencia_bonus"],10) || 0;
+			var des = parseInt(values["destreza_bonus"],10) || 0;
+			var agi = parseInt(values["agilidad_bonus"],10) || 0;
+			var car = parseInt(values["carisma_bonus"],10) || 0;
+			var nvl = parseInt(values["nivel"],10) || 0;
+			let dif = 10;
+			  
+			  if (clase == 1) {
+                dif = 11 + agi;
+            }
+        else if(clase == 2) {
+            dif =  8 + fue;
+        }
+        else if(clase == 3) {
+            dif = 15 + agi;
+        }
+        else if(clase == 4) {
+            dif = 14 + agi;
+        }
+        else if(clase == 5) {
+            dif = 10 + car;
+        }
+        else if(clase == 6) {
+            dif = 14 + agi;
+        }
+        else if(clase == 7) {
+            dif = 9 + vit;
+        }
+        else if(clase == 8) {
+            dif = 11 + inte;
+        }
+        else if(clase == 9) {
+            dif = 10 + vit;
+        }
+        else if(clase == 10) {
+            dif = 14 + car;
+        }
+        else if(clase == 11) {
+            dif = 13 + agi;
+        }
+        else if(clase == 12) {
+            dif = 9 + fue;
+        }
+        else if(clase == 13) {
+            dif = 8 + vit;
+        }
+        else if(clase == 14) {
+            dif = 14 + agi;
+        }
+        else if(clase == 15) {
+            dif = 12 + agi;
+        }
+        else if(clase == 16) {
+            dif = 12 + inte;
+        }
+        else if(clase == 17) {
+            dif = 14 + inte;
+        }
+        else if(clase == 18) {
+            dif = 14 + car;
+        }
+        else if(clase == 19) {
+            dif = 11 + inte;
+        }
+        else if(clase == 20) {
+            dif = 11 + inte;
+        }
+        else if(clase == 21) {
+            dif = 13 + sab;
+        }
+        else if(clase == 22) {
+            dif = 13 + agi;
+        }
+        else if(clase == 23) {
+            dif = 5 + nvl/2 ;
+        }
+        else if(clase == 24) {
+            dif = 8 + fue;
+        }
+        else if(clase == 25) {
+            dif = 10 + sab;
+        }
+        else if(clase == 26) {
+            dif = 11 + vit;
+        }
+        else if(clase == 27) {
+            dif = 9 + fue;
+        }
+        else if(clase == 28) {
+            dif = 14 + inte;
+        }
+        else if(clase == 29) {
+            dif = 11 + vit;
+        }
+        else if(clase == 30) {
+            dif = 10 + sab;
+        }
+        else if(clase == 31) {
+            dif = 12 + sab;
+        }
+        else {
+            dif = 10;
+        }
+			  
+        
+                           
+            setAttrs({
+                "dificultad": dif
+            });
+            
+        });
+    });
+    
+</script>
+
+
+<script type="text/worker">
+
+    on("change:pet_experiencia", function() {
+        getAttrs(["pet_experiencia"], function(values) {
+            let exp = parseInt(values["pet_experiencia"],10)||0;
+            let nvl = 0;
+            let nvla = 0;
+            
+            if (exp >= 200000) nvl = "20";
+            else if (exp < 200000 && exp >= 180000) nvl = "19";
+            else if (exp < 180000 && exp >= 160000) nvl = "18";
+            else if (exp < 160000 && exp >= 140000) nvl = "17";
+            else if (exp < 140000 && exp >= 120000) nvl = "16";
+            else if (exp < 120000 && exp >= 100000) nvl = "15";
+            else if (exp < 100000 && exp >= 820000) nvl = "14";
+            else if (exp < 90000 && exp >= 90000) nvl = "13";
+            else if (exp < 80000 && exp >= 80000) nvl = "12";
+            else if (exp < 70000 && exp >= 60000) nvl = "11";
+            else if (exp < 60000 && exp >= 50000) nvl = "10";
+            else if (exp < 50000 && exp >= 35000) nvl = "9";
+            else if (exp < 35000 && exp >= 300000) nvl = "8";
+            else if (exp < 30000 && exp >= 24000) nvl = "7";
+            else if (exp < 24000 && exp >= 20000) nvl = "6";
+            else if (exp < 20000 && exp >= 15000) nvl = "5";
+            else if (exp < 15000 && exp >= 10000) nvl = "4";
+            else if (exp < 10000 && exp >= 5000) nvl = "3";
+            else if (exp < 5000 && exp >= 1000) nvl = "2";
+            else if (exp < 1000 && exp >= 0) nvl = "1";
+            else nvl = "0";
+            
+            
+            if ( exp >= 100000) nvla = "5";
+            else if (exp < 100000 && exp >= 60000) nvla = "4";
+            else if (exp < 60000 && exp >= 30000) nvla = "3";
+            else if (exp < 30000 && exp >= 10000) nvla = "2";
+            else if (exp < 10000 && exp >= 0) nvla = "1";
+            else nvla = "0";
+            
+            
+            
+            setAttrs({
+                "pet_nivel_aliado": nvl,
+                "pet_nivel_automata": nvla
+            });
+        });
+    });
+
+
+</script>
+
+
+<script type="text/worker">
+
+    on("change:sabiduria_bonus change:vitalidad_bonus", function() {
+        
+        getAttrs(["vitalidad_bonus", "sabiduria_bonus"], function(values) {
+            let vit = parseInt(values["vitalidad_bonus"],10) || 0;
+            let sab = parseInt(values["sabiduria_bonus"],10) || 0;
+            let vol = Math.floor( (vit + sab) / 2) || 0;
+            
+            
+            
+            
+            
+            setAttrs({
+                "voluntad": vol
+            });
+            
+        });
+    });
+
+</script>
+
+
+</head>
+
+<div class="botones">
+
+    <button type="action" id="atributos" onclick="Tabchange(1)">Atributos</button>
+    <button type="action" id="habilidades" onclick="Tabchange(2)" > Habilidades </button>
+    <button type="action" id="inventario" onclick="Tabchange(3)">Inventario</button>
+</div>
+
+<input type='hidden' class='sheetTab' id="current" value="1"/>
+
+<script>
+function Tabchange(value) {
+  document.getElementById("current").value = value;
+  console.log(current.value);
+}
+</script>
+
+
+
+<div class='atributos'>
+
+
+
+<div class="cualidades_personaje">
+    <div class="detalles" style="border-top: 2px dashed gold;">
+                
+                <span>Nombre</span>
+                <input id="nombre" type="text" value="" style="text-align: right; margin: 0px; width: 30%; padding: 0px; height: 25px;">
+                
+                <span>Raza</span>
+                <select class="modificadores" id="raza" style="text-align: right; margin: 0px; width: 10%; padding: 0px; height: 25px;">
+                <option value="0">selecciona</option>
+                <option value="1">Humano</option>
+                <option value="2">Orco</option>
+                <option value="3">Elfo</option>
+                <option value="4">Drav</option>
+                <option value="5">Draux</option>
+                <option value="6">MoMoni</option>
+                <option value="7">Skurion</option>
+                <option value="8">Avatar</option>
+                <option value="9">Demonio</option>
+                <option value="10">HumanoxOrco</option>
+                <option value="11">HumanoxElfo</option>
+                </select>
+                
+                
+                <span>Clase:</span>
+                <select class="modificadores" id="clase" style="text-align: right; margin: 0px; width: 15%; padding: 0px; height: 25px;">
+                    <option value="0">selecciona</option>
+                    <option value="1">Guerrero</option>
+                    <option value="2">Berserk</option>
+                    <option value="3">Asesino</option>
+                    <option value="4">Pirata</option>
+                    <option value="5">Juglar</option>
+                    <option value="6">Explorador</option>
+                    <option value="7">Herrero</option>
+                    <option value="8">Alquimista</option>
+                    <option value="9">Mecanista</option>
+                    <option value="10">Pistolero</option>
+                    <option value="11">Monje</option>
+                    <option value="12">Caballero</option>
+                    <option value="13">Paladin</option>
+                    <option value="14">Ninja</option>
+                    <option value="15">Samurai</option>
+                    <option value="16">Oraculo</option>
+                    <option value="17">Clerigo</option>
+                    <option value="18">Druida</option>
+                    <option value="19">Shaman</option>
+                    <option value="20">Invocador</option>
+                    <option value="21">Hechicero</option>
+                    <option value="22">Espiritu</option>
+                    <option value="23">Echo</option>
+                    <option value="24">Gladiador</option>
+                    <option value="25">Runico</option>
+                    <option value="26">Dragonesa</option>
+                    <option value="27">DrauxVrah</option>
+                    <option value="28">Arcanista</option>
+                    <option value="29">Arenero</option>
+                    <option value="30">Elementalista</option>
+                    <option value="31">Corruptor</option>
+                </select>
+
+                <span>Subclase:</span>
+                <select class="modificadores" id="subclase" style="text-align: right; margin: 0px; width: 15%; padding: 0px; height: 25px;">
+                    <option value="0">selecciona</option>
+                    <option value="1">Guerrero</option>
+                    <option value="2">Berserk</option>
+                    <option value="3">Asesino</option>
+                    <option value="4">Pirata</option>
+                    <option value="5">Juglar</option>
+                    <option value="6">Explorador</option>
+                    <option value="7">Herrero</option>
+                    <option value="8">Alquimista</option>
+                    <option value="9">Mecanista</option>
+                    <option value="10">Pistolero</option>
+                    <option value="11">Monje</option>
+                    <option value="12">Caballero</option>
+                    <option value="13">Paladin</option>
+                    <option value="14">Ninja</option>
+                    <option value="15">Samurai</option>
+                    <option value="16">Oraculo</option>
+                    <option value="17">Clerigo</option>
+                    <option value="18">Druida</option>
+                    <option value="19">Shaman</option>
+                    <option value="20">Invocador</option>
+                    <option value="21">Hechicero</option>
+                    <option value="22">Espiritu</option>
+                    <option value="23">Echo</option>
+                    <option value="24">Gladiador</option>
+                    <option value="25">Runico</option>
+                    <option value="26">Dragonesa</option>
+                    <option value="27">DrauxVrah</option>
+                    <option value="28">Arcanista</option>
+                    <option value="29">Arenero</option>
+                    <option value="30">Elementalista</option>
+                    <option value="31">Corruptor</option>
+                </select>
+                
+                
+
+            </div>
+          
+
+ 
+ 
+    <div class="detalles" style="border-bottom: 2px dashed gold;">
+ 
+ <span>Elemento</span>
+                <select class="modificadores" id="elemento" id="elemento" style="text-align: right; margin: 0px; width: 20%; padding: 0px; height: 25px;">
+                <option>selecciona</option>
+                <option>Fuego</option>
+                <option>Tierra</option>
+                <option>Electricidad</option>
+                <option>Viento</option>
+                <option>Planta</option>
+                <option>Agua</option>
+                <option>Oscuro</option>
+                <option>Luz</option>
+                </select>
+                
+    <span>Género</span>
+    <input id="genero" id="genero" type="text" value="" style="text-align: right; margin: 0px; width: 10%; padding: 0px; height: 25px;">
+    
+    <span>Edad</span>
+    <input id="edade" id="edade" type="number" value="" style="text-align: right; margin: 0px; width: 10%; padding: 0px; height: 25px;">
+    
+    <span>Experiencia</span>
+    <input id="experiencia" id="experiencia" type="number" value="0" style="text-align: right; margin: 0px; width: 20%; padding: 0px; height: 25px;" onchange="expfunc(value)">
+     <script>
+
+    function expfunc(value) {
+            let exp = parseInt(document.getElementById("experiencia").value)||0;
+            let nvl = 0;
+            if (exp >= 1000000) nvl = "70";
+            else if (exp < 1000000 && exp >= 970000) nvl = "69";
+            else if (exp < 970000 && exp >= 940000) nvl = "68";
+            else if (exp < 940000 && exp >= 910000) nvl = "67";
+            else if (exp < 910000 && exp >= 880000) nvl = "66";
+            else if (exp < 880000 && exp >= 850000) nvl = "65";
+            else if (exp < 850000 && exp >= 820000) nvl = "64";
+            else if (exp < 820000 && exp >= 790000) nvl = "63";
+            else if (exp < 790000 && exp >= 760000) nvl = "62";
+            else if (exp < 760000 && exp >= 730000) nvl = "61";
+            else if (exp < 730000 && exp >= 700000) nvl = "60";
+            else if (exp < 700000 && exp >= 675000) nvl = "59";
+            else if (exp < 675000 && exp >= 650000) nvl = "58";
+            else if (exp < 650000 && exp >= 625000) nvl = "57";
+            else if (exp < 625000 && exp >= 600000) nvl = "56";
+            else if (exp < 600000 && exp >= 575000) nvl = "55";
+            else if (exp < 575000 && exp >= 550000) nvl = "54";
+            else if (exp < 550000 && exp >= 525000) nvl = "53";
+            else if (exp < 525000 && exp >= 500000) nvl = "52";
+            else if (exp < 500000 && exp >= 475000) nvl = "51";
+            else if (exp < 475000 && exp >= 450000) nvl = "50";
+            else if (exp < 450000 && exp >= 433000) nvl = "49";
+            else if (exp < 433000 && exp >= 416000) nvl = "48";
+            else if (exp < 416000 && exp >= 399000) nvl = "47";
+            else if (exp < 399000 && exp >= 382000) nvl = "46";
+            else if (exp < 382000 && exp >= 365000) nvl = "45";
+            else if (exp < 365000 && exp >= 348000) nvl = "44";
+            else if (exp < 348000 && exp >= 331000) nvl = "43";
+            else if (exp < 331000 && exp >= 314000) nvl = "42";
+            else if (exp < 314000 && exp >= 297000) nvl = "41";
+            else if (exp < 297000 && exp >= 280000) nvl = "40";
+            else if (exp < 280000 && exp >= 267000) nvl = "39";
+            else if (exp < 267000 && exp >= 254000) nvl = "38";
+            else if (exp < 254000 && exp >= 241000) nvl = "37";
+            else if (exp < 241000 && exp >= 228000) nvl = "36";
+            else if (exp < 228000 && exp >= 215000) nvl = "35";
+            else if (exp < 215000 && exp >= 202000) nvl = "34";
+            else if (exp < 202000 && exp >= 189000) nvl = "33";
+            else if (exp < 189000 && exp >= 176000) nvl = "32";
+            else if (exp < 176000 && exp >= 163000) nvl = "31";
+            else if (exp < 163000 && exp >= 150000) nvl = "30";
+            else if (exp < 150000 && exp >= 140000) nvl = "29";
+            else if (exp < 140000 && exp >= 130000) nvl = "28";
+            else if (exp < 130000 && exp >= 120000) nvl = "27";
+            else if (exp < 120000 && exp >= 110000) nvl = "26";
+            else if (exp < 110000 && exp >= 100000) nvl = "25";
+            else if (exp < 100000 && exp >= 92000) nvl = "24";
+            else if (exp < 92000 && exp >= 85000) nvl = "23";
+            else if (exp < 85000 && exp >= 80000) nvl = "22";
+            else if (exp < 80000 && exp >= 74000) nvl = "21";
+            else if (exp < 74000 && exp >= 65000) nvl = "20";
+            else if (exp < 65000 && exp >= 58000) nvl = "19";
+            else if (exp < 58000 && exp >= 50000) nvl = "18";
+            else if (exp < 50000 && exp >= 45000) nvl = "17";
+            else if (exp < 45000 && exp >= 37000) nvl = "16";
+            else if (exp < 37000 && exp >= 30000) nvl = "15";
+            else if (exp < 30000 && exp >= 25000) nvl = "14";
+            else if (exp < 25000 && exp >= 19000) nvl = "13";
+            else if (exp < 19000 && exp >= 14000) nvl = "12";
+            else if (exp < 14000 && exp >= 9000) nvl = "11";
+            else if (exp < 9000 && exp >= 6000) nvl = "10";
+            else if (exp < 6000 && exp >= 4000) nvl = "9";
+            else if (exp < 4000 && exp >= 2500) nvl = "8";
+            else if (exp < 2500 && exp >= 1500) nvl = "7";
+            else if (exp < 1500 && exp >= 1000) nvl = "6";
+            else if (exp < 1000 && exp >= 700) nvl = "5";
+            else if (exp < 700 && exp >= 500) nvl = "4";
+            else if (exp < 500 && exp >= 250) nvl = "3";
+            else if (exp < 250 && exp >= 100) nvl = "2";
+            else nvl = "1";
+            			
+            document.getElementById("nivel").innerHTML = nvl;
+
+}
+    
+
+
+
+</script>
+      
+    <span >Nivel</span>
+    <span id="nivel" id="nivel" value="1" style="width: 5%; padding: 0px; height: 100%;">1</span>
+
+   </div>
+    </div> 
+
+	
+<div class="estadisticas-personaje">
+
+
+
+<table class="estadisticas" style="width:100%">
+	<tr>
+    <td class="stat-block">
+      <label style="text-align: center;">PS</label>
+      <span id="ps_max">0</span>
+      <input type="hidden" id="ps_current"     type="number" value="">
+	  <input id="ps_dice" type="number" value="0" style="width: 50%">
+      <input type="hidden" id="ps_extra" value="">
+	</td> 
+	
+	<td class="stat-block">
+      <span style="text-align: center;">Fuerza</span>
+      <input class="attri" id="fuerza" type="number" value="0"  style="width: 30%" max="40" min="0">
+      <span id="fuerza_bonus" value="">0</span>
+    </td>
+	
+	 <td class="stat-block">
+      <label style="text-align: center;">Destreza</label>
+      <input class="attri" id="destreza" type="number" value="0" style="width: 30%" max="40" min="0">
+      <span id="destreza_bonus">0</span>
+    </td>
+	
+    <td class="stat-block">
+      <label style="text-align: center;">Sabiduría</label>
+      <input class="attri" id="sabiduria" type="number" value="0" style="width: 30%" max="40" min="0">
+      <span id="sabiduria_bonus">0</span>
+    </td>
+	
+	<td class="stat-block">
+      <label style="text-align: center;">Carisma</label>
+      <input class="attri" id="carisma" type="number" value="0" style="width: 30%" max="40" min="0">
+      <span id="carisma_bonus">0</span>
+     </td> 
+	 
+	<td class="stat-block">
+      <label style="text-align: center;">Voluntad</label>
+      <span id="voluntad">0</span>
+    </td>  
+	 
+    <td class="stat-block">
+      <label style="text-align: center;">Reputación</label>
+      <input id="rep" id="number" value="0" style="width: 30%">
+	</td>
+	 
+	 
+	</tr>
+	
+	<tr>
+	
+	 <td class="stat-block">
+      <label style="text-align: center;">PE</label>
+      <span id="pe_max">0</span>
+      <input type="hidden" id="pe_current"     type="number" value="">
+      <input id="pe_dice" type="number" value="0" style="width: 50%">
+     <input type="hidden" id="pe_extra" value="">
+    </td>
+	
+	    <td class="stat-block">
+      <span style="text-align: center;">Vitalidad</span>
+      <input class="attri" id="vitalidad" type="number" value="0" style="width: 30%" max="40" min="0">
+      <span id="vitalidad_bonus">0</span>
+    </td>
+	
+    <td class="stat-block">
+      <label style="text-align: center;">Agilidad</label>
+      <input class="attri" id="agilidad" type="number" value="0" style="width: 30%" max="40" min="0">
+      <span id="agilidad_bonus">0</span>
+    </td>	
+	
+ <td class="stat-block">
+      <label style="text-align: center;">Inteligencia</label>
+      <input class="attri" id="inteligencia" type="number" value="0" style="width: 30%" max="40" min="0">
+      <span id="inteligencia_bonus">0</span>
+
+    </td>
+
+     <td class="stat-block">
+      <label style="text-align: center;">Karma</label>
+      <input id="karma" type="number" value="0" style="width: 37%">
+	 </td>
+
+	<td class="stat-block">
+      <label style="text-align: center;">Dificultad</label>
+      <span id="dificultad">0</span>
+    </td>  
+		  
+	  <td class="stat-block">
+      <label style="text-align: center;">Reconocimiento</label>
+      <input id="reco" type="number" value="" style="width: 30%">
+    </td>
+	
+	
+	
+	</tr>        
+</table>
+
+<script>
+	const bon = document.querySelectorAll('.attri');
+    function calctodos() {
+	
+	function calcularbono(item) {
+   	let stat_bonus = 0;
+    var stat_base = item.value;
+	let bonusname = item.id + "_bonus"
+    if (stat_base >= 10) stat_bonus = Math.floor((stat_base - 10) / 2) || 0;
+    else stat_bonus = stat_base - 10 || 0;
+            
+	document.getElementById(bonusname).innerHTML = stat_bonus;
+	}
+	bon.forEach(calcularbono);
+};
+
+bon.forEach(calctodos); 
+$('.attri').change(calctodos);
+
+</script>   
+<script>
+
+
+   
+    $('.modificadores').change(function() {
+        
+            let raza = $('#raza').value;
+            let clase = $('#clase').value;
+            let sclase = $('#subclase').value;
+            console.log(raza)
+            
+            if (raza == 1) {
+                ps_raza = 7;
+                pe_raza = 3;
+            }
+        else if(raza == 2) {
+            ps_raza = 8;
+            pe_raza = 2;
+        }
+        else if(raza == 3) {
+            ps_raza = 6;
+            pe_raza = 4;
+        }
+        else if(raza == 4) {
+            ps_raza = 4;
+            pe_raza = 4;
+        }
+        else if(raza == 5) {
+            ps_raza = 9;
+            pe_raza = 2;
+        }
+        else if(raza == 6) {
+            ps_raza = 3;
+            pe_raza = 5;
+        }
+        else if(raza == 7) {
+            ps_raza = 10;
+            pe_raza = 2;
+        }
+        else if(raza == 8) {
+            ps_raza = 5;
+            pe_raza = 5;
+        }
+        else if(raza == 9) {
+            ps_raza = 10;
+            pe_raza = 4;
+        }
+        else if(raza == 10) {
+            ps_raza = 9;
+            pe_raza = 2;
+        }
+        else if(raza == 11) {
+            ps_raza = 5;
+            pe_raza = 5;
+        }
+        else {
+            ps_raza = 1;
+            pe_raza = 1;
+        }
+        
+        
+            if (clase == 1) {
+                ps_clase = 7;
+                pe_clase = 2;
+            }
+        else if(clase == 2) {
+            ps_clase = 7;
+            pe_clase = 2;
+        }
+        else if(clase == 3) {
+            ps_clase = 3;
+            pe_clase = 2;
+        }
+        else if(clase == 4) {
+            ps_clase = 5;
+            pe_clase = 2;
+        }
+        else if(clase == 5) {
+            ps_clase = 7;
+            pe_clase = 2;
+        }
+        else if(clase == 6) {
+            ps_clase = 4;
+            pe_clase = 3;
+        }
+        else if(clase == 7) {
+            ps_clase = 8;
+            pe_clase = 2;
+        }
+        else if(clase == 8) {
+            ps_clase = 5;
+            pe_clase = 4;
+        }
+        else if(clase == 9) {
+            ps_clase = 7;
+            pe_clase = 3;
+        }
+        else if(clase == 10) {
+            ps_clase = 4;
+            pe_clase = 3;
+        }
+        else if(clase == 11) {
+            ps_clase = 4;
+            pe_clase = 4;
+        }
+        else if(clase == 12) {
+            ps_clase = 9;
+            pe_clase = 2;
+        }
+        else if(clase == 13) {
+            ps_clase = 10;
+            pe_clase = 3;
+        }
+        else if(clase == 14) {
+            ps_clase = 4;
+            pe_clase = 4;
+        }
+        else if(clase == 15) {
+            ps_clase = 6;
+            pe_clase = 3;
+        }
+        else if(clase == 16) {
+            ps_clase = 2;
+            pe_clase = 4;
+        }
+        else if(clase == 17) {
+            ps_clase = 2;
+            pe_clase = 5;
+        }
+        else if(clase == 18) {
+            ps_clase = 4;
+            pe_clase = 4;
+        }
+        else if(clase == 19) {
+            ps_clase = 4;
+            pe_clase = 4;
+        }
+        else if(clase == 20) {
+            ps_clase = 4;
+            pe_clase = 5;
+        }
+        else if(clase == 21) {
+            ps_clase = 2;
+            pe_clase = 5;
+        }
+        else if(clase == 22) {
+            ps_clase = 4;
+            pe_clase = 4;
+        }
+        else if(clase == 23) {
+            ps_clase = 7;
+            pe_clase = 3;
+        }
+        else if(clase == 24) {
+            ps_clase = 9;
+            pe_clase = 1;
+        }
+        else if(clase == 25) {
+            ps_clase = 8;
+            pe_clase = 4;
+        }
+        else if(clase == 26) {
+            ps_clase = 6;
+            pe_clase = 3;
+        }
+        else if(clase == 27) {
+            ps_clase = 9;
+            pe_clase = 3;
+        }
+        else if(clase == 28) {
+            ps_clase = 3;
+            pe_clase = 5;
+        }
+        else if(clase == 29) {
+            ps_clase = 7;
+            pe_clase = 5;
+        }
+        else if(clase == 30) {
+            ps_clase = 7;
+            pe_clase = 5;
+        }
+        else if(clase == 31) {
+            ps_clase = 5;
+            pe_clase = 5;
+        }
+        else {
+            ps_clase = 1;
+            pe_clase = 1;
+        }
+        
+        
+        if (sclase == 1) {
+                ps_sclase = 3;
+                pe_sclase = 2;
+            }
+        else if(sclase == 2) {
+            ps_sclase = 4;
+            pe_sclase = 1;
+        }
+        else if(sclase == 3) {
+            ps_sclase = 2;
+            pe_sclase = 1;
+        }
+        else if(sclase == 4) {
+            ps_sclase = 3;
+            pe_sclase = 1;
+        }
+        else if(sclase == 5) {
+            ps_sclase = 3;
+            pe_sclase = 1;
+        }
+        else if(sclase == 6) {
+            ps_sclase = 2;
+            pe_sclase = 2;
+        }
+        else if(sclase == 7) {
+            ps_sclase = 4;
+            pe_sclase = 1;
+        }
+        else if(sclase == 8) {
+            ps_sclase = 3;
+            pe_sclase = 2
+        }
+        else if(sclase == 9) {
+            ps_sclase = 4;
+            pe_sclase = 2;
+        }
+        else if(sclase == 10) {
+            ps_sclase = 2;
+            pe_sclase = 2;
+        }
+        else if(sclase == 11) {
+            ps_sclase = 2;
+            pe_sclase = 2;
+        }
+        else if(sclase == 12) {
+            ps_sclase = 5;
+            pe_sclase = 1;
+        }
+        else if(sclase == 13) {
+            ps_sclase = 7;
+            pe_sclase = 1;
+        }
+        else if(sclase == 14) {
+            ps_sclase = 2;
+            pe_sclase = 2;
+        }
+        else if(sclase == 15) {
+            ps_sclase = 3;
+            pe_sclase = 2;
+        }
+        else if(sclase == 16) {
+            ps_sclase = 2;
+            pe_sclase = 2;
+        }
+        else if(sclase == 17) {
+            ps_sclase = 2;
+            pe_sclase = 3;
+        }
+        else if(sclase == 18) {
+            ps_sclase = 2;
+            pe_sclase = 2;
+        }
+        else if(sclase == 19) {
+            ps_sclase = 2;
+            pe_sclase = 2;
+        }
+        else if(sclase == 20) {
+            ps_sclase = 2;
+            pe_sclase = 3;
+        }
+        else if(sclase == 21) {
+            ps_sclase = 1;
+            pe_sclase = 4;
+        }
+        else if(sclase == 22) {
+            ps_sclase = 2;
+            pe_sclase = 2;
+        }
+        else if(sclase == 23) {
+            ps_sclase = 3;
+            pe_sclase = 2;
+        }
+        else if(sclase == 24) {
+            ps_sclase = 5;
+            pe_sclase = 2;
+        }
+        else if(sclase == 25) {
+            ps_sclase = 4;
+            pe_sclase = 3;
+        }
+        else if(sclase == 26) {
+            ps_sclase = 4;
+            pe_sclase = 2;
+        }
+        else if(sclase == 27) {
+            ps_sclase = 6;
+            pe_sclase = 2;
+        }
+        else if(sclase == 28) {
+            ps_sclase = 3;
+            pe_sclase = 3;
+        }
+        else if(sclase == 29) {
+            ps_sclase = 4;
+            pe_sclase = 4;
+        }
+        else if(sclase == 30) {
+            ps_sclase = 4;
+            pe_sclase = 3;
+        }
+        else if(sclase == 31) {
+            ps_sclase = 2;
+            pe_sclase = 5;
+        }
+        else {
+            ps_sclase = 0;
+            pe_sclase = 0;
+        }
+        
+            
+            let ps_bon = ps_raza + ps_clase + ps_sclase;
+            let pe_bon = pe_raza + pe_clase + pe_sclase;
+
+            
+			document.getElementById("ps_extra").innerHTML = ps_bon;
+            document.getElementById("pe_extra").innerHTML = pe_bon;
+        });
+
+    
+</script>
+
+
+    <div class="caracteres">
+        <div class="diosyrasgo">
+             <label>Deidad</label>
+            <input id="deidad" type="text" value="" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            <label>Rasgo Racial</label>
+            <input id="rasgo" type="text" value="" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            
+            
+        </div>
+        
+        <div class="danos">
+            <label>Daño Físico</label>
+            <input id="dañof" type="text" value="" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+                
+            <label>Daño Mágico</label>
+            <input id="dañom" type="text" value="" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    
+            
+        </div>
+        
+        <div class="reducciones">
+            
+            <label>Defensa Física</label>
+            <input id="defensaf" type="number" value="" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Defensa Mágica</label>
+            <input id="defensam" type="number" value="" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+ 
+            
+        </div>
+        
+        <div class="canalizacion">
+            
+            <label>Reducción de Canalización</label>
+            <input id="canalizacion" type="number" value="" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Precisión</label>
+            <input id="precision" type="number" value="" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+ 
+            
+        </div>
+        
+    </div>
+
+
+</div>  
+
+<div class="equipamento">
+    <div class="mano-d">
+        <h2 style="text-align: center;">Mano D</h2>
+        <div class="arma">
+            <div class="arma-detalle">
+            <label>Nombre</label>
+            <input id="nombre_armad" type="text" style="margin: 0px; width: 40; padding: 0px; height: 25px;">
+            
+            <label>Tipo</label>
+            <input id="tipo_armad" type="text" style="margin: 0px; width: 40; padding: 0px; height: 25px;">
+            
+            <div class="rareza-dur">
+            <div class="rareza">
+            <label>Rareza</label>
+            <input id="rareza_armad" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+            <div class="rareza">
+            <label style="margin-left: -2%;">Durabilidad</label>
+            <input id="dura_armad" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+            </div>
+            </div>
+
+        
+        
+
+            <div class="efecto">
+                
+            <label>Efecto</label>
+            <input id="efecto_armad1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_armad2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_armad3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_armad4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_armad5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+           
+            </div>
+
+        
+
+            <div class="dano-arma">
+            <label>Daño</label>
+            <input id="daño_armad" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Munición</label>
+            <input id="munición_armad" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Rango</label>
+            <input id="rango_armad" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+            
+
+
+
+            <div class="modificador-arma">
+            <label>Mod</label>
+            <input id="mod_armad" type="text" style="margin: 0px; width: 80%; padding: 10px; height: 25px;">
+            
+            <label>Ar.F</label>
+            <input id="arf_armad" type="number" style="margin: 0px; width: 80%; padding: 10px; height: 25px;">
+            
+            <label>Ar.M</label>
+            <input id="arm_armad" type="number" style="margin: 0px; width: 80%; padding: 10px; height: 25px;">
+            </div>
+        
+
+        </div>
+    </div>
+    
+   <div class="mano-i">
+        <h2 style="text-align: center;">Mano I</h2>
+        <div class="arma">
+
+            <div class="arma-detalle">
+            <label>Nombre</label>
+            <input id="nombre_armai1" type="text" style="margin: 0px; width: 40; padding: 0px; height: 25px;">
+            
+            <label>Tipo</label>
+            <input id="nombre_armai2" type="text" style="margin: 0px; width: 40; padding: 0px; height: 25px;">
+            
+            <div class="rareza-dur">
+            <div class="rareza">
+            <label>Rareza</label>
+            <input id="rareza_armai3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+            <div class="rareza">
+            <label style="margin-left: -2%;">Durabilidad</label>
+            <input id="dura_armai3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+            </div>
+            </div>
+
+            <div class="efecto">
+                
+            <label>Efecto</label>
+            <input id="efecto_armai1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_armai2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_armai3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_armai4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_armai5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+           
+            </div>
+
+            <div class="dano-arma">
+            <label>Daño</label>
+            <input id="daño_armai" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Munición</label>
+            <input id="munición_armai" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Rango</label>
+            <input id="rango_armai" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+            
+            <div class="modificador-arma">
+            <label>Mod</label>
+            <input id="mod_armai" type="text" style="margin: 0px; width: 80%; padding: 10px; height: 25px;">
+            
+            <label>Ar.F</label>
+            <input id="arf_armai" type="number" style="margin: 0px; width: 80%; padding: 10px; height: 25px;">
+            
+            <label>Ar.M</label>
+            <input id="arm_armai" type="number" style="margin: 0px; width: 80%; padding: 10px; height: 25px;">
+            </div>
+        
+
+        </div>
+    </div>
+    
+    <div class="armadura">
+        <h2 style="text-align: center;">Armadura</h2>
+        <div class="equip">
+
+            <div class="detalles">
+            <label>Nombre</label>
+            <input id="nombre_armadura" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Tipo</label>
+            <input id="tipo_armadura" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <div class="rareza-dur">
+            <div class="rareza">
+            <label>Grado</label>
+            <input id="rareza_armadu3" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+            <div class="rareza">
+            <label style="margin-left: -2%;">Durabilidad</label>
+            <input id="dura_armadu3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+            </div>
+            </div>
+
+            <div class="efecto">
+                
+            <label>Efecto</label>
+            <input id="efecto_armadura" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_armadura2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_armadura3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_armadura4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_armadura5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+           
+            </div>
+            
+            <div class="defensas">
+            <label>Ar.F</label>
+            <input id="arf_armadura" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Ar.M</label>
+            <input id="arm_armadura" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Rareza</label>
+            <input id="rango_armadura" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+        </div>
+
+    </div>
+
+
+    
+    <div class="cabeza">
+        <h2 style="text-align: center;">Cabeza</h2>
+        <div class="equip">
+
+            <div class="detalles">
+            <label>Nombre</label>
+            <input id="nombre_cabeza" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Tipo</label>
+            <input id="tipo_cabeza" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <div class="rareza-dur">
+            <div class="rareza">
+            <label>Grado</label>
+            <input id="rareza_cabeza3" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+            <div class="rareza">
+            <label style="margin-left: -2%;">Durabilidad</label>
+            <input id="dura_cabeza3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+            </div>
+            </div>
+        
+
+
+            <div class="efecto">
+                
+            <label>Efecto</label>
+            <input id="efecto_cabeza" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_cabeza2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_cabeza3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_cabeza4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_cabeza5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+           
+            </div>
+            
+
+            <div class="defensas">
+            <label>Ar.F</label>
+            <input id="arf_cabeza" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Ar.M</label>
+            <input id="arm_cabeza" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Rareza</label>
+            <input id="rango_cabeza" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+        
+
+        </div>
+
+    </div>
+    
+    <div class="accesorio1">
+        <h2 style="text-align: center;">Accesorio 1</h2>
+        <div class="equip">
+
+            <div class="detalles">
+            <label>Nombre</label>
+            <input id="nombre_accesorio1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Tipo</label>
+            <input id="tipo_accesorio1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <div class="rareza-dur">
+            <div class="rareza">
+            <label>Grado</label>
+            <input id="rareza_acces1" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+            <div class="rareza">
+            <label style="margin-left: -2%;">Durabilidad</label>
+            <input id="dura_acces1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+            </div>
+            </div>
+        
+
+            <div class="efecto">
+                
+            <label>Efecto</label>
+            <input id="efecto_accesorio11" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_accesorio12" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_accesorio13" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_accesorio14" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_accesorio15" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+           
+            </div>
+            
+
+            <div class="defensas">
+            <label>Ar.F</label>
+            <input id="arf_accesorio1" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Ar.M</label>
+            <input id="arm_accesorio1" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Rareza</label>
+            <input id="rango_accesorio1" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+        
+        </div>    
+        </div>
+
+    </div>
+    
+   <div class="accesorio2">
+        <h2 style="text-align: center;">Accesorio 2</h2>
+        <div class="equip">
+
+            <div class="detalles">
+            <label>Nombre</label>
+            <input id="nombre_accesorio2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Tipo</label>
+            <input id="tipo_accesorio2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <div class="rareza-dur">
+            <div class="rareza">
+            <label>Grado</label>
+            <input id="rareza_accesorio2" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+            <div class="rareza">
+            <label style="margin-left: -2%;">Durabilidad</label>
+            <input id="dura_accesorio2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+            </div>
+            </div>
+        
+
+            <div class="efecto">
+                
+            <label>Efecto</label>
+            <input id="efecto_accesorio21" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_accesorio22" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_accesorio23" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_accesorio24" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_accesorio25" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+           
+            </div>
+            
+
+            <div class="defensas">
+            <label>Ar.F</label>
+            <input id="arf_accesorio2" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Ar.M</label>
+            <input id="arm_accesorio2" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Rareza</label>
+            <input id="rango_accesorio2" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+        
+   
+        </div>
+
+    </div>
+    
+    <div class="accesorio3">
+        <h2 style="text-align: center;">Accesorio 3</h2>
+        <div class="equip">
+
+            <div class="detalles">
+            <label>Nombre</label>
+            <input id="nombre_accesorio3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Tipo</label>
+            <input id="tipo_accesorio3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <div class="rareza-dur">
+            <div class="rareza">
+            <label>Grado</label>
+            <input id="rareza_aaccesorio3" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+            <div class="rareza">
+            <label style="margin-left: -2%;">Durabilidad</label>
+            <input id="dura_accesorio3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+            </div>
+            </div>
+        
+
+            <div class="efecto">
+                
+            <label>Efecto</label>
+            <input id="efecto_accesorio31" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_accesorio32" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_accesorio33" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_accesorio34" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_accesorio35" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+           
+            </div>
+            
+
+            <div class="defensas">
+            <label>Ar.F</label>
+            <input id="arf_accesorio3" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Ar.M</label>
+            <input id="arm_accesorio3" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Rareza</label>
+            <input id="rango_accesorio3" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+        
+        </div>    
+
+
+    </div>
+
+
+
+
+
+</div>
+
+    
+<div class='habilidades'>
+    
+    <div class="habilidades-arma">
+    <h2 style="text-align: center;">Habilidades con Arma</h2>
+    <div class="habilidades-clase">
+    <div class="habilidad">
+        
+        <label>Habilidad</label>
+        <input id="habilidada1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidada2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidada3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidada4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidada5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidada6" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidada7" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+    
+
+    <div class="nivel">
+        
+        <label>Nivel</label>
+        <input id="nv_habilidada1" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidada2" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidada3" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidada4" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidada5" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidada6" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidada7" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+    
+    <div class="efecto">
+        
+        <label>Efecto</label>
+        <input id="efe_habilidada1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidada2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidada3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidada4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidada5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidada6" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidada7" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+
+    <div class="dano-habilidad">
+        
+        <label>Daño</label>
+        <input id="dmg_habilidada1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidada2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidada3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidada4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidada5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidada6" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidada7" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+    
+    <div class="costo">
+        
+        <label>Costo</label>
+        <input id="pe_habilidada1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidada2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidada3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidada4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidada5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidada6" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidada7" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+    
+    
+    </div>
+
+    </div>
+
+    <div class="habilidades-magicas">
+        <h2 style="text-align: center;">Habilidades Mágicas</h2>
+    <div class="habilidades-clase">
+    <div class="habilidad">
+        
+        <label>Habilidad</label>
+        <input id="habilidadm1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidadm2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidadm3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidadm4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidadm5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidadm6" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidadm7" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+
+    <div class="nivel">
+        
+        <label>Nivel</label>
+        <input id="nv_habilidadm1" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidadm2" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidadm3" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidadm4" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidadm5" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidadm6" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidadm7" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+    
+    <div class="efecto">
+        
+        <label>Efecto</label>
+        <input id="efe_habilidadm1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidadm2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidadm3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidadm4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidadm5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidadm6" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidadm7" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+    
+    <div class="dano-habilidad">
+        
+        <label>Daño</label>
+        <input id="dmg_habilidadm1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidadm2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidadm3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidadm4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidadm5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidadm6" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidadm7" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+    
+    <div class="costo">
+        
+        <label>Costo</label>
+        <input id="pe_habilidadm1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidadm2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidadm3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidadm4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidadm5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidadm6" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidadm7" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+    
+    
+</div>
+
+</div>
+    
+
+    <div class="habilidades-especiales">
+        <h2 style="text-align: center;">Habilidades Especiales</h2>
+    <div class="habilidades-clase">
+    <div class="habilidad">
+        
+        <label>Habilidad</label>
+        <input id="habilidade1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidade2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidade3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidade4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidade5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidade6" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidade7" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+
+    <div class="nivel">
+        
+        <label>Nivel</label>
+        <input id="nv_habilidade1" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidade2" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidade3" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidade4" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidade5" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidade6" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidade7" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div>
+    
+    <div class="efecto">
+        
+       <label>Efecto</label>
+        <input id="efe_habilidade1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidade2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidade3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidade4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidade5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidade6" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidade7" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+
+    <div class="dano-habilidad">
+        
+        <label>Daño</label>
+        <input id="dmg_habilidade1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidade2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidade3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidade4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidade5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidade6" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidade7" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+    
+    <div class="costo">
+        
+        <label>Costo</label>
+        <input id="pe_habilidade1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidade2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidade3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidade4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidade5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidade6" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidade7" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+    
+    
+</div>
+</div>
+    
+    
+    <div class="capacidades-innatas">
+    <h2 style="text-align: center;">Capacidades Innatas</h2>
+    <div class="innatas">
+    <div class="repeating-row1">
+        
+        <label>Capacidad</label>
+        <input id="innata1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata6" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata7" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+    
+    
+
+    <div class="repeating-cant-row1">
+        
+        <label>Nvl.</label>
+        <input id="innata_nvl1" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata_nvl2" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata_nvl3" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata_nvl4" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata_nvl5" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata_nvl6" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata_nvl7" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+
+    <div class="repeating-row1">
+        
+        <label>Capacidad</label>
+        <input id="innata8" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata9" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata10" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata11" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata12" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata13" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata14" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+    
+    
+
+    <div class="repeating-cant-row1">
+        
+        <label>Nvl.</label>
+        <input id="innata_nvl8" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata_nvl9" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata_nvl10" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata_nvl11" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata_nvl12" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata_nvl13" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata_nvl14" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div>  
+    
+
+    <div class="repeating-row1">
+        
+        <label>Capacidad</label>
+        <input id="innata15" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata16" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata17" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata18" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata19" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata20" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata21" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+    
+    
+
+    <div class="repeating-cant-row1">
+        
+        <label>Nvl.</label>
+        <input id="innata_nvl15" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata_nvl16" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata_nvl17" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata_nvl18" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata_nvl19" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata_nvl20" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="innata_nvl21" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+
+    </div>
+    
+    <fieldset class="repeating_capinnatas">
+       <div class="repetable">
+
+           <input id="ci1" type="text" style="margin: 0px; width: 24%; padding: 0px; height: 25px;"> 
+
+        
+
+            <input id="cilv1" type="number" style="margin: 0px; width: 10%; padding: 0px; height: 25px;">
+
+        
+
+           <input id="ci2" type="text" style="margin: 0px; width: 24%; padding: 0px; height: 25px;"> 
+
+        
+
+            <input id="cilv2" type="number" style="margin: 0px; width: 10%; padding: 0px; height: 25px;">
+
+        
+
+           <input id="ci3" type="text" style="margin: 0px; width: 24%; padding: 0px; height: 25px;"> 
+
+        
+
+            <input id="cilv3" type="number" style="margin: 0px; width: 10%; padding: 0px; height: 25px;">
+
+        </div>
+    </fieldset>
+    
+    </div>
+    
+</div>
+
+<div class='inventario'>
+    
+    <div class="inventorio">
+
+
+<h2 style="text-align: center">Monedas</h2>
+        <div class="monedas">
+            
+
+            <span>Mythril</span>
+            <input id="mythril1" type="number" style="text-align: right; margin: 0px; width: 10%; padding: 0px; height: 25px;">
+
+        
+
+            <span>Oro</span>
+            <input id="oro1" type="number" style="text-align: right; margin: 0px; width: 10%; padding: 0px; height: 25px;">
+
+
+
+            <span>Plata</span>
+            <input id="plata1" type="number" style="text-align: right; margin: 0px; width: 10%; padding: 0px; height: 25px;">
+
+        
+ 
+            <span>Bronce</span>
+            <input id="bronce1" type="number" style="text-align: right; margin: 0px; width: 10%; padding: 0px; height: 25px;">
+
+
+
+            <span>Niquel</span>
+            <input id="niquel1" type="number" style="text-align: right; margin: 0px; width: 10%; padding: 0px; height: 25px;">
+ 
+
+       </div>
+
+        
+    <h2 style="text-align: center;">Objetos</h2>
+    <div class="innatas">
+        
+    <div class="repeating-row1">
+        
+        <label>Objetos</label>
+        <input id="objetos1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objetos2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objetos3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objetos4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objetos5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objetos6" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objetos7" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div>
+
+    <div class="repeating-cant-row1">
+        
+        <label>No.</label>
+        <input id="objeto_cantidad1" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objeto_cantidad2" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objeto_cantidad3" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objeto_cantidad4" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objeto_cantidad5" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objeto_cantidad6" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objeto_cantidad7" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+
+    <div class="repeating-row1">
+        
+        <label>Objetos</label>
+        <input id="objetos8" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objetos9" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objetos10" type="text" style="margin: 0px; width: 100%%; padding: 0px; height: 25px;">
+        <input id="objetos11" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objetos12" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objetos13" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objetos14" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+    
+    <div class="repeating-cant-row1">
+        
+        <label>No.</label>
+        <input id="objeto_cantidad8" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objeto_cantidad9" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objeto_cantidad10" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objeto_cantidad11" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objeto_cantidad12" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objeto_cantidad13" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objeto_cantidad14" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+
+    <div class="repeating-row1">
+        
+        <label>Objetos</label>
+        <input id="objetos15" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objetos16" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objetos17" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objetos18" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objetos19" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objetos20" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objetos21" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+    
+    <div class="repeating-cant-row1">
+        
+        <label>No.</label>
+        <input id="objeto_cantidad15" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objeto_cantidad16" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objeto_cantidad17" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objeto_cantidad18" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objeto_cantidad19" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objeto_cantidad20" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="objeto_cantidad21" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+    
+    </div>
+
+     <fieldset class="repeating_objetos">
+       <div class="repetable">
+
+           <input id="object1" type="text" style="margin: 0px; width: 24%; padding: 0px; height: 25px;"> 
+
+        
+
+            <input id="objcant1" type="number" style="margin: 0px; width: 10%; padding: 0px; height: 25px;">
+
+        
+
+           <input id="object2" type="text" style="margin: 0px; width: 24%; padding: 0px; height: 25px;"> 
+
+        
+
+            <input id="objcant2" type="number" style="margin: 0px; width: 10%; padding: 0px; height: 25px;">
+
+        
+
+           <input id="object3" type="text" style="margin: 0px; width: 24%; padding: 0px; height: 25px;"> 
+
+        
+
+            <input id="objcant3" type="number" style="margin: 0px; width: 10%; padding: 0px; height: 25px;">
+
+        </div>
+    </fieldset>
+    </div>
+
+
+    <div class="pet">
+    <div class="stats_pet">
+    <div class="header-info sheet-options">
+            <div class="row" style="border-top: 2px  dashed gold; width: 100%;">
+                
+                <span>Nombre</span>
+                <input id="nombre_pet" type="text" value="" style="text-align: right; margin: 0px; width: 30%; padding: 0px; height: 25px;">
+                
+                <span>Especie</span>
+                <input id="pet_raza" type="text" value="" style="text-align: right; margin: 0px; width: 30%; padding: 0px; height: 25px;">
+                
+                <span>Elemento</span>
+                <select class="hiding class" id="pet_elemento" style="text-align: right; margin: 0px; width: 10%; padding: 0px; height: 25px;">
+                <option>selecciona</option>
+                <option>Fuego</option>
+                <option>Tierra</option>
+                <option>Electricidad</option>
+                <option>Viento</option>
+                <option>Planta</option>
+                <option>Agua</option>
+                <option>Oscuro</option>
+                <option>Luz</option>
+                </select>
+            
+            
+            
+            </div>
+            
+            
+          
+    </div>
+    
+    <div class="row">
+    
+    <input type="checkbox" class="block-switch" id="block_switch" value="1">
+    <div class="sheet-block-a" style="border-bottom: 2px dashed gold; width: 100%">
+    
+    <span>Género</span>
+    <input id="genero_pet" type="text" value="" style="text-align: right; margin: 0px; width: 10%; padding: 0px; height: 25px;">
+    
+    <span>Edad</span>
+    <input id="edad_pet" type="number" value="" style="text-align: right; margin: 0px; width: 15%; padding: 0px; height: 25px;">
+    
+    <span>Experiencia</span>
+    <input id="pet_experiencia" type="number" value="" style="text-align: right; margin: 0px; width: 30%; padding: 0px; height: 25px;">
+   
+    <span>Nivel</span>    
+    <span id="pet_nivel_aliado"></span>
+    
+    </div>
+    
+    <div class="sheet-block-b" style="border-bottom: 2px dashed gold; width: 100%">
+    <span>Género</span>
+    <input id="genero_pet" type="text" value="" style="text-align: right; margin: 0px; width: 10%; padding: 0px; height: 25px;">
+    
+    <span>Edad</span>
+    <input id="edad_pet" type="number" value="" style="text-align: right; margin: 0px; width: 15%; padding: 0px; height: 25px;">
+    
+    <span>Experiencia</span>
+    <input id="pet_experiencia" type="number" value="" style="text-align: right; margin: 0px; width: 30%; padding: 0px; height: 25px;">
+    
+    <span>Nivel</span> 
+    <span id="pet_nivel_automata"></span>
+    
+    </div>
+    </div>
+    
+    
+    </div>
+       
+    <div class="stats section">
+    
+    
+  <div class="estadisticas">
+      
+    <tr class="col">
+    <div class="stat-block flex-center">
+      <label style="text-align: center;">PS</label>
+      <input id="pet_ps" type="number" value="">
+    </div>
+    
+     <div class="stat-block flex-center">
+      <label style="text-align: center;">PE</label>
+      <input id="pet_pe" type="number" value="">
+    </div>
+    </div>
+      
+      <tr class="col">
+    <div class="stat-block flex-center">
+      <label style="text-align: center;">Fuerza</label>
+      <input id="pet_fuerza" type="number" value="">
+      <span id="pet_fuerza_bonus"></span>
+      <button id="roll_pet_fuerza" type="roll" value="&{template:default} {{id=Fuerza Acompañante}} {{Result=[[d20+(@{pet_fuerza_bonus})]]}}"></button>
+    </div>
+
+    <div class="stat-block flex-center">
+      <label style="text-align: center;">Vitalidad</label>
+      <input id="pet_vitalidad" type="number" value="">
+      <span id="pet_vitalidad_bonus"></span>
+      <button id="roll_pet_vitalidad" type="roll" value="&{template:default} {{id=Vitalidad Acompañante}} {{Result=[[d20+(@{pet_vitalidad_bonus})]]}}"></button>
+    </div>
+    </div>
+    
+    <tr class="col">
+    <div class="stat-block flex-center">
+      <label style="text-align: center;">Destreza</label>
+      <input id="pet_destreza" type="number" value="">
+      <span id="pet_destreza_bonus"></span>
+      <button id="roll_pet_destreza" type="roll" value="&{template:default} {{id=Destreza Acompañante}} {{Result=[[d20+(@{pet_destreza_bonus})]]}}"></button>
+    </div>
+
+    <div class="stat-block flex-center">
+      <label style="text-align: center;">Agilidad</label>
+      <input id="pet_agilidad" type="number" value="">
+      <span id="pet_agilidad_bonus"></span>
+      <button id="roll_pet_agilidad" type="roll" value="&{template:default} {{id=Agilidad Acompañante}} {{Result=[[d20+(@{pet_agilidad_bonus})]]}}"></button>
+    </div>
+    </div>
+
+    <tr class="col">
+    <div class="stat-block flex-center">
+      <label style="text-align: center;">Sabiduría</label>
+      <input id="pet_sabiduria" type="number" value="">
+      <span id="pet_sabiduria_bonus"></span>
+      <button id="roll_pet_sabiduria" type="roll" value="&{template:default} {{id=Sabiduría Acompañante}} {{Result=[[d20+(@{pet_sabiduria_bonus})]]}}"></button>
+    </div>
+    
+ <div class="stat-block flex-center">
+      <label style="text-align: center;">Inteligencia</label>
+      <input id="pet_inteligencia" type="number" value="">
+      <span id="pet_inteligencia_bonus"></span>
+      <button id="roll_inteligencia_pet" type="roll" value="&{template:default} {{id=Inteligencia Acompañante}} {{Result=[[d20+(@{pet_inteligencia_bonus})]]}}"></button>
+    </div>
+    </div>
+
+    <tr class="col">
+    <div class="stat-block flex-center">
+      <label style="text-align: center;">Carisma</label>
+      <input id="pet_carisma" type="number" value="">
+      <span id="pet_carisma_bonus"></span>
+      <button id="roll_carisma_pet" type="roll" value="&{template:default} {{id=Carisma Acompañante}} {{Result=[[d20+(@{pet_carisma_bonus})]]}}"></button>
+      
+      <label style="text-align: center;">Dificultad</label>
+      <input id="pet_dif" type="number" value="">
+    
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <div class="caracteres">
+        <div class="diosyrasgo">
+             <label>Rasgo Racial 1</label>
+            <input id="deidad_pet" type="text" value="" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            <label>Rasgo Racial 2</label>
+            <input id="rasgo_pet" type="text" value="" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            
+            
+        </div>
+        
+        <div class="danos">
+            <label>Daño Físico</label>
+            <input id="dañof_pet" type="text" value="" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+                
+            <label>Daño Mágico</label>
+            <input id="dañom_pet" type="text" value="" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    
+            
+        </div>
+        
+        <div class="reducciones">
+            
+            <label>Defensa Física</label>
+            <input id="defensaf_pet" type="number" value="" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Defensa Mágica</label>
+            <input id="defensam_pet" type="number" value="" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+ 
+            
+        </div>
+        
+        <div class="canalizacion">
+            
+            <label>Reducción de Canalización</label>
+            <input id="canalizacion_pet" type="number" value="" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Precisión</label>
+            <input id="precision_pet" type="number" value="" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+ 
+            
+        </div>
+        
+    </div>
+
+    <div class="inventario_pet">
+   
+     <div class="arma-pet">
+        <h2 style="text-align: center;">Arma</h2>
+        <div class="arma">
+
+            <div class="arma-detalle">
+            <label>Nombre</label>
+            <input id="nombre_arma_pet1" type="text" style="margin: 0px; width: 40; padding: 0px; height: 25px;">
+            
+            <label>Tipo</label>
+            <input id="nombre_arma_pet2" type="text" style="margin: 0px; width: 40; padding: 0px; height: 25px;">
+            
+            <div class="rareza-dur">
+            <div class="rareza">
+            <label>Grado</label>
+            <input id="pet_rareza_arma" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+            <div class="rareza">
+            <label style="margin-left: -2%;">Durabilidad</label>
+            <input id="pet_dura_arma" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+            </div>
+            </div>
+
+            <div class="efecto">
+                
+            <label>Efecto</label>
+            <input id="efecto_arma_pet1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_arma_pet2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_arma_pet3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_arma_pet4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="efecto_arma_pet5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+           
+            </div>
+
+            <div class="dano-arma">
+            <label>Daño</label>
+            <input id="daño_arma_pet" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Munición</label>
+            <input id="munición_arma_pet" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Rango</label>
+            <input id="rango_arma_pet" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+            
+            <div class="modificador-arma">
+            <label>Mod</label>
+            <input id="mod_arma_pet" type="text" style="margin: 0px; width: 80%; padding: 10px; height: 25px;">
+            
+            <label>Ar.F</label>
+            <input id="arf_arma_pet" type="number" style="margin: 0px; width: 80%; padding: 10px; height: 25px;">
+            
+            <label>Ar.M</label>
+            <input id="arm_arma_pet" type="number" style="margin: 0px; width: 80%; padding: 10px; height: 25px;">
+            </div>
+        
+
+        </div>
+    </div>
+    
+    <div class="armadura">
+        <h2 style="text-align: center;">Armadura</h2>
+        <div class="equip">
+
+            <div class="detalles">
+            <label>Nombre</label>
+            <input id="nombre_armadura_pet" type="text" style="margin: 0px; width: 40; padding: 0px; height: 25px;">
+            
+            <label>Tipo</label>
+            <input id="tipo_armadura_pet" type="text" style="margin: 0px; width: 40; padding: 0px; height: 25px;">
+            
+            <div class="rareza-dur">
+            <div class="rareza">
+            <label>Grado</label>
+            <input id="pet_rareza_armadu3" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+            <div class="rareza">
+            <label style="margin-left: -2%;">Durabilidad</label>
+            <input id="pet_dura_armadu3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+            </div>
+            </div>
+
+            <div class="efecto">
+                
+            <label>Efecto</label>
+            <input id="pet_efecto_armadura" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="pet_efecto_armadura2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="pet_efecto_armadura3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="pet_efecto_armadura4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+            <input id="pet_efecto_armadura5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 26px;">
+           
+            </div>
+            
+            <div class="defensas">
+            <label>Ar.F</label>
+            <input id="arf_armadura_pet" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Ar.M</label>
+            <input id="arm_armadura_pet" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            
+            <label>Grado</label>
+            <input id="rango_armadura_pet" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+            </div>
+        </div>
+        
+        
+        
+    </div>
+    
+        <div class="inventorio_pet">
+    <label style="text-align: center;">Objetos Acompañante</label>
+    <div class="innatas-pet">
+        <div class="repeating-row1">
+            <label>Objeto</label>
+        </div>
+        <div class="repeating-cant-row1">
+            <label>No.</label>
+        </div>
+        
+        <div class="repeating-row1">
+            <label>Objeto</label>
+        </div>
+        <div class="repeating-cant-row1">
+            <label>No.</label>
+        </div>
+        
+        <div class="repeating-row1">
+            <label>Objeto</label>
+        </div>
+        <div class="repeating-cant-row1">
+            <label>No.</label>
+        </div>
+        </div>
+        
+    <fieldset class="repeating_objetospet1">
+       <div class="repetable">
+
+           <input id="objpet1" type="text" style="margin: 0px; width: 24%; padding: 0px; height: 25px;"> 
+
+        
+
+            <input id="objpetcant1" type="number" style="margin: 0px; width: 10%; padding: 0px; height: 25px;">
+
+        
+
+           <input id="objpet2" type="text" style="margin: 0px; width: 24%; padding: 0px; height: 25px;"> 
+
+        
+
+            <input id="objpetcant2" type="number" style="margin: 0px; width: 10%; padding: 0px; height: 25px;">
+
+        
+
+           <input id="objpet3" type="text" style="margin: 0px; width: 24%; padding: 0px; height: 25px;"> 
+
+        
+
+            <input id="objpetcant3" type="number" style="margin: 0px; width: 10%; padding: 0px; height: 25px;">
+
+        </div>
+    </fieldset>
+    </div>
+    
+    
+    </div>
+
+    <div class="habilidades_pet">
+    <h2 style="text-align: center;">Habilidades de Acompañante</h2>
+    <div class="habilidades-clase">
+    <div class="habilidad">
+        
+        <label>Habilidad</label>
+        <input id="habilidadp1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidadp2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidadp3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidadp4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidadp5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidadp6" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="habilidadp7" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div>
+
+    <div class="nivel">
+        
+        <label>Nivel</label>
+        <input id="nv_habilidadp1" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidadp2" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidadp3" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidadp4" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidadp5" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidadp6" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="nv_habilidadp7" type="number" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+    
+    <div class="efecto">
+        
+        <label>Efecto</label>
+        <input id="efe_habilidadp1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidadp2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidadp3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidadp4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidadp5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="efe_habilidadp6" type="text" style="margin: 0px; width: 100%%; padding: 0px; height: 25px;">
+        <input id="efe_habilidadp7" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+    
+    <div class="dano-habilidad">
+        
+        <label>Daño</label>
+        <input id="dmg_habilidadp1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidadp2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidadp3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidadp4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidadp5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidadp6" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="dmg_habilidadp7" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+
+    <div class="costo">
+        
+        <label>Costo</label>
+        <input id="pe_habilidadp1" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidadp2" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidadp3" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidadp4" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidadp5" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidadp6" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+        <input id="pe_habilidadp7" type="text" style="margin: 0px; width: 100%; padding: 0px; height: 25px;">
+    </div> 
+    
+
+    </div>
+    
+    <fieldset class="repeating_habilidadesacompañante">
+       <div class="repetable">
+
+           <input id="habilidadpet1" type="text" style="margin: 0px; width: 30%; padding: 0px; height: 25px;"> 
+
+        
+
+            <input id="nivelpet1" type="number" style="margin: 0px; width: 10%; padding: 0px; height: 25px;">
+
+        
+
+           <input id="efectopet1" type="text" style="margin: 0px; width: 60%; padding: 0px; height: 25px;"> 
+
+        
+
+            <input id="danopet1" type="number" style="margin: 0px; width: 20%; padding: 0px; height: 25px;">
+
+        
+
+           <input id="costopet1" type="text" style="margin: 0px; width: 10%; padding: 0px; height: 25px;"> 
+
+        
+        </div>
+    </fieldset>
+    
+    </div>
+
+    
+    <div class="ci_acomp">
+        <label style="text-align: center">Capacidades Innatas</label>
+        <div class="innatas-pet">
+        <div class="repeating-row1">
+            <label>Capacidad</label>
+        </div>
+        <div class="repeating-cant-row1">
+            <label>Nvl</label>
+        </div>
+        
+        <div class="repeating-row1">
+            <label>Capacidad</label>
+        </div>
+        <div class="repeating-cant-row1">
+            <label>Nvl</label>
+        </div>
+        
+        <div class="repeating-row1">
+            <label>Capacidad</label>
+        </div>
+        <div class="repeating-cant-row1">
+            <label>Nvl</label>
+        </div>
+        </div>
+        
+        <fieldset class="repeating_capinnataspet">
+       <div class="repetable">
+
+           <input id="cipet1" type="text" style="margin: 0px; width: 24%; padding: 0px; height: 25px;"> 
+
+        
+
+            <input id="cipetlv1" type="number" style="margin: 0px; width: 10%; padding: 0px; height: 25px;">
+
+        
+
+           <input id="cipet2" type="text" style="margin: 0px; width: 24%; padding: 0px; height: 25px;"> 
+
+        
+
+            <input id="cipetlv2" type="number" style="margin: 0px; width: 10%; padding: 0px; height: 25px;">
+
+        
+
+           <input id="cipet3" type="text" style="margin: 0px; width: 24%; padding: 0px; height: 25px;"> 
+
+        
+
+            <input id="cipetlv3" type="number" style="margin: 0px; width: 10%; padding: 0px; height: 25px;">
+
+        </div>
+    </fieldset>
+    </div>
+    
+    
+    </div>
+
+     
+</body>
+</html>

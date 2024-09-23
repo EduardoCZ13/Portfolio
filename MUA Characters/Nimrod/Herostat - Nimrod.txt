@@ -1,0 +1,62 @@
+   stats {
+   ailevel = 1 ;
+   autospend = bruiser ;
+   body = 10 ;
+   characteranims = 341_nimrod ;
+   charactername = Nimrod ;
+   level = 1 ;
+   menulocation = 19 ;
+   mind = 8 ;
+   moveset1 = moveset_flying ;
+   name = Nimrod ;
+   playable = true ;
+   powerstyle = ps_sentinel ;
+   scale_factor = 1.5 ;
+   scriptlevel = 3 ;
+   skin = 3415 ;
+   skin_03_name = Nimrod ;
+   sounddir = sent_m ;
+   strength = 10 ;
+   team = hero ;
+   textureicon = 13 ;
+      talent {
+      level = 1 ;
+      name = sent_p1 ;
+      }
+
+      talent {
+      level = 1 ;
+      name = sent_p6 ;
+      }
+
+      talent {
+      level = 1 ;
+      name = sent_resist ;
+      }
+
+      talent {
+      level = 1 ;
+      name = flight ;
+      }
+
+      talent {
+      level = 1 ;
+      name = block ;
+      }
+
+      talent {
+      level = 1 ;
+      name = might ;
+      }
+
+      talent {
+      level = 1 ;
+      name = fightstyle_default ;
+      }
+
+      talent {
+      level = 1 ;
+      name = melee_moves ;
+      }
+
+   }

@@ -1,0 +1,236 @@
+// Dota Heroes File
+// NOTE: This is not for creating new heroes, this is for taking a currently existing hero as a template and overriding
+// the specified key-value combinations.  Use override_hero <hero_to_override> for this.
+"DOTAHeroes"
+{
+	"Norman"
+	{
+	"override_hero"				"npc_dota_hero_lycan"						// Hero to override
+	"Ability1"					"summon_poke"							// Ability 1 on this hero gets replaced
+	"Ability2"					"chen_holy_persuasion"
+	"Ability3"					"alpha_wolf_command_aura"
+	"Ability6"					"chen_hand_of_god"
+	"Ability10"					"special_bonus_exp_boost_35"
+	"Ability11"					"special_bonus_gold_income_90"
+	"Ability12"					"special_bonus_vision_200"
+	"Ability13"					"special_bonus_unique_chen_5"
+	"Ability14"					"special_bonus_cooldown_reduction_20"
+	"Ability15"					"special_bonus_unique_chen_4"
+	"Ability16"					"special_bonus_unique_chen_1"
+	"Ability17"					"special_bonus_unique_chen_2"
+	
+	}
+	
+		"Lance"
+	{
+	"override_hero"				"npc_dota_hero_dragon_knight"						// Hero to override
+	"Ability1"					"go_noivern"							// Ability 1 on this hero gets replaced
+	"Ability2"					"chen_holy_persuasion"
+	"Ability3"					"black_dragon_dragonhide_aura"
+	"Ability6"					"chen_hand_of_god"
+	"Ability10"					"special_bonus_exp_boost_35"
+	"Ability11"					"special_bonus_gold_income_90"
+	"Ability12"					"special_bonus_vision_200"
+	"Ability13"					"special_bonus_unique_chen_5"
+	"Ability14"					"special_bonus_cooldown_reduction_20"
+	"Ability15"					"special_bonus_unique_chen_4"
+	"Ability16"					"special_bonus_unique_chen_1"
+	"Ability17"					"special_bonus_unique_chen_2"
+	
+	}
+	
+		"Flanery"
+	{
+	"override_hero"				"npc_dota_hero_lina"						// Hero to override
+	"Ability1"					"go_coalossal"							// Ability 1 on this hero gets replaced
+	"Ability2"					"chen_holy_persuasion"
+	"Ability3"					"luna_lunar_blessing"
+	"Ability6"					"chen_hand_of_god"
+	"Ability10"					"special_bonus_exp_boost_35"
+	"Ability11"					"special_bonus_gold_income_90"
+	"Ability12"					"special_bonus_movement_speed_60"
+	"Ability13"					"special_bonus_unique_chen_5"
+	"Ability14"					"special_bonus_cooldown_reduction_20"
+	"Ability15"					"special_bonus_unique_chen_4"
+	"Ability16"					"special_bonus_unique_chen_1"
+	"Ability17"					"special_bonus_unique_chen_2"
+	
+	}
+	
+		"Janine"
+	{
+	"override_hero"				"npc_dota_hero_templar_assassin"						// Hero to override
+	"Ability1"					"go_ariados"							// Ability 1 on this hero gets replaced
+	"Ability2"					"chen_holy_persuasion"
+	"Ability3"					"abyssal_underlord_atrophy_aura"
+	"Ability4"					""
+	"Ability5"					""
+	"Ability6"					"chen_hand_of_god"
+	"Ability10"					"special_bonus_exp_boost_35"
+	"Ability11"					"special_bonus_gold_income_90"
+	"Ability12"					"special_bonus_unique_underlord_3"
+	"Ability13"					"special_bonus_unique_chen_5"
+	"Ability14"					"special_bonus_cooldown_reduction_20"
+	"Ability15"					"special_bonus_unique_chen_4"
+	"Ability16"					"special_bonus_unique_chen_1"
+	"Ability17"					"special_bonus_unique_chen_2"
+	
+	}
+	
+		"Falkner"
+	{
+	"override_hero"				"npc_dota_hero_batrider"						// Hero to override
+	"Ability1"					"go_pidgeot"							// Ability 1 on this hero gets replaced
+	"Ability2"					"chen_holy_persuasion"
+	"Ability3"					"kobold_taskmaster_speed_aura"
+	"Ability6"					"chen_hand_of_god"
+	"Ability10"					"special_bonus_exp_boost_35"
+	"Ability11"					"special_bonus_gold_income_90"
+	"Ability12"					"special_bonus_movement_speed_60"
+	"Ability13"					"special_bonus_unique_chen_5"
+	"Ability14"					"special_bonus_cooldown_reduction_20"
+	"Ability15"					"special_bonus_unique_chen_4"
+	"Ability16"					"special_bonus_unique_chen_1"
+	"Ability17"					"special_bonus_unique_chen_2"
+	
+	}
+	
+	
+	
+		"Blaine"
+	{
+	"override_hero"				"npc_dota_hero_tinker"						// Hero to override
+	"Ability1"					"go_magmortar"							// Ability 1 on this hero gets replaced
+	"Ability2"					"chen_holy_persuasion"
+	"Ability3"					"vengefulspirit_command_aura"
+	"Ability6"					"chen_hand_of_god"
+	"Ability10"					"special_bonus_exp_boost_35"
+	"Ability11"					"special_bonus_gold_income_90"
+	"Ability12"					"special_bonus_unique_vengeful_spirit_2"
+	"Ability13"					"special_bonus_unique_chen_5"
+	"Ability14"					"special_bonus_cooldown_reduction_20"
+	"Ability15"					"special_bonus_unique_chen_4"
+	"Ability16"					"special_bonus_unique_chen_1"
+	"Ability17"					"special_bonus_unique_chen_2"
+	
+	}
+	
+	
+	
+		"Fantina"
+	{
+	"override_hero"				"npc_dota_hero_death_prophet"						// Hero to override
+	"Ability1"					"go_dusknoir"							// Ability 1 on this hero gets replaced
+	"Ability2"					"chen_holy_persuasion"
+	"Ability3"					"necronomicon_warrior_sight"
+	"Ability6"					"chen_hand_of_god"
+	"Ability10"					"special_bonus_exp_boost_35"
+	"Ability11"					"special_bonus_gold_income_90"
+	"Ability12"					"special_bonus_vision_200"
+	"Ability13"					"special_bonus_unique_chen_5"
+	"Ability14"					"special_bonus_cooldown_reduction_20"
+	"Ability15"					"special_bonus_unique_chen_4"
+	"Ability16"					"special_bonus_unique_chen_1"
+	"Ability17"					"special_bonus_unique_chen_2"
+	
+	}
+	
+	
+
+		"Kabu"
+	{
+	"override_hero"				"npc_dota_hero_ember_spirit"						// Hero to override
+	"Ability1"					"go_emboar"							// Ability 1 on this hero gets replaced
+	"Ability2"					"chen_holy_persuasion"
+	"Ability3"					"mudgolem_cloak_aura"
+	"Ability4"					""
+	"Ability6"					"chen_hand_of_god"
+	"Ability10"					"special_bonus_exp_boost_35"
+	"Ability11"					"special_bonus_gold_income_90"
+	"Ability12"					"special_bonus_movement_speed_60"
+	"Ability13"					"special_bonus_unique_chen_5"
+	"Ability14"					"special_bonus_cooldown_reduction_20"
+	"Ability15"					"special_bonus_unique_chen_4"
+	"Ability16"					"special_bonus_unique_chen_1"
+	"Ability17"					"special_bonus_unique_chen_2"
+	
+	
+	}
+	
+		"Karen"
+	{
+	"override_hero"				"npc_dota_hero_queenofpain"						// Hero to override
+	"Ability1"					"go_mightyena"							// Ability 1 on this hero gets replaced
+	"Ability2"					"chen_holy_persuasion"
+	"Ability3"					"nevermore_dark_lord"
+	"Ability6"					"chen_hand_of_god"
+	"Ability10"					"special_bonus_exp_boost_35"
+	"Ability11"					"special_bonus_gold_income_90"
+	"Ability12"					"special_bonus_unique_nevermore_3"
+	"Ability13"					"special_bonus_unique_chen_5"
+	"Ability14"					"special_bonus_cooldown_reduction_20"
+	"Ability15"					"special_bonus_unique_chen_4"
+	"Ability16"					"special_bonus_unique_chen_1"
+	"Ability17"					"special_bonus_unique_chen_2"
+	
+	}
+	
+	
+		"Ramos"
+	{
+	"override_hero"				"npc_dota_hero_sniper"						// Hero to override
+	"Ability1"					"go_trevenant"							// Ability 1 on this hero gets replaced
+	"Ability2"					"chen_holy_persuasion"
+	"Ability3"					"spawnlord_aura"
+	"Ability6"					"chen_hand_of_god"
+	"Ability10"					"special_bonus_exp_boost_35"
+	"Ability11"					"special_bonus_gold_income_90"
+	"Ability12"					"special_bonus_vision_200"
+	"Ability13"					"special_bonus_unique_chen_5"
+	"Ability14"					"special_bonus_cooldown_reduction_20"
+	"Ability15"					"special_bonus_unique_chen_4"
+	"Ability16"					"special_bonus_unique_chen_1"
+	"Ability17"					"special_bonus_unique_chen_2"
+	
+	}
+	
+	
+		"Red"
+	{
+	"override_hero"				"npc_dota_hero_warlock"						// Hero to override
+	"Ability1"					"go_charizard"							// Ability 1 on this hero gets replaced
+	"Ability2"					"chen_holy_persuasion"
+	"Ability3"					"big_thunder_lizard_wardrums_aura"
+	"Ability6"					"chen_hand_of_god"
+	"Ability10"					"special_bonus_exp_boost_35"
+	"Ability11"					"special_bonus_gold_income_90"
+	"Ability12"					"special_bonus_vision_200"
+	"Ability13"					"special_bonus_unique_chen_5"
+	"Ability14"					"special_bonus_cooldown_reduction_20"
+	"Ability15"					"special_bonus_unique_chen_4"
+	"Ability16"					"special_bonus_unique_chen_1"
+	"Ability17"					"special_bonus_unique_chen_2"
+	
+	}
+	
+	
+		"Brock"
+	{
+	"override_hero"				"npc_dota_hero_earth_spirit"						// Hero to override
+	"Ability1"					"go_golem"							// Ability 1 on this hero gets replaced
+	"Ability2"					"chen_holy_persuasion"
+	"Ability3"					"granite_golem_hp_aura"
+	"Ability4"					""
+	"Ability5"					""
+	"Ability6"					"chen_hand_of_god"
+	"Ability10"					"special_bonus_exp_boost_35"
+	"Ability11"					"special_bonus_gold_income_90"
+	"Ability12"					"special_bonus_vision_200"
+	"Ability13"					"special_bonus_unique_chen_5"
+	"Ability14"					"special_bonus_cooldown_reduction_20"
+	"Ability15"					"special_bonus_unique_chen_4"
+	"Ability16"					"special_bonus_unique_chen_1"
+	"Ability17"					"special_bonus_unique_chen_2"
+	
+	}
+}

@@ -1,0 +1,35 @@
+XMLB packagedef {
+   actorskin {
+   filename = 3405 ;
+   }
+
+   actoranimdb {
+   filename = 341_nimrod_4_combat ;
+   }
+
+   actoranimdb {
+   filename = 341_nimrod ;
+   }
+
+   texture {
+   filename = textures/ui/sent_icons ;
+   }
+
+   xml_talents {
+   filename = data/talents/nimrod ;
+   }
+
+   model {
+   filename = HUD/hud_head_3405 ;
+   }
+
+   fightstyle {
+   filename = data/fightstyles/interact_sentinel_victim ;
+   }
+
+   fightstyle {
+   filename = data/powerstyles/ps_nimrod ;
+   }
+
+}
+

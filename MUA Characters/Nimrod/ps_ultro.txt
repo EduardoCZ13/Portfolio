@@ -1,0 +1,2227 @@
+XMLB PowerStyle {
+cansteal = true ;
+iconfile = textures/ui/ultron_icons.png ;
+   event {
+   inherit = powerup ;
+   life = -1 ;
+   name = Online ;
+   no_stack = true ;
+   remove_skin_on_exit = true ;
+   skin = 3401 ;
+   skin_filter = 3401 ;
+   skin_swap = true ;
+   tag_name = ui_online ;
+   }
+
+   event {
+   inherit = powerup ;
+   life = -1 ;
+   name = Online ;
+   no_stack = true ;
+   remove_skin_on_exit = true ;
+   skin = 3402 ;
+   skin_filter = 3402 ;
+   skin_swap = true ;
+   tag_name = ui_online ;
+   }
+
+   event {
+   inherit = powerup ;
+   life = -1 ;
+   name = Online ;
+   no_stack = true ;
+   remove_skin_on_exit = true ;
+   skin = 3403 ;
+   skin_filter = 3403 ;
+   skin_swap = true ;
+   tag_name = ui_online ;
+   }
+
+   event {
+   inherit = powerup ;
+   life = -1 ;
+   name = Online ;
+   no_stack = true ;
+   remove_skin_on_exit = true ;
+   skin = 3404 ;
+   skin_filter = 3404 ;
+   skin_swap = true ;
+   tag_name = ui_online ;
+   }
+
+   FightMove {
+   animenum = ea_blocking ;
+   blendtime = 0.1 ;
+   handler = ch_block ;
+   icon = 2 ;
+   lockangles = true ;
+   lockchaining = false ;
+   locktransitionangles = true ;
+   name = blocking ;
+   priority = 6 ;
+      require {
+      cat = skill ;
+      item = block ;
+      }
+
+      chain {
+      action = special ;
+      result = idle ;
+      }
+
+      chain {
+      action = guard ;
+      result = taunt ;
+      }
+
+      chain {
+      action = rollleft ;
+      result = rollforward ;
+      }
+
+      chain {
+      action = rollright ;
+      result = rollforward ;
+      }
+
+      chain {
+      action = retreat ;
+      result = rollforward ;
+      }
+
+      chain {
+      action = advance ;
+      result = rollforward ;
+      }
+
+   }
+
+   FightMove {
+   animenum = ea_power13 ;
+   is_power = true ;
+   lockangles = true ;
+   name = taunt ;
+   priority = uninterruptable ;
+   startchaintime = 0.75 ;
+      trigger {
+      name = sound ;
+      sound = char/ultro_v/taunt ;
+      time = 0.1 ;
+      }
+
+      chain {
+      action = idle ;
+      result = idle ;
+      }
+
+   }
+
+   FightMove {
+   animenum = ea_power9 ;
+   fallback = grab_smash ;
+   handler = ch_grab_hold_base ;
+   lockangles = true ;
+   lockspeed = true ;
+   name = grab_smash ;
+   noautoaim = true ;
+   priority = 6 ;
+      trigger {
+      attackerface = false ;
+      doslidemove = true ;
+      interaction = data/fightstyles/interact_ironman_victim ;
+      name = victim ;
+      nodename = grabsmashvictim ;
+      offset = 22 0 0 ;
+      time = 0 ;
+      victimface = true ;
+      }
+
+      trigger {
+      name = stop ;
+      time = 0 ;
+      }
+
+      trigger {
+      bolt = Bip01 L Toe0 ;
+      effect = char/iron/p3_power ;
+      fxlevel = 4 ;
+      name = effect_sound ;
+      sound = char/ultro_m/flyslam ;
+      time = 0.13 ;
+      }
+
+      trigger {
+      bolt = Bip01 R Toe0 ;
+      effect = char/iron/p3_power ;
+      fxlevel = 4 ;
+      name = effect ;
+      time = 0.13 ;
+      }
+
+      trigger {
+      effect = char/iron/p3_power ;
+      fxlevel = 5 ;
+      name = effect ;
+      time = 0.13 ;
+      }
+
+      trigger {
+      damage = 5 6 ;
+      damagescale = normal ;
+      damagetype = physical ;
+      height = -75 ;
+      index = 1 ;
+      knockback = 120 ;
+      maxrange = 64 ;
+      name = radial ;
+      time = 0.55 ;
+      verticalrange = 72 ;
+         damagemod {
+         name = dmgmod_auto_knockback ;
+         }
+
+         damagemod {
+         name = dmgmod_ground ;
+         }
+
+      }
+
+      trigger {
+      name = stop ;
+      time = 0.5 ;
+      }
+
+      trigger {
+      critical = true ;
+      name = victim_release ;
+      ownertime = 0.5 ;
+      time = 0.65 ;
+      }
+
+      trigger {
+      life = 0.4 ;
+      name = powerup ;
+      remove_on_node_end = true ;
+      tag_name = iron_jet_link ;
+      time = 0.55 ;
+         special_fx {
+         bolt = Bip01 L Toe0 ;
+         effect = char/iron/special_attack ;
+         fxlevel = 1 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+         special_fx {
+         bolt = Bip01 R Toe0 ;
+         effect = char/iron/special_attack ;
+         fxlevel = 1 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+      }
+
+      trigger {
+      kill_fx_on_death = false ;
+      life = 0.4 ;
+      name = powerup ;
+      remove_on_node_end = true ;
+      tag_name = iron_smoke_link ;
+      time = 0.55 ;
+         special_fx {
+         bolt = Bip01 L Toe0 ;
+         effect = char/iron/special_attack ;
+         fxlevel = 2 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+         special_fx {
+         bolt = Bip01 R Toe0 ;
+         effect = char/iron/special_attack ;
+         fxlevel = 2 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+      }
+
+      trigger {
+      damage = 5 6 ;
+      damagescale = normal ;
+      index = 2 ;
+      maxrange = 70 ;
+      name = punch ;
+      offset = -30 ;
+      time = 0.65 ;
+         damagemod {
+         name = dmgmod_ground ;
+         }
+
+      }
+
+      chain {
+      action = idle ;
+      result = idle ;
+      }
+
+   }
+
+   FightMove {
+   animenum = ea_attack_heavy1 ;
+   handler = ch_hold_smash ;
+   lockangles = true ;
+   name = attackheavy1 ;
+   playspeed = 1 ;
+   powerup_tag = kbatk ;
+   startchaintime = 0.8 ;
+      trigger {
+      loop_timeout = 3 ;
+      loop_type = start ;
+      name = sound ;
+      sound = common/melee/kb_charge ;
+      time = 0 ;
+      }
+
+      trigger {
+      charge = 0 ;
+      charge_time = 1 ;
+      charged_eventtag = 100 ;
+      name = charge ;
+      tag = 1 ;
+      time = 0 ;
+      }
+
+      trigger {
+      bolt = Bip01 L Hand ;
+      effect = base/hit/hit_knockback_charge ;
+      fxlevel = 2 ;
+      loop_type = start ;
+      name = effect_sound ;
+      next_eventtag = 101 ;
+      sound = common/melee/kb_charge_loop ;
+      tag = 100 ;
+      time = -1 ;
+      }
+
+      trigger {
+      name = sound ;
+      sound = common/melee/kb_charge_done ;
+      tag = 101 ;
+      time = -1 ;
+      }
+
+      trigger {
+      fx_chargeable = true ;
+      life = -1 ;
+      name = powerup ;
+      remove_on_node_end = true ;
+      tag = 2 ;
+      tag_name = knockback_link ;
+      time = 0 ;
+         special_fx {
+         bolt = Bip01 L Hand ;
+         effect = base/hit/hit_knockback_charge ;
+         fxlevel = 1 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+      }
+
+      chain {
+      action = idle ;
+      result = attackknockback2 ;
+      }
+
+      chain {
+      action = groundsmash ;
+      result = groundattackknockback2 ;
+      }
+
+      chain {
+      action = special ;
+      result = attack_knockback_charge ;
+      }
+
+   }
+
+   FightMove {
+   aitype = melee ;
+   animenum = ea_attack_knockback2 ;
+   blendtime = 0.1 ;
+   endchaintime = 1 ;
+   lockangles = true ;
+   name = attackknockback2 ;
+   powerup_tag = kbatk ;
+   priority = 5 ;
+   startchaintime = 0.8 ;
+      trigger {
+      charge_type = stop ;
+      name = charge ;
+      time = 0 ;
+      }
+
+      trigger {
+      bolt = Bip01 L Hand ;
+      life = 0.3 ;
+      name = trail ;
+      offsetend = 12 ;
+      time = 0.35 ;
+      }
+
+      trigger {
+      name = sound ;
+      sound = common/melee/dmg_knockback ;
+      time = 0.3 ;
+      }
+
+      trigger {
+      critical = true ;
+      loop_type = stop ;
+      name = sound ;
+      sound = common/melee/kb_charge_loop ;
+      time = 0.3 ;
+      }
+
+      trigger {
+      critical = true ;
+      loop_type = stop ;
+      name = sound ;
+      sound = common/melee/kb_charge ;
+      time = 0.3 ;
+      }
+
+      trigger {
+      movement = 20 ;
+      name = slide ;
+      targetdistance = 50 ;
+      time = 0.1 ;
+      }
+
+      trigger {
+      failtag = 11 ;
+      min_charge = 1 ;
+      name = filter ;
+      passtag = 10 ;
+      time = 0.4 ;
+      }
+
+      trigger {
+      damage = 3 4 ;
+      knockback = 190 ;
+      name = punch ;
+      tag = 10 ;
+      time = -1 ;
+         damagemod {
+         name = dmgmod_auto_knockback ;
+         }
+
+         damagemod {
+         name = dmgmod_no_atk_roll ;
+         }
+
+         damagemod {
+         name = dmgmod_ground ;
+         }
+
+      }
+
+      trigger {
+      damage = 2 3 ;
+      knockback = 190 ;
+      name = punch ;
+      tag = 11 ;
+      time = -1 ;
+      }
+
+      trigger {
+      critical = true ;
+      name = powerup ;
+      remove_tag = knockback_link ;
+      time = 0.25 ;
+      }
+
+      chain {
+      action = idle ;
+      result = idle ;
+      }
+
+      chain {
+      action = guard ;
+      result = null ;
+      }
+
+      chain {
+      action = attack ;
+      result = attacklight1 ;
+      }
+
+      chain {
+      action = blocking ;
+      result = blocking ;
+      }
+
+   }
+
+   FightMove {
+   animenum = ea_jump_start ;
+   handler = ch_move_jump ;
+   lockangles = true ;
+   name = jump ;
+   noncombat = true ;
+   startchaintime = 0.01 ;
+      trigger {
+      life = 0.4 ;
+      name = powerup ;
+      remove_on_node_end = true ;
+      tag_name = iron_jet_link ;
+      time = 0 ;
+         special_fx {
+         bolt = Bip01 L Toe0 ;
+         effect = char/iron/special_attack ;
+         fxlevel = 1 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+         special_fx {
+         bolt = Bip01 R Toe0 ;
+         effect = char/iron/special_attack ;
+         fxlevel = 1 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+      }
+
+      trigger {
+      kill_fx_on_death = false ;
+      life = 0.4 ;
+      name = powerup ;
+      remove_on_node_end = true ;
+      tag_name = iron_smoke_link ;
+      time = 0 ;
+         special_fx {
+         bolt = Bip01 L Toe0 ;
+         effect = char/iron/special_attack ;
+         fxlevel = 2 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+         special_fx {
+         bolt = Bip01 R Toe0 ;
+         effect = char/iron/special_attack ;
+         fxlevel = 2 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+      }
+
+      chain {
+      action = move ;
+      result = flying ;
+      }
+
+      chain {
+      action = attack ;
+      result = jumpsmash ;
+      }
+
+      chain {
+      action = smash ;
+      result = jumpsmash ;
+      }
+
+      chain {
+      action = powers ;
+      result = powers ;
+      }
+
+      chain {
+      action = idle ;
+      result = jumploop ;
+      }
+
+      chain {
+      action = special ;
+      result = jumpland ;
+      }
+
+   }
+
+   FightMove {
+   animenum = ea_attack_light1 ;
+   blendtime = 0 ;
+   endchaintime = 1 ;
+   lockangles = true ;
+   name = attacklight1 ;
+   powerup_tag = iron_atk_light ;
+   priority = 3 ;
+   startchaintime = 0.47 ;
+      trigger {
+      movement = 0 ;
+      name = slide ;
+      time = 0 ;
+      }
+
+      trigger {
+      life = -1 ;
+      name = powerup ;
+      remove_on_node_end = true ;
+      tag_name = iron_jet_link ;
+      time = 0.13 ;
+         special_fx {
+         bolt = Bip01 L Toe0 ;
+         effect = char/iron/special_attack ;
+         fxlevel = 1 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+         special_fx {
+         bolt = Bip01 R Toe0 ;
+         effect = char/iron/special_attack ;
+         fxlevel = 1 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+      }
+
+      trigger {
+      kill_fx_on_death = false ;
+      life = -1 ;
+      name = powerup ;
+      remove_on_node_end = true ;
+      tag_name = iron_smoke_link ;
+      time = 0.13 ;
+         special_fx {
+         bolt = Bip01 L Toe0 ;
+         effect = char/iron/special_attack ;
+         fxlevel = 2 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+         special_fx {
+         bolt = Bip01 R Toe0 ;
+         effect = char/iron/special_attack ;
+         fxlevel = 2 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+      }
+
+      trigger {
+      bolt = Bip01 L Hand ;
+      life = 0.3 ;
+      name = trail ;
+      time = 0.13 ;
+      }
+
+      trigger {
+      name = whoosh_light ;
+      time = 0.2 ;
+      }
+
+      trigger {
+      name = punch ;
+      time = 0.27 ;
+      }
+
+      trigger {
+      name = powerup ;
+      remove_tag = iron_jet_link ;
+      time = 0.73 ;
+      }
+
+      trigger {
+      name = powerup ;
+      remove_tag = iron_smoke_link ;
+      time = 0.73 ;
+      }
+
+      chain {
+      action = idle ;
+      result = idle ;
+      }
+
+      chain {
+      action = guard ;
+      result = null ;
+      }
+
+      chain {
+      action = attack ;
+      result = attacklight2 ;
+      }
+
+      chain {
+      action = groundattack ;
+      result = groundattack2 ;
+      }
+
+      chain {
+      action = smash ;
+      result = attackstun1 ;
+      }
+
+      chain {
+      action = powers ;
+      result = powers ;
+      }
+
+      chain {
+      action = move ;
+      result = jump ;
+      }
+
+      chain {
+      action = blocking ;
+      result = blocking ;
+      }
+
+   }
+
+   FightMove {
+   animenum = ea_attack_light2 ;
+   blendtime = 0 ;
+   endchaintime = 1 ;
+   lockangles = true ;
+   name = attacklight2 ;
+   powerup_tag = iron_atk_light ;
+   priority = 3 ;
+   startchaintime = 0.44 ;
+      trigger {
+      name = whoosh_light ;
+      time = 0.22 ;
+      }
+
+      trigger {
+      bolt = Bip01 R Hand ;
+      life = 0.2 ;
+      name = trail ;
+      time = 0.22 ;
+      }
+
+      trigger {
+      name = punch ;
+      time = 0.28 ;
+      }
+
+      trigger {
+      name = powerup ;
+      remove_tag = iron_jet_link ;
+      time = 0.67 ;
+      }
+
+      trigger {
+      name = powerup ;
+      remove_tag = iron_smoke_link ;
+      time = 0.67 ;
+      }
+
+      chain {
+      action = idle ;
+      result = idle ;
+      }
+
+      chain {
+      action = guard ;
+      result = null ;
+      }
+
+      chain {
+      action = attack ;
+      result = attacklight3 ;
+      }
+
+      chain {
+      action = smash ;
+      result = popupattack2 ;
+      }
+
+      chain {
+      action = groundattack ;
+      result = groundattack ;
+      }
+
+      chain {
+      action = powers ;
+      result = powers ;
+      }
+
+      chain {
+      action = move ;
+      result = jump ;
+      }
+
+      chain {
+      action = blocking ;
+      result = blocking ;
+      }
+
+   }
+
+   FightMove {
+   animenum = ea_attack_light3 ;
+   blendtime = 0 ;
+   lockangles = true ;
+   name = attacklight3 ;
+   powerup_tag = iron_atk_light ;
+   priority = 3 ;
+      trigger {
+      name = whoosh_light ;
+      time = 0.21 ;
+      }
+
+      trigger {
+      bolt = Bip01 L Hand ;
+      life = 0.2 ;
+      name = trail ;
+      time = 0.21 ;
+      }
+
+      trigger {
+      name = powerup ;
+      remove_tag = iron_jet_link ;
+      time = 0.21 ;
+      }
+
+      trigger {
+      name = powerup ;
+      remove_tag = iron_smoke_link ;
+      time = 0.21 ;
+      }
+
+      trigger {
+      name = punch ;
+      time = 0.26 ;
+      }
+
+      chain {
+      action = idle ;
+      result = idle ;
+      }
+
+      chain {
+      action = guard ;
+      result = null ;
+      }
+
+      chain {
+      action = powers ;
+      result = powers ;
+      }
+
+      chain {
+      action = move ;
+      result = jump ;
+      }
+
+      chain {
+      action = attack ;
+      result = null ;
+      }
+
+      chain {
+      action = smash ;
+      result = null ;
+      }
+
+      chain {
+      action = blocking ;
+      result = blocking ;
+      }
+
+   }
+
+   FightMove {
+   animenum = ea_attack_trip1 ;
+   blendtime = 0.05 ;
+   endchaintime = 1 ;
+   fallback = attacklight1 ;
+   lockangles = true ;
+   name = attacktrip2 ;
+   startchaintime = 1 ;
+      event {
+      inherit = kick ;
+      knockback = 0 ;
+      name = sweep ;
+         damageMod {
+         name = dmgmod_trip ;
+         }
+
+         damageMod {
+         name = dmgmod_ground ;
+         }
+
+      }
+
+      trigger {
+      name = whoosh_light ;
+      time = 0.13 ;
+      }
+
+      trigger {
+      movement = 10 ;
+      name = slide ;
+      time = 0.06 ;
+      }
+
+      trigger {
+      bolt = Bip01 R Hand ;
+      life = 0.4 ;
+      name = trail ;
+      time = 0.3 ;
+      }
+
+      trigger {
+      angle = -30 ;
+      height = -10 ;
+      index = 1 ;
+      name = sweep ;
+      time = 0.28 ;
+      }
+
+      trigger {
+      angle = 0 ;
+      height = -10 ;
+      index = 1 ;
+      name = sweep ;
+      time = 0.3 ;
+      }
+
+      trigger {
+      angle = 30 ;
+      height = -10 ;
+      index = 1 ;
+      name = sweep ;
+      time = 0.33 ;
+      }
+
+      chain {
+      action = idle ;
+      result = idle ;
+      }
+
+      chain {
+      action = guard ;
+      result = null ;
+      }
+
+      chain {
+      action = blocking ;
+      result = blocking ;
+      }
+
+   }
+
+   FightMove {
+   airbornemovement = true ;
+   animenum = ea_fly_idle ;
+   energypersecond = %flight_pwr ;
+   fallback = jumploop ;
+   handler = ch_flying ;
+   lockchaining = false ;
+   name = flying ;
+   noncombat = true ;
+   powerup_tag = flying ;
+      require {
+      cat = skill ;
+      item = flight ;
+      level = 1 ;
+      }
+
+      trigger {
+      life = -1 ;
+      name = powerup ;
+      remove_on_node_end = true ;
+      time = 0 ;
+         special_fx {
+         bolt = Bip01 L Toe0 ;
+         effect = char/iron/ability_fly_hand ;
+         fxlevel = 1 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+         special_fx {
+         bolt = Bip01 R Toe0 ;
+         effect = char/iron/ability_fly_hand ;
+         fxlevel = 1 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+      }
+
+      chain {
+      action = idle ;
+      result = flying ;
+      }
+
+      chain {
+      action = attack ;
+      result = flymelee1 ;
+      }
+
+      chain {
+      action = smash ;
+      result = jumpsmash ;
+      }
+
+      chain {
+      action = guard ;
+      result = guarddecide ;
+      }
+
+      chain {
+      action = powers ;
+      result = powers ;
+      }
+
+   }
+
+   FightMove {
+   aireusetime = 4.5 ;
+   aitype = beamanyrange ;
+   animenum = ea_power1_end ;
+   combotextfinisher = Laser ;
+   combotextstarter = Energy ;
+   icon = 0 ;
+   lockangles = true ;
+   name = power1 ;
+   priority = 5 ;
+      require {
+      cat = skill ;
+      item = ultro_p1 ;
+      level = 1 ;
+      }
+
+      trigger {
+      name = stop ;
+      time = 0 ;
+      }
+
+      trigger {
+      bolt = Bip01 L Hand ;
+      effect = char/ultron/laser_charge ;
+      fxlevel = 1 ;
+      name = effect_sound ;
+      sound = char/ultro_m/p1_charge ;
+      time = 0.2 ;
+      }
+
+      trigger {
+      bolt = Bip01 R Hand ;
+      effect = char/ultron/laser_charge ;
+      fxlevel = 1 ;
+      name = effect ;
+      time = 0.2 ;
+      }
+
+      trigger {
+      effect = char/ultron/laser_charge ;
+      fxlevel = 2 ;
+      name = effect ;
+      time = 0.2 ;
+      }
+
+      trigger {
+      effect = char/ultron/laser_charge ;
+      fxlevel = 3 ;
+      name = effect_sound ;
+      sound = char/ultro_m/p1_power ;
+      time = 0.51 ;
+      }
+
+      trigger {
+      arc = 0 ;
+      attack_bone_angles = 0 0 0 ;
+      attack_bone_pos = 26 -6 41 ;
+      attacktype = beam ;
+      beambolt = Bip01 R Hand ;
+      beameffect = char/ultron/laser_power ;
+      damage = %ultro_p1_dmg ;
+      damagescale = none ;
+      damagetype = dmg_energy ;
+      fxlevel = 1 ;
+      hiteffect = char/ultron/laser_impact ;
+      maxrange = 800 ;
+      name = beam ;
+      powerusage = %ultro_p1_pwr ;
+      time = 0.51 ;
+      }
+
+      trigger {
+      arc = 0 ;
+      attack_bone_angles = 0 0 0 ;
+      attack_bone_pos = 26 6 41 ;
+      attacktype = beam ;
+      beambolt = Bip01 L Hand ;
+      beameffect = char/ultron/laser_power ;
+      damage = 0 ;
+      damagescale = none ;
+      damagetype = dmg_energy ;
+      fxlevel = 1 ;
+      hiteffect = char/ultron/laser_impact ;
+      maxrange = 800 ;
+      name = beam ;
+      powerusage = 0 ;
+      time = 0.51 ;
+      }
+
+      chain {
+      action = idle ;
+      result = idle ;
+      }
+
+   }
+
+   FightMove {
+   aireusetime = 4.5 ;
+   aitype = aoe ;
+   animenum = ea_power2 ;
+   combotextfinisher = Beam ;
+   combotextstarter = Power ;
+   icon = 1 ;
+   lockangles = true ;
+   name = power2 ;
+   priority = 5 ;
+   turnrate = 0.5 ;
+      require {
+      cat = skill ;
+      item = ultro_p2 ;
+      level = 1 ;
+      }
+
+      trigger {
+      name = stop ;
+      time = 0 ;
+      }
+
+      event {
+      arc = 0 ;
+      attacktype = beam ;
+      beameffect = char/ultron/laser_power ;
+      damage = %ultro_p2_dmg ;
+      damagescale = difficulty ;
+      damagetype = dmg_energy ;
+      fxlevel = 1 ;
+      hiteffect = char/ultron/laser_impact ;
+      inherit = beam ;
+      knockback = 300 ;
+      maxrange = 800 ;
+      name = ultrobeam ;
+         damagemod {
+         name = dmgmod_auto_knockback ;
+         }
+
+         damagemod {
+         name = dmgmod_ground ;
+         }
+
+      }
+
+      trigger {
+      name = powerusage ;
+      powerusage = %ultro_p2_pwr ;
+      time = 0.2 ;
+      }
+
+      trigger {
+      angle = 0 ;
+      attack_bone_angles = -5 -78 -68 ;
+      attack_bone_pos = 18 13 58 ;
+      beambolt = Bip01 L Hand ;
+      name = ultrobeam ;
+      time = 0.2 ;
+      }
+
+      trigger {
+      bolt = Bip01 Pelvis ;
+      effect = char/ultron/laser_charge ;
+      fxlevel = 2 ;
+      name = effect_sound ;
+      sound = char/ultro_m/p2_charge ;
+      time = 0.2 ;
+      }
+
+      trigger {
+      angle = 180 ;
+      attack_bone_angles = -94 -70 -180 ;
+      attack_bone_pos = -27 0 62 ;
+      beambolt = Bip01 R Hand ;
+      name = ultrobeam ;
+      time = 0.35 ;
+      }
+
+      trigger {
+      name = sound ;
+      sound = char/ultro_m/p2_charge ;
+      time = 0.35 ;
+      }
+
+      trigger {
+      angle = 90 ;
+      attack_bone_angles = -21 -79 179 ;
+      attack_bone_pos = -7 -24 64 ;
+      beambolt = Bip01 L Hand ;
+      name = ultrobeam ;
+      time = 0.43 ;
+      }
+
+      trigger {
+      name = sound ;
+      sound = char/ultro_m/p2_charge ;
+      time = 0.43 ;
+      }
+
+      trigger {
+      angle = 270 ;
+      attack_bone_angles = -109 -71 81 ;
+      attack_bone_pos = 13 23 63 ;
+      beambolt = Bip01 R Hand ;
+      name = ultrobeam ;
+      time = 0.53 ;
+      }
+
+      trigger {
+      name = sound ;
+      sound = char/ultro_m/p2_charge ;
+      time = 0.53 ;
+      }
+
+      trigger {
+      angle = 200 ;
+      attack_bone_angles = -43 -70 81 ;
+      attack_bone_pos = -14 22 65 ;
+      beambolt = Bip01 L Hand ;
+      name = ultrobeam ;
+      time = 0.64 ;
+      }
+
+      trigger {
+      name = sound ;
+      sound = char/ultro_m/p2_charge ;
+      time = 0.64 ;
+      }
+
+      trigger {
+      angle = 45 ;
+      attack_bone_angles = -96 -65 -48 ;
+      attack_bone_pos = 12 -23 63 ;
+      beambolt = Bip01 R Hand ;
+      name = ultrobeam ;
+      time = 0.73 ;
+      }
+
+      trigger {
+      name = sound ;
+      sound = char/ultro_m/p2_charge ;
+      time = 0.73 ;
+      }
+
+      chain {
+      action = idle ;
+      result = idle ;
+      }
+
+   }
+
+   FightMove {
+   aireusetime = 3 ;
+   aitype = beam ;
+   animenum = ea_power10 ;
+   combotextfinisher = Control ;
+   combotextstarter = Mental ;
+   icon = 2 ;
+   lockangles = true ;
+   name = power3 ;
+   priority = 5 ;
+      require {
+      cat = skill ;
+      item = ultro_p3 ;
+      level = 1 ;
+      }
+
+      trigger {
+      name = stop ;
+      time = 0 ;
+      }
+
+      trigger {
+      bolt = Bip01 Head ;
+      effect = char/ultron/beam_charge ;
+      fxlevel = 1 ;
+      name = effect_sound ;
+      sound = char/ultro_m/p3_power ;
+      time = 0.2 ;
+      }
+
+      trigger {
+      bolt = Bip01 Head ;
+      effect = char/ultron/beam_charge ;
+      fxlevel = 2 ;
+      name = effect ;
+      time = 0.37 ;
+      }
+
+      trigger {
+      bolt = Bip01 Head ;
+      effect = char/ultron/beam_charge ;
+      fxlevel = 3 ;
+      name = effect ;
+      time = 0.51 ;
+      }
+
+      trigger {
+      arc = 0 ;
+      attack_bone_angles = 0 0 0 ;
+      attack_bone_pos = 26 -6 41 ;
+      attacktype = beam ;
+      beambolt = Bip01 Head ;
+      beameffect = char/ultron/beam_power ;
+      damage = %ultro_p3_dmg ;
+      damagescale = none ;
+      damagetype = dmg_mental ;
+      hiteffect = char/ultron/beam_impact ;
+      knockback = 50 ;
+      maxrange = 200 ;
+      name = beam ;
+      time = 0.51 ;
+      victimeventtag = 33 ;
+      }
+
+      trigger {
+      life = %ultro_p3_lif ;
+      name = powerup ;
+      tag = 33 ;
+      time = -1 ;
+         special_fx {
+         bolt = Bip01 Head ;
+         effect = char/ultron/beam_impact ;
+         how_used = primary ;
+         }
+
+         affecter {
+         attribute = team_switch ;
+         level = 1 ;
+         }
+
+      }
+
+      trigger {
+      name = powerusage ;
+      powerusage = %ultro_p3_pwr ;
+      time = 0 ;
+      }
+
+      chain {
+      action = Idle ;
+      result = idle ;
+      }
+
+   }
+
+   FightMove {
+   animenum = ea_run1 ;
+   handler = ch_move ;
+   icon = 3 ;
+   lockchaining = false ;
+   name = power4 ;
+   playspeed = 5 ;
+   priority = 5 ;
+      require {
+      cat = skill ;
+      item = ultro_p4 ;
+      level = 1 ;
+      }
+
+      trigger {
+      name = sound ;
+      sound = char/ultro_m/launch ;
+      time = 0 ;
+      }
+
+      trigger {
+      life = -1 ;
+      name = powerup ;
+      remove_on_node_end = true ;
+      tag_name = rocket_jet_link ;
+      time = 0.13 ;
+         special_fx {
+         bolt = Bip01 L Toe0 ;
+         effect = char/iron/special_attack ;
+         fxlevel = 1 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+         special_fx {
+         bolt = Bip01 R Toe0 ;
+         effect = char/iron/special_attack ;
+         fxlevel = 1 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+         special_fx {
+         bolt = Bip01 R Hand ;
+         effect = char/iron/special_attack ;
+         fxlevel = 1 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+         special_fx {
+         bolt = Bip01 L Hand ;
+         effect = char/iron/special_attack ;
+         fxlevel = 1 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+      }
+
+      trigger {
+      kill_fx_on_death = false ;
+      life = 2 ;
+      name = powerup ;
+      tag_name = rocket_smoke_link ;
+      time = 0.13 ;
+         special_fx {
+         bolt = Bip01 L Toe0 ;
+         effect = char/iron/special_attack ;
+         fxlevel = 2 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+         special_fx {
+         bolt = Bip01 R Toe0 ;
+         effect = char/iron/special_attack ;
+         fxlevel = 2 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+         special_fx {
+         bolt = Bip01 R Hand ;
+         effect = char/iron/special_attack ;
+         fxlevel = 2 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+         special_fx {
+         bolt = Bip01 L Hand ;
+         effect = char/iron/special_attack ;
+         fxlevel = 2 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+      }
+
+      chain {
+      action = idle ;
+      result = power4_punch ;
+      }
+
+   }
+
+   FightMove {
+   aitype = melee ;
+   animenum = ea_attack_stun1 ;
+   combotextfinisher = Punch ;
+   combotextstarter = Rocket ;
+   icon = 3 ;
+   is_power = true ;
+   name = power4_punch ;
+   priority = uninterruptable ;
+      trigger {
+      bolt = Bip01 R Hand ;
+      effect = char/ultron/laser_charge ;
+      fxlevel = 1 ;
+      name = effect ;
+      time = 0.25 ;
+      }
+
+      trigger {
+      name = whoosh_light ;
+      time = 0.25 ;
+      }
+
+      trigger {
+      life = 1 ;
+      name = powerup ;
+      time = 0 ;
+         affecter {
+         affect_type = scale ;
+         attribute = def_damage ;
+         level = 0 ;
+         }
+
+      }
+
+      trigger {
+      damage = %ultro_p4_dmg ;
+      damagescale = 1 ;
+      damagetype = dmg_physical ;
+      hiteffect = base/material/explode/exp_generic_sml ;
+      knockback = 800 ;
+      name = punch ;
+      powerusage = %ultro_p4_pwr ;
+      radius = 100 ;
+      targetable = true ;
+      time = 0.41 ;
+      victimeventtag = 46 ;
+         damageMod {
+         name = dmgmod_auto_knockback ;
+         }
+
+         damageMod {
+         name = dmgmod_ground ;
+         }
+
+      }
+
+      trigger {
+      name = sound ;
+      sound = char/ultro_m/blast ;
+      tag = 46 ;
+      time = -1 ;
+      }
+
+      chain {
+      action = idle ;
+      result = idle ;
+      }
+
+   }
+
+   FightMove {
+   aitype = melee ;
+   animenum = ea_power10 ;
+   icon = 4 ;
+   is_power = true ;
+   lockangles = true ;
+   name = power5 ;
+   priority = uninterruptable ;
+      require {
+      cat = skill ;
+      item = ultro_p5 ;
+      level = 1 ;
+      }
+
+      trigger {
+      bolt = Bip01 Pelvis ;
+      effect = char/ultron/laser_charge ;
+      fxlevel = 1 ;
+      name = effect ;
+      time = 0 ;
+      }
+
+      trigger {
+      victimeventtag = 82 ;
+      }
+
+      trigger {
+      name = sound ;
+      sound = char/ultro_m/absorb ;
+      time = 0 ;
+      }
+
+      trigger {
+      class = hurt_attacker ;
+      damagepercent = %ultro_p5_ref ;
+      damagetype = energy
+      hurtowner = true ;
+      name = powerup ;
+      powerusage = %ultro_p5_pwr ;
+      tag = 82 ;
+      time = 0 ;
+         affecter {
+         affect_type = scale ;
+         attribute = def_damage ;
+         level = 0 ;
+         }
+
+      }
+
+      trigger {
+      life = 2 ;
+      name = powerup ;
+      time = 0 ;
+         affecter {
+         affect_type = scale ;
+         attribute = health_regen_pct ;
+         level = %ultro_p5_hlt ;
+         }
+
+         affecter {
+         bolt = Bip01 Pelvis ;
+         effect = char/ultron/laser_charge ;
+         fxlevel = 1 ;
+         how_used = primary ;
+         never_cycle = true ;
+         }
+
+      }
+
+      chain {
+      action = Idle ;
+      result = idle ;
+      }
+
+   }
+
+   FightMove {
+   animenum = ea_power6 ;
+   blendtime = 0 ;
+   icon = 5 ;
+   is_power = true ;
+   lockangles = true ;
+   lockspeed = true ;
+   name = power6 ;
+   playspeed = 10 ;
+   priority = uninterruptable ;
+      require {
+      cat = skill ;
+      item = ultro_p6 ;
+      level = 1 ;
+      }
+
+      trigger {
+      name = sound ;
+      sound = char/ultro_m/p6_charge ;
+      time = 0.3 ;
+      }
+
+      trigger {
+      life = %ultro_p6_lif ;
+      name = powerup ;
+      powerusage = %ultro_p6_pwr ;
+      time = 0.5 ;
+         special_fx {
+         bolt = Bip01 L Hand ;
+         bolt2 = Bip01 Neck ;
+         effect = char/iron/p5_power ;
+         fxlevel = 2 ;
+         }
+
+         special_fx {
+         bolt = Bip01 R Hand ;
+         bolt2 = Bip01 Neck ;
+         effect = char/iron/p5_power ;
+         fxlevel = 2 ;
+         }
+
+         special_fx {
+         bolt = Bip01 L Toe0 ;
+         bolt2 = Bip01 Pelvis ;
+         effect = char/iron/p5_power ;
+         fxlevel = 2 ;
+         }
+
+         special_fx {
+         bolt = Bip01 R Toe0 ;
+         bolt2 = Bip01 Pelvis ;
+         effect = char/iron/p5_power ;
+         fxlevel = 2 ;
+         }
+
+         affecter {
+         affect_type = scale ;
+         attribute = def_damage ;
+         level = %ultro_p6_def ;
+         }
+
+      }
+
+      trigger {
+      healthpct = %ultro_p6_hlt ;
+      minioneventtag = 10 ;
+      name = spawnminion ;
+      skin = 9101 ;
+      time = 0.5 ;
+      type = ce_spawn_minion ;
+      }
+
+      trigger {
+      class = callevents ;
+      life = %ultro_p6_lif ;
+      name = powerup ;
+      no_shadow = true ;
+      remove_on_death = true ;
+      tag = 10 ;
+      time = -1 ;
+         FunctionEvent {
+         function = activate ;
+         triggertag = 46 ;
+         }
+
+         FunctionEvent {
+         function = deactivate ;
+         triggertag = 48 ;
+         }
+
+         special_fx {
+         effect = base/material/break/brk_electric ;
+         how_used = activation ;
+         }
+
+         special_fx {
+         effect = base/material/break/brk_electric ;
+         how_used = deactivation ;
+         }
+
+         affecter {
+         affect_type = scale ;
+         attribute = atk_damage ;
+         level = %ultro_p6_dmg ;
+         }
+
+      }
+
+      trigger {
+      effect = base/material/break/brk_electric ;
+      name = effect ;
+      tag = 46 ;
+      time = -1 ;
+      }
+
+      trigger {
+      name = remove ;
+      tag = 48 ;
+      time = -1 ;
+      }
+
+      chain {
+      action = Idle ;
+      result = idle ;
+      }
+
+   }
+
+   FightMove {
+   aireusetime = 15 ;
+   aitype = buffself ;
+   animenum = ea_power13 ;
+   icon = 6 ;
+   is_power = true ;
+   lockangles = true ;
+   name = power7 ;
+   priority = 5 ;
+      require {
+      cat = skill ;
+      item = ultro_p7 ;
+      level = 1 ;
+      }
+
+      trigger {
+      bolt = Bip01 L Hand ;
+      effect = char/iron/p6_power ;
+      fxlevel = 1 ;
+      name = effect_sound ;
+      sound = char/ultro_m/p7_charge ;
+      time = 0 ;
+      }
+
+      trigger {
+      bolt = Bip01 R Hand ;
+      effect = char/iron/p6_power ;
+      fxlevel = 1 ;
+      name = effect ;
+      time = 0 ;
+      }
+
+      trigger {
+      effect = char/iron/p6_power ;
+      fxlevel = 2 ;
+      name = effect ;
+      time = 0.46 ;
+      }
+
+      trigger {
+      name = sound ;
+      sound = char/ultro_v/expand ;
+      time = 0.5 ;
+      }
+
+      trigger {
+      apply_ally = all ;
+      life = %ultro_p7_lif ;
+      name = powerup ;
+      powerusage = %ultro_p7_pwr ;
+      time = 0.5 ;
+         affecter {
+         affect_type = scale ;
+         attribute = power_cost ;
+         level = %ultro_p7_cost ;
+         }
+
+         affecter {
+         affect_type = scale ;
+         attribute = def_damage_scope ;
+         damagetype = dmg_energy ;
+         level = 0 ;
+         }
+
+         special_fx {
+         effect = char/dphero/p7_aura ;
+         fxlevel = 1 ;
+         }
+
+      }
+
+      chain {
+      action = Idle ;
+      result = idle ;
+      }
+
+   }
+
+   FightMove {
+   aitype = buffself ;
+   animenum = ea_power13 ;
+   icon = 8 ;
+   is_power = true ;
+   lockangles = true ;
+   name = power9 ;
+   priority = 5 ;
+      require {
+      cat = skill ;
+      item = ultro_p9 ;
+      level = 1 ;
+      }
+
+      trigger {
+      arc = 180 ;
+      damage = 0.01 ;
+      hiteffect = char/ultron/beam_impact ;
+      index = 1 ;
+      maxrange = 150 ;
+      name = radial ;
+      powerusage = %ultro_p9_pwr ;
+      time = 0 ;
+      victimeventtag = 179 ;
+      }
+
+      trigger {
+      class = remove_on_events ;
+      life = %ultro_p9_lif ;
+      name = Online ;
+      tag = 179 ;
+      tag_name = ui_online ;
+      time = -1 ;
+         affecter {
+         attribute = team_switch ;
+         level = 1 ;
+         }
+
+         affecter {
+         attribute = scale_factor ;
+         level = 0.3 ;
+         }
+
+      }
+
+      trigger {
+      name = sound ;
+      sound = char/ultro_m/p9_charge ;
+      time = 0.1 ;
+      }
+
+      trigger {
+      healthpct = 1 ;
+      minioneventtag = 80 ;
+      name = spawnminion ;
+      skin = 3401 ;
+      skin_filter = 3401 ;
+      time = 0.3 ;
+      type = ce_spawn_minion ;
+      }
+
+      trigger {
+      healthpct = 1 ;
+      minioneventtag = 80 ;
+      name = spawnminion ;
+      skin = 3402 ;
+      skin_filter = 3402 ;
+      time = 0.3 ;
+      type = ce_spawn_minion ;
+      }
+
+      trigger {
+      healthpct = 1 ;
+      minioneventtag = 80 ;
+      name = spawnminion ;
+      skin = 3403 ;
+      skin_filter = 3403 ;
+      time = 0.3 ;
+      type = ce_spawn_minion ;
+      }
+
+      trigger {
+      healthpct = 1 ;
+      minioneventtag = 80 ;
+      name = spawnminion ;
+      skin = 3404 ;
+      skin_filter = 3404 ;
+      time = 0.3 ;
+      type = ce_spawn_minion ;
+      }
+
+      trigger {
+      name = sound ;
+      sound = char/ultro_m/p9_power ;
+      time = 0.4 ;
+      }
+
+      trigger {
+      class = callevents ;
+      life = %ultro_p9_lif ;
+      name = powerup ;
+      no_shadow = true ;
+      remove_on_death = true ;
+      tag = 80 ;
+      time = -1 ;
+         FunctionEvent {
+         function = activate ;
+         triggertag = 81 ;
+         }
+
+         FunctionEvent {
+         function = deactivate ;
+         triggertag = 82 ;
+         }
+
+         special_fx {
+         bolt = Bip01 Pelvis ;
+         effect = char/ultron/beam_impact ;
+         fxlevel = 1 ;
+         how_used = activation ;
+         }
+
+         special_fx {
+         bolt = Bip01 Pelvis ;
+         effect = char/ultron/beam_impact ;
+         fxlevel = 1 ;
+         how_used = deactivation ;
+         }
+
+         affecter {
+         affect_type = scale ;
+         attribute = atk_damage ;
+         level = 1 ;
+         }
+
+      }
+
+      trigger {
+      bolt = Bip01 Pelvis ;
+      effect = char/ultron/beam_impact ;
+      fxlevel = 1 ;
+      name = effect ;
+      tag = 81 ;
+      time = -1 ;
+      }
+
+      trigger {
+      name = remove ;
+      tag = 82 ;
+      time = -1 ;
+      }
+
+      chain {
+      action = idle ;
+      result = idle ;
+      }
+
+   }
+
+   event {
+   damage = %ultro_p8_dmg ;
+   damagelevel = 2 ;
+   damagetype = dmg_physical ;
+   enemynumber = 0 ;
+   fxlevel = 1 ;
+   hiteffect = base/material/explode/exp_generic_lrg ;
+   inherit = blast ;
+   knockback = 500 ;
+   maxrange = 400 ;
+   name = blast_impact ;
+   radius = 80 ;
+   random = true ;
+      damagemod {
+      name = dmgmod_auto_knockback ;
+      }
+
+   }
+
+   FightMove {
+   animenum = ea_idle1 ;
+   blendtime = 0 ;
+   handler = ch_team_xtreme ;
+   icon = 7 ;
+   is_power = true ;
+   lockangles = true ;
+   lockchaining = false ;
+   name = team_xtreme ;
+   playspeed = 10 ;
+   priority = uninterruptable ;
+      require {
+      cat = skill ;
+      item = ultro_p8 ;
+      level = 1 ;
+      }
+
+      require {
+      cat = xtreme ;
+      level = 1 ;
+      }
+
+      trigger {
+      name = xtreme_start ;
+      only_non_looped = true ;
+      team_xtreme = 1 ;
+      time = 0 ;
+      }
+
+      chain {
+      action = idle ;
+      result = team_xtreme ;
+      }
+
+      chain {
+      action = special ;
+      result = power8 ;
+      }
+
+   }
+
+   FightMove {
+   animenum = ea_power8 ;
+   blendtime = 0 ;
+   combotextfinisher = Elimination ;
+   icon = 7 ;
+   is_power = true ;
+   lockangles = true ;
+   lockspeed = true ;
+   name = power8 ;
+   playspeed = 10 ;
+   priority = uninterruptable ;
+      trigger {
+      always = true ;
+      name = camera_override ;
+      time = 0 ;
+      }
+
+      trigger {
+      name = team_xtreme_msg ;
+      time = 0 ;
+      title = Age of Ultron ;
+      }
+
+      trigger {
+      bolt = Bip01 L Toe0 ;
+      effect = char/iron/p8_power ;
+      fxlevel = 1 ;
+      name = effect ;
+      time = 0.25 ;
+      }
+
+      trigger {
+      bolt = Bip01 R Toe0 ;
+      effect = char/iron/p8_power ;
+      fxlevel = 1 ;
+      name = effect ;
+      time = 0.25 ;
+      }
+
+      trigger {
+      effect = char/iron/p8_power ;
+      fxlevel = 2 ;
+      name = effect ;
+      time = 0.25 ;
+      }
+
+      trigger {
+      bolt = Bip01 Spine2 ;
+      effect = char/iron/p8_power ;
+      fxlevel = 3 ;
+      name = effect ;
+      time = 0.46 ;
+      }
+
+      trigger {
+      bolt = Bip01 Spine2 ;
+      effect = char/iron/p8_power ;
+      fxlevel = 3 ;
+      name = effect ;
+      time = 0.48 ;
+      }
+
+      trigger {
+      bolt = Bip01 Spine2 ;
+      effect = char/iron/p8_power ;
+      fxlevel = 3 ;
+      name = effect ;
+      time = 0.5 ;
+      }
+
+      trigger {
+      bolt = Bip01 Spine2 ;
+      effect = char/iron/p8_power ;
+      fxlevel = 3 ;
+      name = effect ;
+      time = 0.52 ;
+      }
+
+      trigger {
+      bolt = Bip01 Spine2 ;
+      effect = char/iron/p8_power ;
+      fxlevel = 3 ;
+      name = effect ;
+      time = 0.54 ;
+      }
+
+      trigger {
+      bolt = Bip01 Spine2 ;
+      effect = char/iron/p8_power ;
+      fxlevel = 3 ;
+      name = effect ;
+      time = 0.56 ;
+      }
+
+      trigger {
+      bolt = Bip01 Spine2 ;
+      effect = char/iron/p8_power ;
+      fxlevel = 3 ;
+      name = effect ;
+      time = 0.58 ;
+      }
+
+      trigger {
+      bolt = Bip01 Spine2 ;
+      effect = char/iron/p8_power ;
+      fxlevel = 3 ;
+      name = effect ;
+      time = 0.6 ;
+      }
+
+      trigger {
+      bolt = Bip01 Spine2 ;
+      effect = char/iron/p8_power ;
+      fxlevel = 3 ;
+      name = effect ;
+      time = 0.62 ;
+      }
+
+      trigger {
+      bolt = Bip01 Spine2 ;
+      effect = char/iron/p8_power ;
+      fxlevel = 3 ;
+      name = effect ;
+      time = 0.64 ;
+      }
+
+      trigger {
+      effect = char/iron/p8_power ;
+      fxlevel = 4 ;
+      name = effect_sound ;
+      sound = char/ultro_m/p8_power ;
+      time = 0.7 ;
+      }
+
+      trigger {
+      enemynumber = 0 ;
+      name = blast_impact ;
+      time = 0.7 ;
+      }
+
+      trigger {
+      enemynumber = 1 ;
+      name = blast_impact ;
+      time = 0.715 ;
+      }
+
+      trigger {
+      enemynumber = 2 ;
+      name = blast_impact ;
+      time = 0.73 ;
+      }
+
+      trigger {
+      enemynumber = 3 ;
+      name = blast_impact ;
+      time = 0.745 ;
+      }
+
+      trigger {
+      enemynumber = 4 ;
+      name = blast_impact ;
+      time = 0.76 ;
+      }
+
+      trigger {
+      enemynumber = 5 ;
+      name = blast_impact ;
+      time = 0.775 ;
+      }
+
+      trigger {
+      enemynumber = 6 ;
+      name = blast_impact ;
+      time = 0.79 ;
+      }
+
+      trigger {
+      enemynumber = 7 ;
+      name = blast_impact ;
+      time = 0.805 ;
+      }
+
+      trigger {
+      enemynumber = 8 ;
+      name = blast_impact ;
+      time = 0.82 ;
+      }
+
+      trigger {
+      enemynumber = 9 ;
+      name = blast_impact ;
+      time = 0.835 ;
+      }
+
+      trigger {
+      effect = char/iron/p8_power ;
+      fxlevel = 5 ;
+      name = effect ;
+      time = 0.803 ;
+      }
+
+      trigger {
+      critical = true ;
+      end = true ;
+      name = xtreme_start ;
+      time = 0.85 ;
+      }
+
+      chain {
+      action = idle ;
+      result = idle ;
+      }
+
+   }
+
+}
+

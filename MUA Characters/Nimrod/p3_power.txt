@@ -1,0 +1,187 @@
+XMLB Effect {
+looptime = 1 ;
+randlooptime = 0 ;
+   ParticleCloud {
+   acceleration = 0 0 -50 0 0 -100 ;
+   acceleration2 = 0 0 0 0 0 0 ;
+   alpha = -1 1 0 -1 1 0 ;
+   blend = alphaadditive ;
+   count = 1 1 ;
+   delay = 0 0 ;
+   drag2 = 0 0 ;
+   endcolor1 = 5684876 ;
+   endcolor2 = 5684876 ;
+   gravity2 = 0 0 ;
+   height = 0 0 ;
+   interval = 0 ;
+   life = 1.25 1.25 ;
+   midcolor1 = 5684876 ;
+   midcolor2 = 5684876 ;
+   name = 1_blood_cloud ;
+   numsegments = 5 ;
+   origin = 0 0 0 0 0 0 ;
+   plife = 1 ;
+   primitiveflags = 4261412864 ;
+   primitiveflags2 = 33554688 ;
+   pspawn = 0.5 0.5 ;
+   ptravel = 0.75 0.75 ;
+   radius = 0 0 ;
+   radius2 = 0 0 ;
+   rotation = 0 0 0 0 0 6.282 ;
+   shaderflags = 0 ;
+   size = 20 0 10 20 0 20 ;
+   spawnflags = 536870918 ;
+   startcolor1 = 610551 ;
+   startcolor2 = 610551 ;
+   texture = textures/misc_splat.png ;
+   transformrotation = 0 0 0 0 0 0 ;
+   velocity = 10 10 0 -10 -10 0 ;
+   velocity2 = 0 0 0 0 0 0 ;
+   viewoffset = 0 ;
+   }
+
+   Line {
+   acceleration = 0 0 0 0 0 0 ;
+   acceleration2 = 0 0 0 0 0 0 ;
+   alpha = 0 0 1 0 0 1 ;
+   blend = additive ;
+   count = 6 6 ;
+   delay = 0 0 ;
+   drag = 0 0 ;
+   drag2 = 0 0 ;
+   endcolor1 = 16777215 ;
+   endcolor2 = 16777215 ;
+   gravity = 0 0 ;
+   gravity2 = 0 0 ;
+   height = 0 0 ;
+   interval = 0 ;
+   life = 0.2 0.2 ;
+   midcolor1 = 16777215 ;
+   midcolor2 = 16777215 ;
+   name = 1_lines ;
+   origin = 0 0 0 0 0 0 ;
+   origin2 = 0 0 0 0 0 0 ;
+   primitiveflags = 4261412864 ;
+   primitiveflags2 = 33554688 ;
+   radius = 0 0 ;
+   radius2 = 0 0 ;
+   shaderflags = 0 ;
+   size = 0 -6 6 0 -6 6 ;
+   spawnflags = 536873152 ;
+   startcolor1 = 610551 ;
+   startcolor2 = 610551 ;
+   texture = textures/l_magraindrop.png ;
+   uvscale = 0 0 1 0 0 1 ;
+   uvscroll = 0 0 0 0 0 0 ;
+   velocity = 0 0 0 0 0 0 ;
+   velocity2 = 120 0 0 200 0 0 ;
+   viewoffset = 0 ;
+   }
+
+   Sprite {
+   acceleration = 0 0 0 0 0 0 ;
+   alpha = 0 0 1 0 0 1 ;
+   blend = additive ;
+   count = 1 1 ;
+   delay = 0 0 ;
+   drag = 0 0 ;
+   endcolor1 = 5684876 ;
+   endcolor2 = 5684876 ;
+   gravity = 0 0 ;
+   height = 0 0 ;
+   interval = 0 ;
+   life = 0.25 0.25 ;
+   midcolor1 = 5684876 ;
+   midcolor2 = 5684876 ;
+   name = 1_flash ;
+   origin = 0 0 0 0 0 0 ;
+   origin2 = 0 0 0 0 0 0 ;
+   primitiveflags = 4261412864 ;
+   primitiveflags2 = 33554432 ;
+   radius = 0 0 ;
+   radius2 = 0 0 ;
+   rotation = 0 0 0 0 0 0 ;
+   rotationaxis = 0 0 0 0 0 0 ;
+   rotationradius = 0 0 0 0 0 0 ;
+   shaderflags = 0 ;
+   size = -90 75 15 -90 75 15 ;
+   spawnflags = 0 ;
+   startcolor1 = 610551 ;
+   startcolor2 = 610551 ;
+   texture = textures/misc_hitflash.png ;
+   velocity = 0 0 0 0 0 0 ;
+   viewoffset = 0 ;
+   }
+
+   Spark {
+   acceleration = 0 0 -500 0 0 -500 ;
+   alpha = 0 0 1 0 0 1 ;
+   blend = additive ;
+   count = 5 5 ;
+   delay = 0 1 ;
+   drag = 0 0 ;
+   endcolor1 = 16777215 ;
+   endcolor2 = 16777215 ;
+   gravity = 0 0 ;
+   height = 0 0 ;
+   interval = 0 ;
+   length = -2 7 2 8 2 5 ;
+   life = 0.5 0.5 ;
+   midcolor1 = 16777215 ;
+   midcolor2 = 16777215 ;
+   name = 2_blood_drops ;
+   origin = 0 0 0 0 0 0 ;
+   primitiveflags = 4244635648 ;
+   primitiveflags2 = 33554688 ;
+   radius = 0 0 ;
+   radius2 = 0 0 ;
+   rotation = 0 0 0 0 0 0 ;
+   rotationradius = 0 0 0 0 0 0 ;
+   shaderflags = 0 ;
+   size = 0 2 1 0 2 1 ;
+   spawnflags = 1610678278 ;
+   startcolor1 = 16777215 ;
+   startcolor2 = 16777215 ;
+   texture = textures/l_magraindrop.png ;
+   velocity = 50 50 0 -50 -50 0 ;
+   viewoffset = 0 ;
+   }
+
+   Trail {
+   acceleration = 0 0 0 0 0 0 ;
+   alpha = -2 1 1 -2 1 1 ;
+   blend = alphaadditive ;
+   count = 1 1 ;
+   delay = 0 0 ;
+   drag = 0 0 ;
+   endcolor1 = 42751 ;
+   endcolor2 = 42751 ;
+   gravity = 0 0 ;
+   height = 0 0 ;
+   interval = 0 ;
+   length = 0 0 1 0 0 1 ;
+   life = 0.35 0.35 ;
+   midcolor1 = 42751 ;
+   midcolor2 = 42751 ;
+   name = 3_trails ;
+   offset = 0 0 0 0 0 0 ;
+   origin = 0 0 0 0 0 0 ;
+   primitiveflags = 4211081216 ;
+   primitiveflags2 = 33554688 ;
+   radius = 0 0 ;
+   radius2 = 0 0 ;
+   rotation = 0 0 0 0 0 0 ;
+   rotationradius = 0 0 0 0 0 0 ;
+   shaderflags = 0 ;
+   size = 0 0 12 0 0 12 ;
+   spawnflags = 1090519040 ;
+   startcolor1 = 42751 ;
+   startcolor2 = 42751 ;
+   texture = textures/bolt_sharp.png ;
+   uvscale = 0 0 1 0 0 1 ;
+   velocity = 0 0 0 0 0 0 ;
+   viewoffset = 0 ;
+   }
+
+}
+
