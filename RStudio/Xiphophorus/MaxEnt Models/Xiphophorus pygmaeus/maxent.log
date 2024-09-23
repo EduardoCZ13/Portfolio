@@ -1,0 +1,451 @@
+Wed May 01 19:00:37 CDT 2019
+MaxEnt version 3.4.1
+Checking header of C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format\bio14.asc
+Checking header of C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format\bio18.asc
+Checking header of C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format\bio3.asc
+Checking header of C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format\bio4.asc
+Checking header of C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format\bio7.asc
+Checking header of C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format\bio9.asc
+Checking header of C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format\distanciarios.asc
+Checking header of C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format\elevacion.asc
+Checking header of C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format\primaria.asc
+Reading samples from Xiphophorus_pygmaeus.csv
+Read samples: max memory 684195840, total allocated 192413696, free 66771032, used 125642664, increment 20387280
+Extractor: max memory 684195840, total allocated 192413696, free 66196792, used 126216904, increment 574240
+Extracting random background and sample data
+121149 points with values for all grids
+Adding samples to background in feature space
+Command line used: 
+Command line to repeat: java density.MaxEnt nowarnings noprefixes responsecurves jackknife "outputdirectory=C:\curso_ejerc\Resultadoscapaselevacion\Xiphophorus pygmaeus" samplesfile=C:\curso_ejerc\datos\Xiphophorus_pygmaeus.csv "environmentallayers=C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format" nowarnings nowritemess randomtestpoints=20 writebackgroundpredictions addallsamplestobackground writeplotdata noextrapolate appendtoresultsfile
+Species: Xiphophorus_pygmaeus
+Layers: bio14 bio18 bio3 bio4 bio7 bio9 distanciarios elevacion primaria
+Layertypes: Continuous Continuous Continuous Continuous Continuous Continuous Continuous Continuous Continuous
+responsecurves: true
+jackknife: true
+outputdirectory: C:\curso_ejerc\Resultadoscapaselevacion\Xiphophorus pygmaeus
+samplesfile: C:\curso_ejerc\datos\Xiphophorus_pygmaeus.csv
+environmentallayers: C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format
+warnings: false
+writemess: false
+randomtestpoints: 20
+writebackgroundpredictions: true
+addallsamplestobackground: true
+writeplotdata: true
+extrapolate: false
+appendtoresultsfile: true
+
+getSamples: max memory 684195840, total allocated 192413696, free 61537720, used 130875976, increment 4659072
+Making features
+makeFeatures: max memory 684195840, total allocated 192413696, free 57012280, used 135401416, increment 4525440
+Xiphophorus_pygmaeus: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 192413696, free 45205104, used 147208592, increment 11807176
+linearPredictor: max memory 684195840, total allocated 192413696, free 45124928, used 147288768, increment 80176
+FeaturedSpace: max memory 684195840, total allocated 192413696, free 45124928, used 147288768, increment 0
+Sequential: max memory 684195840, total allocated 192413696, free 45124928, used 147288768, increment 0
+Initial loss: 9.212338374638856
+Initial test loss: 9.212338374638856
+Time since start: 11.513
+380: time = 11.076000 loss = 6.195822 testLoss 5.234088
+Resulting gain: 3.016516757036131
+Projecting...
+Writing file C:\curso_ejerc\Resultadoscapaselevacion\Xiphophorus pygmaeus\Xiphophorus_pygmaeus.asc
+Time since start: 12.746
+Writing C:\curso_ejerc\Resultadoscapaselevacion\Xiphophorus pygmaeus\plots\Xiphophorus_pygmaeus.png
+Xiphophorus_pygmaeus response curves
+Time since start: 14.025
+Response curve: only bio14
+Making features
+makeFeatures: max memory 684195840, total allocated 189267968, free 81371816, used 107896152, increment -39392616
+Xiphophorus_pygmaeus bio14: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 189267968, free 79677824, used 109590144, increment 1693992
+linearPredictor: max memory 684195840, total allocated 189267968, free 79597648, used 109670320, increment 80176
+FeaturedSpace: max memory 684195840, total allocated 189267968, free 79597648, used 109670320, increment 0
+Sequential: max memory 684195840, total allocated 189267968, free 79597648, used 109670320, increment 0
+Initial loss: 9.212338374638856
+Time since start: 15.959
+280: time = 1.919000 loss = 7.384319
+Resulting gain: 1.8280196201171748
+Xiphophorus_pygmaeus response curves
+Response curve: only bio18
+Making features
+makeFeatures: max memory 684195840, total allocated 189267968, free 72592656, used 116675312, increment 7004992
+Xiphophorus_pygmaeus bio18: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 189267968, free 70742208, used 118525760, increment 1850448
+linearPredictor: max memory 684195840, total allocated 189267968, free 70742208, used 118525760, increment 0
+FeaturedSpace: max memory 684195840, total allocated 189267968, free 70742208, used 118525760, increment 0
+Sequential: max memory 684195840, total allocated 189267968, free 70742208, used 118525760, increment 0
+Initial loss: 9.212338374638856
+Time since start: 17.566
+240: time = 1.513000 loss = 6.916453
+Resulting gain: 2.2958852076677347
+Xiphophorus_pygmaeus response curves
+Response curve: only bio3
+Making features
+makeFeatures: max memory 684195840, total allocated 189267968, free 63428784, used 125839184, increment 7313424
+Xiphophorus_pygmaeus bio3: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 189267968, free 63114752, used 126153216, increment 314032
+linearPredictor: max memory 684195840, total allocated 189267968, free 63034576, used 126233392, increment 80176
+FeaturedSpace: max memory 684195840, total allocated 189267968, free 63034576, used 126233392, increment 0
+Sequential: max memory 684195840, total allocated 189267968, free 63034576, used 126233392, increment 0
+Initial loss: 9.212338374638856
+Time since start: 18.814
+180: time = 1.123000 loss = 8.047630
+Resulting gain: 1.1647085014877447
+Xiphophorus_pygmaeus response curves
+Response curve: only bio4
+Making features
+makeFeatures: max memory 684195840, total allocated 189267968, free 56756328, used 132511640, increment 6278248
+Xiphophorus_pygmaeus bio4: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 189267968, free 55383016, used 133884952, increment 1373312
+linearPredictor: max memory 684195840, total allocated 189267968, free 55383016, used 133884952, increment 0
+FeaturedSpace: max memory 684195840, total allocated 189267968, free 55383016, used 133884952, increment 0
+Sequential: max memory 684195840, total allocated 189267968, free 55383016, used 133884952, increment 0
+Initial loss: 9.212338374638856
+Time since start: 19.953
+160: time = 1.030000 loss = 8.279112
+Resulting gain: 0.9332259286717441
+Xiphophorus_pygmaeus response curves
+Response curve: only bio7
+Making features
+makeFeatures: max memory 684195840, total allocated 189267968, free 49255032, used 140012936, increment 6127984
+Xiphophorus_pygmaeus bio7: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 189267968, free 47731944, used 141536024, increment 1523088
+linearPredictor: max memory 684195840, total allocated 189267968, free 47731944, used 141536024, increment 0
+FeaturedSpace: max memory 684195840, total allocated 189267968, free 47731944, used 141536024, increment 0
+Sequential: max memory 684195840, total allocated 189267968, free 47731944, used 141536024, increment 0
+Initial loss: 9.212338374638856
+Time since start: 21.201
+180: time = 1.139000 loss = 8.802939
+Resulting gain: 0.4093989486561185
+Xiphophorus_pygmaeus response curves
+Response curve: only bio9
+Making features
+makeFeatures: max memory 684195840, total allocated 189267968, free 42413288, used 146854680, increment 5318656
+Xiphophorus_pygmaeus bio9: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 189267968, free 40839336, used 148428632, increment 1573952
+linearPredictor: max memory 684195840, total allocated 189267968, free 40759160, used 148508808, increment 80176
+FeaturedSpace: max memory 684195840, total allocated 189267968, free 40759160, used 148508808, increment 0
+Sequential: max memory 684195840, total allocated 189267968, free 40759160, used 148508808, increment 0
+Initial loss: 9.212338374638856
+Time since start: 22.948
+260: time = 1.638000 loss = 8.089348
+Resulting gain: 1.122990253871011
+Xiphophorus_pygmaeus response curves
+Response curve: only distanciarios
+Making features
+makeFeatures: max memory 684195840, total allocated 189267968, free 34072520, used 155195448, increment 6686640
+Xiphophorus_pygmaeus distanciarios: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 192413696, free 162497320, used 29916376, increment -125279072
+linearPredictor: max memory 684195840, total allocated 192413696, free 162497320, used 29916376, increment 0
+FeaturedSpace: max memory 684195840, total allocated 192413696, free 162497320, used 29916376, increment 0
+Sequential: max memory 684195840, total allocated 192413696, free 162497320, used 29916376, increment 0
+Initial loss: 9.212338374638856
+180: time = 0.468000 loss = 9.169251
+Resulting gain: 0.04308761925738125
+Xiphophorus_pygmaeus response curves
+Response curve: only elevacion
+Making features
+makeFeatures: max memory 684195840, total allocated 192413696, free 156907560, used 35506136, increment 5589760
+Xiphophorus_pygmaeus elevacion: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 192413696, free 155295616, used 37118080, increment 1611944
+linearPredictor: max memory 684195840, total allocated 192413696, free 155295616, used 37118080, increment 0
+FeaturedSpace: max memory 684195840, total allocated 192413696, free 155295616, used 37118080, increment 0
+Sequential: max memory 684195840, total allocated 192413696, free 155295616, used 37118080, increment 0
+Initial loss: 9.212338374638856
+Time since start: 24.492
+260: time = 0.858000 loss = 7.970628
+Resulting gain: 1.241710446436377
+Xiphophorus_pygmaeus response curves
+Response curve: only primaria
+Making features
+makeFeatures: max memory 684195840, total allocated 192413696, free 149083368, used 43330328, increment 6212248
+Xiphophorus_pygmaeus primaria: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 192413696, free 148922840, used 43490856, increment 160528
+linearPredictor: max memory 684195840, total allocated 192413696, free 148842664, used 43571032, increment 80176
+FeaturedSpace: max memory 684195840, total allocated 192413696, free 148842664, used 43571032, increment 0
+Sequential: max memory 684195840, total allocated 192413696, free 148842664, used 43571032, increment 0
+Initial loss: 9.212338374638856
+280: time = 0.624000 loss = 8.805459
+Resulting gain: 0.4068789430858537
+Xiphophorus_pygmaeus response curves
+Time since start: 25.662
+Jackknife: leave bio14 out
+Making features
+makeFeatures: max memory 684195840, total allocated 192413696, free 101607880, used 90805816, increment 47234784
+Xiphophorus_pygmaeus bio14: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 192413696, free 91322664, used 101091032, increment 10285216
+linearPredictor: max memory 684195840, total allocated 192413696, free 91242488, used 101171208, increment 80176
+FeaturedSpace: max memory 684195840, total allocated 192413696, free 91242488, used 101171208, increment 0
+Sequential: max memory 684195840, total allocated 192413696, free 91242488, used 101171208, increment 0
+Initial loss: 9.212338374638856
+Initial test loss: 9.212338374638856
+Time since start: 35.646
+420: time = 9.843000 loss = 6.279588 testLoss 5.145156
+Jackknife: leave bio18 out
+Making features
+makeFeatures: max memory 684195840, total allocated 192413696, free 82990544, used 109423152, increment 8251944
+Xiphophorus_pygmaeus bio18: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 192413696, free 72705328, used 119708368, increment 10285216
+linearPredictor: max memory 684195840, total allocated 192413696, free 72625152, used 119788544, increment 80176
+FeaturedSpace: max memory 684195840, total allocated 192413696, free 72625152, used 119788544, increment 0
+Sequential: max memory 684195840, total allocated 192413696, free 72625152, used 119788544, increment 0
+Initial loss: 9.212338374638856
+Initial test loss: 9.212338374638856
+Time since start: 47.83
+500: time = 12.012000 loss = 6.944247 testLoss 6.112856
+Jackknife: leave bio3 out
+Making features
+makeFeatures: max memory 684195840, total allocated 192413696, free 63910432, used 128503264, increment 8714720
+Xiphophorus_pygmaeus bio3: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 192413696, free 52342624, used 140071072, increment 11567808
+linearPredictor: max memory 684195840, total allocated 192413696, free 52342624, used 140071072, increment 0
+FeaturedSpace: max memory 684195840, total allocated 192413696, free 52342624, used 140071072, increment 0
+Sequential: max memory 684195840, total allocated 192413696, free 52342624, used 140071072, increment 0
+Initial loss: 9.212338374638856
+Initial test loss: 9.212338374638856
+Time since start: 58.454
+440: time = 10.452000 loss = 6.195900 testLoss 5.232039
+Jackknife: leave bio4 out
+Making features
+makeFeatures: max memory 684195840, total allocated 192413696, free 45179640, used 147234056, increment 7162984
+Xiphophorus_pygmaeus bio4: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 179306496, free 137367080, used 41939416, increment -105294640
+linearPredictor: max memory 684195840, total allocated 179306496, free 137367080, used 41939416, increment 0
+FeaturedSpace: max memory 684195840, total allocated 179306496, free 137367080, used 41939416, increment 0
+Sequential: max memory 684195840, total allocated 179306496, free 137367080, used 41939416, increment 0
+Initial loss: 9.212338374638856
+Initial test loss: 9.212338374638856
+Time since start: 66.378
+320: time = 7.753000 loss = 6.195969 testLoss 5.235873
+Jackknife: leave bio7 out
+Making features
+makeFeatures: max memory 684195840, total allocated 179306496, free 129879704, used 49426792, increment 7487376
+Xiphophorus_pygmaeus bio7: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 179306496, free 119276872, used 60029624, increment 10602832
+linearPredictor: max memory 684195840, total allocated 179306496, free 119276872, used 60029624, increment 0
+FeaturedSpace: max memory 684195840, total allocated 179306496, free 119276872, used 60029624, increment 0
+Sequential: max memory 684195840, total allocated 179306496, free 119276872, used 60029624, increment 0
+Initial loss: 9.212338374638856
+Initial test loss: 9.212338374638856
+Time since start: 75.208
+360: time = 8.658000 loss = 6.195923 testLoss 5.235095
+Jackknife: leave bio9 out
+Making features
+makeFeatures: max memory 684195840, total allocated 179306496, free 112614920, used 66691576, increment 6661952
+Xiphophorus_pygmaeus bio9: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 179306496, free 101759976, used 77546520, increment 10854944
+linearPredictor: max memory 684195840, total allocated 179306496, free 101759976, used 77546520, increment 0
+FeaturedSpace: max memory 684195840, total allocated 179306496, free 101759976, used 77546520, increment 0
+Sequential: max memory 684195840, total allocated 179306496, free 101759976, used 77546520, increment 0
+Initial loss: 9.212338374638856
+Initial test loss: 9.212338374638856
+Time since start: 83.055
+320: time = 7.675000 loss = 6.199601 testLoss 5.254568
+Jackknife: leave distanciarios out
+Making features
+makeFeatures: max memory 684195840, total allocated 179306496, free 94902096, used 84404400, increment 6857880
+Xiphophorus_pygmaeus distanciarios: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 179306496, free 82219296, used 97087200, increment 12682800
+linearPredictor: max memory 684195840, total allocated 179306496, free 82219296, used 97087200, increment 0
+FeaturedSpace: max memory 684195840, total allocated 179306496, free 82219296, used 97087200, increment 0
+Sequential: max memory 684195840, total allocated 179306496, free 82219296, used 97087200, increment 0
+Initial loss: 9.212338374638856
+Initial test loss: 9.212338374638856
+Time since start: 93.569
+380: time = 10.327000 loss = 6.204654 testLoss 5.336790
+Jackknife: leave elevacion out
+Making features
+makeFeatures: max memory 684195840, total allocated 179306496, free 75569592, used 103736904, increment 6649704
+Xiphophorus_pygmaeus elevacion: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 179306496, free 64668184, used 114638312, increment 10901408
+linearPredictor: max memory 684195840, total allocated 179306496, free 64668184, used 114638312, increment 0
+FeaturedSpace: max memory 684195840, total allocated 179306496, free 64668184, used 114638312, increment 0
+Sequential: max memory 684195840, total allocated 179306496, free 64668184, used 114638312, increment 0
+Initial loss: 9.212338374638856
+Initial test loss: 9.212338374638856
+Time since start: 101.9
+300: time = 8.159000 loss = 6.211732 testLoss 5.224581
+Jackknife: leave primaria out
+Making features
+makeFeatures: max memory 684195840, total allocated 179306496, free 57774592, used 121531904, increment 6893592
+Xiphophorus_pygmaeus primaria: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 179306496, free 45110080, used 134196416, increment 12664512
+linearPredictor: max memory 684195840, total allocated 179306496, free 45110080, used 134196416, increment 0
+FeaturedSpace: max memory 684195840, total allocated 179306496, free 45110080, used 134196416, increment 0
+Sequential: max memory 684195840, total allocated 179306496, free 45110080, used 134196416, increment 0
+Initial loss: 9.212338374638856
+Initial test loss: 9.212338374638856
+Time since start: 115.69
+500: time = 13.619000 loss = 6.256788 testLoss 5.222308
+Jackknife: only bio14
+Making features
+makeFeatures: max memory 684195840, total allocated 179306496, free 41465424, used 137841072, increment 3644656
+Xiphophorus_pygmaeus bio14: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 179306496, free 39717368, used 139589128, increment 1748056
+linearPredictor: max memory 684195840, total allocated 179306496, free 39717368, used 139589128, increment 0
+FeaturedSpace: max memory 684195840, total allocated 179306496, free 39717368, used 139589128, increment 0
+Sequential: max memory 684195840, total allocated 179306496, free 39717368, used 139589128, increment 0
+Initial loss: 9.212338374638856
+Initial test loss: 9.212338374638856
+Time since start: 117.656
+280: time = 1.919000 loss = 7.384319 testLoss 7.272684
+Res.gain: 1.8280196201171748
+Jackknife: only bio18
+Making features
+makeFeatures: max memory 684195840, total allocated 179306496, free 35959912, used 143346584, increment 3757456
+Xiphophorus_pygmaeus bio18: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 179306496, free 33967968, used 145338528, increment 1991944
+linearPredictor: max memory 684195840, total allocated 179306496, free 33967968, used 145338528, increment 0
+FeaturedSpace: max memory 684195840, total allocated 179306496, free 33967968, used 145338528, increment 0
+Sequential: max memory 684195840, total allocated 179306496, free 33967968, used 145338528, increment 0
+Initial loss: 9.212338374638856
+Initial test loss: 9.212338374638856
+Time since start: 119.2
+240: time = 1.513000 loss = 6.916453 testLoss 6.106715
+Res.gain: 2.2958852076677347
+Jackknife: only bio3
+Making features
+makeFeatures: max memory 684195840, total allocated 179306496, free 30540072, used 148766424, increment 3427896
+Xiphophorus_pygmaeus bio3: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 179306496, free 29719624, used 149586872, increment 820448
+linearPredictor: max memory 684195840, total allocated 179306496, free 29719624, used 149586872, increment 0
+FeaturedSpace: max memory 684195840, total allocated 179306496, free 29719624, used 149586872, increment 0
+Sequential: max memory 684195840, total allocated 179306496, free 29719624, used 149586872, increment 0
+Initial loss: 9.212338374638856
+Initial test loss: 9.212338374638856
+Time since start: 120.355
+180: time = 1.124000 loss = 8.047630 testLoss 7.815959
+Res.gain: 1.1647085014877447
+Jackknife: only bio4
+Making features
+makeFeatures: max memory 684195840, total allocated 181927936, free 149640744, used 32287192, increment -117299680
+Xiphophorus_pygmaeus bio4: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 181927936, free 147893328, used 34034608, increment 1747416
+linearPredictor: max memory 684195840, total allocated 181927936, free 147893328, used 34034608, increment 0
+FeaturedSpace: max memory 684195840, total allocated 181927936, free 147893328, used 34034608, increment 0
+Sequential: max memory 684195840, total allocated 181927936, free 147893328, used 34034608, increment 0
+Initial loss: 9.212338374638856
+Initial test loss: 9.212338374638856
+Time since start: 121.384
+160: time = 1.014000 loss = 8.279112 testLoss 7.799169
+Res.gain: 0.9332259286717441
+Jackknife: only bio7
+Making features
+makeFeatures: max memory 684195840, total allocated 181927936, free 146457928, used 35470008, increment 1435400
+Xiphophorus_pygmaeus bio7: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 181927936, free 144710512, used 37217424, increment 1747416
+linearPredictor: max memory 684195840, total allocated 181927936, free 144710512, used 37217424, increment 0
+FeaturedSpace: max memory 684195840, total allocated 181927936, free 144710512, used 37217424, increment 0
+Sequential: max memory 684195840, total allocated 181927936, free 144710512, used 37217424, increment 0
+Initial loss: 9.212338374638856
+Initial test loss: 9.212338374638856
+Time since start: 122.539
+180: time = 1.124000 loss = 8.802939 testLoss 8.382334
+Res.gain: 0.4093989486561185
+Jackknife: only bio9
+Making features
+makeFeatures: max memory 684195840, total allocated 181927936, free 141918992, used 40008944, increment 2791520
+Xiphophorus_pygmaeus bio9: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 181927936, free 140211736, used 41716200, increment 1707256
+linearPredictor: max memory 684195840, total allocated 181927936, free 140211736, used 41716200, increment 0
+FeaturedSpace: max memory 684195840, total allocated 181927936, free 140211736, used 41716200, increment 0
+Sequential: max memory 684195840, total allocated 181927936, free 140211736, used 41716200, increment 0
+Initial loss: 9.212338374638856
+Initial test loss: 9.212338374638856
+Time since start: 124.192
+260: time = 1.622000 loss = 8.089348 testLoss 7.609929
+Res.gain: 1.122990253871011
+Jackknife: only distanciarios
+Making features
+makeFeatures: max memory 684195840, total allocated 181927936, free 138234576, used 43693360, increment 1977160
+Xiphophorus_pygmaeus distanciarios: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 181927936, free 136176048, used 45751888, increment 2058528
+linearPredictor: max memory 684195840, total allocated 181927936, free 136176048, used 45751888, increment 0
+FeaturedSpace: max memory 684195840, total allocated 181927936, free 136176048, used 45751888, increment 0
+Sequential: max memory 684195840, total allocated 181927936, free 136176048, used 45751888, increment 0
+Initial loss: 9.212338374638856
+Initial test loss: 9.212338374638856
+180: time = 0.484000 loss = 9.169251 testLoss 8.966265
+Res.gain: 0.04308761925738125
+Jackknife: only elevacion
+Making features
+makeFeatures: max memory 684195840, total allocated 181927936, free 135011800, used 46916136, increment 1164248
+Xiphophorus_pygmaeus elevacion: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 181927936, free 132993384, used 48934552, increment 2018416
+linearPredictor: max memory 684195840, total allocated 181927936, free 132993384, used 48934552, increment 0
+FeaturedSpace: max memory 684195840, total allocated 181927936, free 132993384, used 48934552, increment 0
+Sequential: max memory 684195840, total allocated 181927936, free 132993384, used 48934552, increment 0
+Initial loss: 9.212338374638856
+Initial test loss: 9.212338374638856
+Time since start: 125.581
+260: time = 0.858000 loss = 7.970628 testLoss 7.634108
+Res.gain: 1.241710446436377
+Jackknife: only primaria
+Making features
+makeFeatures: max memory 684195840, total allocated 181927936, free 129388688, used 52539248, increment 3604696
+Xiphophorus_pygmaeus primaria: 
+Regularization values: linear/quadratic/product: 0.442, categorical: 0.250, threshold: 1.800, hinge: 0.500
+20 samples
+Density: max memory 684195840, total allocated 181927936, free 129388688, used 52539248, increment 0
+linearPredictor: max memory 684195840, total allocated 181927936, free 129388688, used 52539248, increment 0
+FeaturedSpace: max memory 684195840, total allocated 181927936, free 129388688, used 52539248, increment 0
+Sequential: max memory 684195840, total allocated 181927936, free 129388688, used 52539248, increment 0
+Initial loss: 9.212338374638856
+Initial test loss: 9.212338374638856
+280: time = 0.624000 loss = 8.805459 testLoss 8.227318
+Res.gain: 0.4068789430858537
+Ending

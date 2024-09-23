@@ -1,0 +1,448 @@
+Wed May 01 18:50:39 CDT 2019
+MaxEnt version 3.4.1
+Checking header of C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format\bio14.asc
+Checking header of C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format\bio18.asc
+Checking header of C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format\bio3.asc
+Checking header of C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format\bio4.asc
+Checking header of C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format\bio7.asc
+Checking header of C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format\bio9.asc
+Checking header of C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format\distanciarios.asc
+Checking header of C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format\elevacion.asc
+Checking header of C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format\primaria.asc
+Reading samples from Xiphophorus_cortezi.csv
+Read samples: max memory 684195840, total allocated 254803968, free 87180960, used 167623008, increment 19233512
+Extractor: max memory 684195840, total allocated 254803968, free 87180960, used 167623008, increment 0
+Extracting random background and sample data
+121149 points with values for all grids
+Adding samples to background in feature space
+Command line used: 
+Command line to repeat: java density.MaxEnt nowarnings noprefixes responsecurves jackknife "outputdirectory=C:\curso_ejerc\Resultadoscapaselevacion\Xiphophorus cortezi" samplesfile=C:\curso_ejerc\datos\Xiphophorus_cortezi.csv "environmentallayers=C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format" nowarnings nowritemess randomtestpoints=20 writebackgroundpredictions addallsamplestobackground writeplotdata noextrapolate appendtoresultsfile
+Species: Xiphophorus_cortezi
+Layers: bio14 bio18 bio3 bio4 bio7 bio9 distanciarios elevacion primaria
+Layertypes: Continuous Continuous Continuous Continuous Continuous Continuous Continuous Continuous Continuous
+responsecurves: true
+jackknife: true
+outputdirectory: C:\curso_ejerc\Resultadoscapaselevacion\Xiphophorus cortezi
+samplesfile: C:\curso_ejerc\datos\Xiphophorus_cortezi.csv
+environmentallayers: C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format
+warnings: false
+writemess: false
+randomtestpoints: 20
+writebackgroundpredictions: true
+addallsamplestobackground: true
+writeplotdata: true
+extrapolate: false
+appendtoresultsfile: true
+
+getSamples: max memory 684195840, total allocated 254803968, free 81898040, used 172905928, increment 5282920
+Making features
+makeFeatures: max memory 684195840, total allocated 254803968, free 77887240, used 176916728, increment 4010800
+Xiphophorus_cortezi: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 254803968, free 65616776, used 189187192, increment 12270464
+linearPredictor: max memory 684195840, total allocated 254803968, free 65616776, used 189187192, increment 0
+FeaturedSpace: max memory 684195840, total allocated 254803968, free 65616776, used 189187192, increment 0
+Sequential: max memory 684195840, total allocated 254803968, free 65616776, used 189187192, increment 0
+Initial loss: 9.21283725217477
+Initial test loss: 9.21283725217477
+Time since start: 15.319
+480: time = 14.835000 loss = 7.343234 testLoss 6.567217
+Resulting gain: 1.8696027994517177
+Projecting...
+Writing file C:\curso_ejerc\Resultadoscapaselevacion\Xiphophorus cortezi\Xiphophorus_cortezi.asc
+Time since start: 16.817
+Writing C:\curso_ejerc\Resultadoscapaselevacion\Xiphophorus cortezi\plots\Xiphophorus_cortezi.png
+Xiphophorus_cortezi response curves
+Time since start: 18.252
+Response curve: only bio14
+Making features
+makeFeatures: max memory 684195840, total allocated 255328256, free 54806320, used 200521936, increment 11334744
+Xiphophorus_cortezi bio14: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 255328256, free 52809584, used 202518672, increment 1996736
+linearPredictor: max memory 684195840, total allocated 255328256, free 52809584, used 202518672, increment 0
+FeaturedSpace: max memory 684195840, total allocated 255328256, free 52809584, used 202518672, increment 0
+Sequential: max memory 684195840, total allocated 255328256, free 52809584, used 202518672, increment 0
+Initial loss: 9.21283725217477
+Time since start: 20.124
+280: time = 1.856000 loss = 7.592238
+Resulting gain: 1.6205989951949986
+Xiphophorus_cortezi response curves
+Response curve: only bio18
+Making features
+makeFeatures: max memory 684195840, total allocated 255328256, free 45595136, used 209733120, increment 7214448
+Xiphophorus_cortezi bio18: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 255328256, free 44457192, used 210871064, increment 1137944
+linearPredictor: max memory 684195840, total allocated 255328256, free 44457192, used 210871064, increment 0
+FeaturedSpace: max memory 684195840, total allocated 255328256, free 44457192, used 210871064, increment 0
+Sequential: max memory 684195840, total allocated 255328256, free 44457192, used 210871064, increment 0
+Initial loss: 9.21283725217477
+Time since start: 22.308
+360: time = 2.075000 loss = 8.099568
+Resulting gain: 1.1132688385302423
+Xiphophorus_cortezi response curves
+Response curve: only bio3
+Making features
+makeFeatures: max memory 684195840, total allocated 255328256, free 36669104, used 218659152, increment 7788088
+Xiphophorus_cortezi bio3: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 255328256, free 35298376, used 220029880, increment 1370728
+linearPredictor: max memory 684195840, total allocated 255328256, free 35298376, used 220029880, increment 0
+FeaturedSpace: max memory 684195840, total allocated 255328256, free 35298376, used 220029880, increment 0
+Sequential: max memory 684195840, total allocated 255328256, free 35298376, used 220029880, increment 0
+Initial loss: 9.21283725217477
+120: time = 0.874000 loss = 8.811795
+Resulting gain: 0.40104182686406453
+Time since start: 23.322
+Xiphophorus_cortezi response curves
+Response curve: only bio4
+Making features
+makeFeatures: max memory 684195840, total allocated 255328256, free 29481352, used 225846904, increment 5817024
+Xiphophorus_cortezi bio4: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 255328256, free 28305928, used 227022328, increment 1175424
+linearPredictor: max memory 684195840, total allocated 255328256, free 28305928, used 227022328, increment 0
+FeaturedSpace: max memory 684195840, total allocated 255328256, free 28305928, used 227022328, increment 0
+Sequential: max memory 684195840, total allocated 255328256, free 28305928, used 227022328, increment 0
+Initial loss: 9.21283725217477
+Time since start: 24.601
+180: time = 1.170000 loss = 9.000010
+Resulting gain: 0.2128277366191771
+Xiphophorus_cortezi response curves
+Response curve: only bio7
+Making features
+makeFeatures: max memory 684195840, total allocated 255328256, free 22032336, used 233295920, increment 6273592
+Xiphophorus_cortezi bio7: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 255328256, free 20790432, used 234537824, increment 1241904
+linearPredictor: max memory 684195840, total allocated 255328256, free 20790432, used 234537824, increment 0
+FeaturedSpace: max memory 684195840, total allocated 255328256, free 20790432, used 234537824, increment 0
+Sequential: max memory 684195840, total allocated 255328256, free 20790432, used 234537824, increment 0
+Initial loss: 9.21283725217477
+100: time = 0.687000 loss = 8.811527
+Resulting gain: 0.4013104991321246
+Xiphophorus_cortezi response curves
+Response curve: only bio9
+Making features
+makeFeatures: max memory 684195840, total allocated 255328256, free 15444040, used 239884216, increment 5346392
+Xiphophorus_cortezi bio9: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 255328256, free 14305448, used 241022808, increment 1138592
+linearPredictor: max memory 684195840, total allocated 255328256, free 14305448, used 241022808, increment 0
+FeaturedSpace: max memory 684195840, total allocated 255328256, free 14305448, used 241022808, increment 0
+Sequential: max memory 684195840, total allocated 255328256, free 14305448, used 241022808, increment 0
+Initial loss: 9.21283725217477
+Time since start: 27.16
+240: time = 1.607000 loss = 8.750096
+Resulting gain: 0.46274139359466915
+Xiphophorus_cortezi response curves
+Response curve: only distanciarios
+Making features
+makeFeatures: max memory 684195840, total allocated 243269632, free 210268816, used 33000816, increment -208021992
+Xiphophorus_cortezi distanciarios: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 243269632, free 210188600, used 33081032, increment 80216
+linearPredictor: max memory 684195840, total allocated 243269632, free 210108384, used 33161248, increment 80216
+FeaturedSpace: max memory 684195840, total allocated 243269632, free 210108384, used 33161248, increment 0
+Sequential: max memory 684195840, total allocated 243269632, free 210108384, used 33161248, increment 0
+Initial loss: 9.21283725217477
+60: time = 0.327000 loss = 9.193802
+Resulting gain: 0.019035445703924125
+Xiphophorus_cortezi response curves
+Response curve: only elevacion
+Making features
+makeFeatures: max memory 684195840, total allocated 243269632, free 204146608, used 39123024, increment 5961776
+Xiphophorus_cortezi elevacion: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 243269632, free 204146608, used 39123024, increment 0
+linearPredictor: max memory 684195840, total allocated 243269632, free 204146608, used 39123024, increment 0
+FeaturedSpace: max memory 684195840, total allocated 243269632, free 204146608, used 39123024, increment 0
+Sequential: max memory 684195840, total allocated 243269632, free 204146608, used 39123024, increment 0
+Initial loss: 9.21283725217477
+Time since start: 28.33
+120: time = 0.515000 loss = 8.707120
+Resulting gain: 0.5057176043324105
+Xiphophorus_cortezi response curves
+Response curve: only primaria
+Making features
+makeFeatures: max memory 684195840, total allocated 243269632, free 197807760, used 45461872, increment 6338848
+Xiphophorus_cortezi primaria: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 243269632, free 197807760, used 45461872, increment 0
+linearPredictor: max memory 684195840, total allocated 243269632, free 197807760, used 45461872, increment 0
+FeaturedSpace: max memory 684195840, total allocated 243269632, free 197807760, used 45461872, increment 0
+Sequential: max memory 684195840, total allocated 243269632, free 197807760, used 45461872, increment 0
+Initial loss: 9.21283725217477
+100: time = 0.296000 loss = 8.706919
+Resulting gain: 0.5059186146472534
+Xiphophorus_cortezi response curves
+Jackknife: leave bio14 out
+Making features
+makeFeatures: max memory 684195840, total allocated 243269632, free 152972608, used 90297024, increment 44835152
+Xiphophorus_cortezi bio14: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+Time since start: 29.391
+25 samples
+Density: max memory 684195840, total allocated 243269632, free 141132896, used 102136736, increment 11839712
+linearPredictor: max memory 684195840, total allocated 243269632, free 141132896, used 102136736, increment 0
+FeaturedSpace: max memory 684195840, total allocated 243269632, free 141132896, used 102136736, increment 0
+Sequential: max memory 684195840, total allocated 243269632, free 141132896, used 102136736, increment 0
+Initial loss: 9.21283725217477
+Initial test loss: 9.21283725217477
+Time since start: 42.354
+500: time = 12.948000 loss = 7.682068 testLoss 6.735370
+Jackknife: leave bio18 out
+Making features
+makeFeatures: max memory 684195840, total allocated 243269632, free 131503392, used 111766240, increment 9629504
+Xiphophorus_cortezi bio18: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 243269632, free 121904208, used 121365424, increment 9599184
+linearPredictor: max memory 684195840, total allocated 243269632, free 121904208, used 121365424, increment 0
+FeaturedSpace: max memory 684195840, total allocated 243269632, free 121904208, used 121365424, increment 0
+Sequential: max memory 684195840, total allocated 243269632, free 121904208, used 121365424, increment 0
+Initial loss: 9.21283725217477
+Initial test loss: 9.21283725217477
+Time since start: 55.146
+500: time = 12.605000 loss = 7.427217 testLoss 6.593072
+Jackknife: leave bio3 out
+Making features
+makeFeatures: max memory 684195840, total allocated 243269632, free 111850256, used 131419376, increment 10053952
+Xiphophorus_cortezi bio3: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 243269632, free 102251072, used 141018560, increment 9599184
+linearPredictor: max memory 684195840, total allocated 243269632, free 102251072, used 141018560, increment 0
+FeaturedSpace: max memory 684195840, total allocated 243269632, free 102251072, used 141018560, increment 0
+Sequential: max memory 684195840, total allocated 243269632, free 102251072, used 141018560, increment 0
+Initial loss: 9.21283725217477
+Initial test loss: 9.21283725217477
+Time since start: 64.522
+360: time = 9.204000 loss = 7.427563 testLoss 6.661444
+Jackknife: leave bio4 out
+Making features
+makeFeatures: max memory 684195840, total allocated 243269632, free 95217696, used 148051936, increment 7033376
+Xiphophorus_cortezi bio4: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 243269632, free 83657880, used 159611752, increment 11559816
+linearPredictor: max memory 684195840, total allocated 243269632, free 83657880, used 159611752, increment 0
+FeaturedSpace: max memory 684195840, total allocated 243269632, free 83657880, used 159611752, increment 0
+Sequential: max memory 684195840, total allocated 243269632, free 83657880, used 159611752, increment 0
+Initial loss: 9.21283725217477
+Initial test loss: 9.21283725217477
+Time since start: 76.331
+460: time = 11.638000 loss = 7.343186 testLoss 6.567493
+Jackknife: leave bio7 out
+Making features
+makeFeatures: max memory 684195840, total allocated 243269632, free 75932480, used 167337152, increment 7725400
+Xiphophorus_cortezi bio7: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 243269632, free 64405384, used 178864248, increment 11527096
+linearPredictor: max memory 684195840, total allocated 243269632, free 64405384, used 178864248, increment 0
+FeaturedSpace: max memory 684195840, total allocated 243269632, free 64405384, used 178864248, increment 0
+Sequential: max memory 684195840, total allocated 243269632, free 64405384, used 178864248, increment 0
+Initial loss: 9.21283725217477
+Initial test loss: 9.21283725217477
+Time since start: 89.388
+500: time = 12.885000 loss = 7.378512 testLoss 6.631970
+Jackknife: leave bio9 out
+Making features
+makeFeatures: max memory 684195840, total allocated 243269632, free 56619432, used 186650200, increment 7785952
+Xiphophorus_cortezi bio9: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 243269632, free 45095840, used 198173792, increment 11523592
+linearPredictor: max memory 684195840, total allocated 243269632, free 45095840, used 198173792, increment 0
+FeaturedSpace: max memory 684195840, total allocated 243269632, free 45095840, used 198173792, increment 0
+Sequential: max memory 684195840, total allocated 243269632, free 45095840, used 198173792, increment 0
+Initial loss: 9.21283725217477
+Initial test loss: 9.21283725217477
+Time since start: 101.213
+460: time = 11.653000 loss = 7.343236 testLoss 6.566358
+Jackknife: leave distanciarios out
+Making features
+makeFeatures: max memory 684195840, total allocated 243269632, free 37374432, used 205895200, increment 7721408
+Xiphophorus_cortezi distanciarios: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 243269632, free 25419896, used 217849736, increment 11954536
+linearPredictor: max memory 684195840, total allocated 243269632, free 25419896, used 217849736, increment 0
+FeaturedSpace: max memory 684195840, total allocated 243269632, free 25419896, used 217849736, increment 0
+Sequential: max memory 684195840, total allocated 243269632, free 25419896, used 217849736, increment 0
+Initial loss: 9.21283725217477
+Initial test loss: 9.21283725217477
+Time since start: 115.924
+500: time = 14.539000 loss = 7.358622 testLoss 6.624364
+Jackknife: leave elevacion out
+Making features
+makeFeatures: max memory 684195840, total allocated 244842496, free 197324768, used 47517728, increment -170332008
+Xiphophorus_cortezi elevacion: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 244842496, free 185747296, used 59095200, increment 11577472
+linearPredictor: max memory 684195840, total allocated 244842496, free 185747296, used 59095200, increment 0
+FeaturedSpace: max memory 684195840, total allocated 244842496, free 185747296, used 59095200, increment 0
+Sequential: max memory 684195840, total allocated 244842496, free 185747296, used 59095200, increment 0
+Initial loss: 9.21283725217477
+Initial test loss: 9.21283725217477
+Time since start: 130.245
+500: time = 14.150000 loss = 7.348629 testLoss 6.641987
+Jackknife: leave primaria out
+Making features
+makeFeatures: max memory 684195840, total allocated 244842496, free 176879064, used 67963432, increment 8868232
+Xiphophorus_cortezi primaria: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 244842496, free 165501248, used 79341248, increment 11377816
+linearPredictor: max memory 684195840, total allocated 244842496, free 165501248, used 79341248, increment 0
+FeaturedSpace: max memory 684195840, total allocated 244842496, free 165501248, used 79341248, increment 0
+Sequential: max memory 684195840, total allocated 244842496, free 165501248, used 79341248, increment 0
+Initial loss: 9.21283725217477
+Initial test loss: 9.21283725217477
+Time since start: 143.879
+460: time = 13.463000 loss = 7.348457 testLoss 6.628632
+Jackknife: only bio14
+Making features
+makeFeatures: max memory 684195840, total allocated 244842496, free 159738392, used 85104104, increment 5762856
+Xiphophorus_cortezi bio14: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 244842496, free 157454776, used 87387720, increment 2283616
+linearPredictor: max memory 684195840, total allocated 244842496, free 157454776, used 87387720, increment 0
+FeaturedSpace: max memory 684195840, total allocated 244842496, free 157454776, used 87387720, increment 0
+Sequential: max memory 684195840, total allocated 244842496, free 157454776, used 87387720, increment 0
+Initial loss: 9.21283725217477
+Initial test loss: 9.21283725217477
+Time since start: 145.704
+280: time = 1.778000 loss = 7.592238 testLoss 7.221713
+Res.gain: 1.6205989951949986
+Jackknife: only bio18
+Making features
+makeFeatures: max memory 684195840, total allocated 244842496, free 155499360, used 89343136, increment 1955416
+Xiphophorus_cortezi bio18: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 244842496, free 153057296, used 91785200, increment 2442064
+linearPredictor: max memory 684195840, total allocated 244842496, free 153057296, used 91785200, increment 0
+FeaturedSpace: max memory 684195840, total allocated 244842496, free 153057296, used 91785200, increment 0
+Sequential: max memory 684195840, total allocated 244842496, free 153057296, used 91785200, increment 0
+Initial loss: 9.21283725217477
+Initial test loss: 9.21283725217477
+Time since start: 147.81
+360: time = 2.074000 loss = 8.099568 testLoss 8.025672
+Res.gain: 1.1132688385302423
+Jackknife: only bio3
+Making features
+makeFeatures: max memory 684195840, total allocated 244842496, free 150320424, used 94522072, increment 2736872
+Xiphophorus_cortezi bio3: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 244842496, free 148056904, used 96785592, increment 2263520
+linearPredictor: max memory 684195840, total allocated 244842496, free 148056904, used 96785592, increment 0
+FeaturedSpace: max memory 684195840, total allocated 244842496, free 148056904, used 96785592, increment 0
+Sequential: max memory 684195840, total allocated 244842496, free 148056904, used 96785592, increment 0
+Initial loss: 9.21283725217477
+Initial test loss: 9.21283725217477
+120: time = 0.873000 loss = 8.811795 testLoss 8.497698
+Res.gain: 0.40104182686406453
+Jackknife: only bio4
+Making features
+makeFeatures: max memory 684195840, total allocated 244842496, free 146883816, used 97958680, increment 1173088
+Xiphophorus_cortezi bio4: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 244842496, free 144600296, used 100242200, increment 2283520
+linearPredictor: max memory 684195840, total allocated 244842496, free 144600296, used 100242200, increment 0
+FeaturedSpace: max memory 684195840, total allocated 244842496, free 144600296, used 100242200, increment 0
+Sequential: max memory 684195840, total allocated 244842496, free 144600296, used 100242200, increment 0
+Initial loss: 9.21283725217477
+Initial test loss: 9.21283725217477
+Time since start: 149.932
+180: time = 1.186000 loss = 9.000010 testLoss 8.848988
+Res.gain: 0.2128277366191771
+Jackknife: only bio7
+Making features
+makeFeatures: max memory 684195840, total allocated 244842496, free 141127536, used 103714960, increment 3472760
+Xiphophorus_cortezi bio7: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 244842496, free 141127536, used 103714960, increment 0
+linearPredictor: max memory 684195840, total allocated 244842496, free 141127536, used 103714960, increment 0
+FeaturedSpace: max memory 684195840, total allocated 244842496, free 141127536, used 103714960, increment 0
+Sequential: max memory 684195840, total allocated 244842496, free 141127536, used 103714960, increment 0
+Initial loss: 9.21283725217477
+Initial test loss: 9.21283725217477
+100: time = 0.702000 loss = 8.811527 testLoss 8.580273
+Res.gain: 0.4013104991321246
+Jackknife: only bio9
+Making features
+makeFeatures: max memory 684195840, total allocated 244842496, free 138102176, used 106740320, increment 3025360
+Xiphophorus_cortezi bio9: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 244842496, free 138102176, used 106740320, increment 0
+linearPredictor: max memory 684195840, total allocated 244842496, free 138102176, used 106740320, increment 0
+FeaturedSpace: max memory 684195840, total allocated 244842496, free 138102176, used 106740320, increment 0
+Sequential: max memory 684195840, total allocated 244842496, free 138102176, used 106740320, increment 0
+Initial loss: 9.21283725217477
+Initial test loss: 9.21283725217477
+Time since start: 152.288
+240: time = 1.591000 loss = 8.750096 testLoss 8.536705
+Res.gain: 0.46274139359466915
+Jackknife: only distanciarios
+Making features
+makeFeatures: max memory 684195840, total allocated 244842496, free 133903848, used 110938648, increment 4198328
+Xiphophorus_cortezi distanciarios: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 244842496, free 133903848, used 110938648, increment 0
+linearPredictor: max memory 684195840, total allocated 244842496, free 133903848, used 110938648, increment 0
+FeaturedSpace: max memory 684195840, total allocated 244842496, free 133903848, used 110938648, increment 0
+Sequential: max memory 684195840, total allocated 244842496, free 133903848, used 110938648, increment 0
+Initial loss: 9.21283725217477
+Initial test loss: 9.21283725217477
+60: time = 0.312000 loss = 9.193802 testLoss 9.169346
+Res.gain: 0.019035445703924125
+Jackknife: only elevacion
+Making features
+makeFeatures: max memory 684195840, total allocated 244842496, free 131269464, used 113573032, increment 2634384
+Xiphophorus_cortezi elevacion: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 244842496, free 131269464, used 113573032, increment 0
+linearPredictor: max memory 684195840, total allocated 244842496, free 131269464, used 113573032, increment 0
+FeaturedSpace: max memory 684195840, total allocated 244842496, free 131269464, used 113573032, increment 0
+Sequential: max memory 684195840, total allocated 244842496, free 131269464, used 113573032, increment 0
+Initial loss: 9.21283725217477
+Initial test loss: 9.21283725217477
+120: time = 0.500000 loss = 8.707120 testLoss 8.508086
+Res.gain: 0.5057176043324105
+Jackknife: only primaria
+Making features
+makeFeatures: max memory 684195840, total allocated 244842496, free 130327072, used 114515424, increment 942392
+Xiphophorus_cortezi primaria: 
+Regularization values: linear/quadratic/product: 0.346, categorical: 0.250, threshold: 1.750, hinge: 0.500
+25 samples
+Density: max memory 684195840, total allocated 244842496, free 128043456, used 116799040, increment 2283616
+linearPredictor: max memory 684195840, total allocated 244842496, free 128043456, used 116799040, increment 0
+FeaturedSpace: max memory 684195840, total allocated 244842496, free 128043456, used 116799040, increment 0
+Sequential: max memory 684195840, total allocated 244842496, free 128043456, used 116799040, increment 0
+Initial loss: 9.21283725217477
+Initial test loss: 9.21283725217477
+Time since start: 153.489
+100: time = 0.312000 loss = 8.706919 testLoss 8.393243
+Res.gain: 0.5059186146472534
+Ending

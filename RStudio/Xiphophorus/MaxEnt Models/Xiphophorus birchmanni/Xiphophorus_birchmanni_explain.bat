@@ -1,0 +1,2 @@
+java -mx652m -cp "/C:/curso_ejerc/MaxEnt/maxent/maxent.jar;C:\curso_ejerc\MaxEnt\maxent\maxent.jar" density.Explain -l "C:\curso_ejerc\Resultadoscapaselevacion\Xiphophorus birchmanni\Xiphophorus_birchmanni.lambdas" -c "C:\curso_ejerc\Resultadoscapaselevacion\Xiphophorus birchmanni\Xiphophorus_birchmanni.asc" "C:\Users\RV411\Desktop\Datos Xiphophorus\Coordenadas Xiphophorus\Shape cuenca rio panuco\capas M ascii format"
+@if errorlevel 1 pause
