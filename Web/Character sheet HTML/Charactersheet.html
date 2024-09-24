@@ -4,6 +4,7 @@
 	<link rel="stylesheet" href="charactersheet.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
+
 <script type="text/worker">
 
     on("change:ps_dice change:ps_extra change:pe_dice change:pe_extra change:vitalidad_bonus change:sabiduria_bonus change:inteligencia_bonus sheet:open", function() {
@@ -268,7 +269,7 @@ function Tabchange(value) {
                 <input id="nombre" type="text" value="" style="text-align: right; margin: 0px; width: 30%; padding: 0px; height: 25px;">
                 
                 <span>Raza</span>
-                <select class="modificadores" id="raza" style="text-align: right; margin: 0px; width: 10%; padding: 0px; height: 25px;">
+                <select class="modificadores PS PE" id="raza" style="text-align: right; margin: 0px; width: 10%; padding: 0px; height: 25px;">
                 <option value="0">selecciona</option>
                 <option value="1">Humano</option>
                 <option value="2">Orco</option>
@@ -285,7 +286,7 @@ function Tabchange(value) {
                 
                 
                 <span>Clase:</span>
-                <select class="modificadores" id="clase" style="text-align: right; margin: 0px; width: 15%; padding: 0px; height: 25px;">
+                <select class="modificadores PS PE" id="clase" style="text-align: right; margin: 0px; width: 15%; padding: 0px; height: 25px;">
                     <option value="0">selecciona</option>
                     <option value="1">Guerrero</option>
                     <option value="2">Berserk</option>
@@ -321,7 +322,7 @@ function Tabchange(value) {
                 </select>
 
                 <span>Subclase:</span>
-                <select class="modificadores" id="subclase" style="text-align: right; margin: 0px; width: 15%; padding: 0px; height: 25px;">
+                <select class="modificadores PS PE" id="subclase" style="text-align: right; margin: 0px; width: 15%; padding: 0px; height: 25px;">
                     <option value="0">selecciona</option>
                     <option value="1">Guerrero</option>
                     <option value="2">Berserk</option>
@@ -385,91 +386,8 @@ function Tabchange(value) {
     <input id="edade" id="edade" type="number" value="" style="text-align: right; margin: 0px; width: 10%; padding: 0px; height: 25px;">
     
     <span>Experiencia</span>
-    <input id="experiencia" id="experiencia" type="number" value="0" style="text-align: right; margin: 0px; width: 20%; padding: 0px; height: 25px;" onchange="expfunc(value)">
-     <script>
+    <input id="experiencia" id="experiencia" type="number" value="0" style="text-align: right; margin: 0px; width: 20%; padding: 0px; height: 25px;" onchange="expfunc()">
 
-    function expfunc(value) {
-            let exp = parseInt(document.getElementById("experiencia").value)||0;
-            let nvl = 0;
-            if (exp >= 1000000) nvl = "70";
-            else if (exp < 1000000 && exp >= 970000) nvl = "69";
-            else if (exp < 970000 && exp >= 940000) nvl = "68";
-            else if (exp < 940000 && exp >= 910000) nvl = "67";
-            else if (exp < 910000 && exp >= 880000) nvl = "66";
-            else if (exp < 880000 && exp >= 850000) nvl = "65";
-            else if (exp < 850000 && exp >= 820000) nvl = "64";
-            else if (exp < 820000 && exp >= 790000) nvl = "63";
-            else if (exp < 790000 && exp >= 760000) nvl = "62";
-            else if (exp < 760000 && exp >= 730000) nvl = "61";
-            else if (exp < 730000 && exp >= 700000) nvl = "60";
-            else if (exp < 700000 && exp >= 675000) nvl = "59";
-            else if (exp < 675000 && exp >= 650000) nvl = "58";
-            else if (exp < 650000 && exp >= 625000) nvl = "57";
-            else if (exp < 625000 && exp >= 600000) nvl = "56";
-            else if (exp < 600000 && exp >= 575000) nvl = "55";
-            else if (exp < 575000 && exp >= 550000) nvl = "54";
-            else if (exp < 550000 && exp >= 525000) nvl = "53";
-            else if (exp < 525000 && exp >= 500000) nvl = "52";
-            else if (exp < 500000 && exp >= 475000) nvl = "51";
-            else if (exp < 475000 && exp >= 450000) nvl = "50";
-            else if (exp < 450000 && exp >= 433000) nvl = "49";
-            else if (exp < 433000 && exp >= 416000) nvl = "48";
-            else if (exp < 416000 && exp >= 399000) nvl = "47";
-            else if (exp < 399000 && exp >= 382000) nvl = "46";
-            else if (exp < 382000 && exp >= 365000) nvl = "45";
-            else if (exp < 365000 && exp >= 348000) nvl = "44";
-            else if (exp < 348000 && exp >= 331000) nvl = "43";
-            else if (exp < 331000 && exp >= 314000) nvl = "42";
-            else if (exp < 314000 && exp >= 297000) nvl = "41";
-            else if (exp < 297000 && exp >= 280000) nvl = "40";
-            else if (exp < 280000 && exp >= 267000) nvl = "39";
-            else if (exp < 267000 && exp >= 254000) nvl = "38";
-            else if (exp < 254000 && exp >= 241000) nvl = "37";
-            else if (exp < 241000 && exp >= 228000) nvl = "36";
-            else if (exp < 228000 && exp >= 215000) nvl = "35";
-            else if (exp < 215000 && exp >= 202000) nvl = "34";
-            else if (exp < 202000 && exp >= 189000) nvl = "33";
-            else if (exp < 189000 && exp >= 176000) nvl = "32";
-            else if (exp < 176000 && exp >= 163000) nvl = "31";
-            else if (exp < 163000 && exp >= 150000) nvl = "30";
-            else if (exp < 150000 && exp >= 140000) nvl = "29";
-            else if (exp < 140000 && exp >= 130000) nvl = "28";
-            else if (exp < 130000 && exp >= 120000) nvl = "27";
-            else if (exp < 120000 && exp >= 110000) nvl = "26";
-            else if (exp < 110000 && exp >= 100000) nvl = "25";
-            else if (exp < 100000 && exp >= 92000) nvl = "24";
-            else if (exp < 92000 && exp >= 85000) nvl = "23";
-            else if (exp < 85000 && exp >= 80000) nvl = "22";
-            else if (exp < 80000 && exp >= 74000) nvl = "21";
-            else if (exp < 74000 && exp >= 65000) nvl = "20";
-            else if (exp < 65000 && exp >= 58000) nvl = "19";
-            else if (exp < 58000 && exp >= 50000) nvl = "18";
-            else if (exp < 50000 && exp >= 45000) nvl = "17";
-            else if (exp < 45000 && exp >= 37000) nvl = "16";
-            else if (exp < 37000 && exp >= 30000) nvl = "15";
-            else if (exp < 30000 && exp >= 25000) nvl = "14";
-            else if (exp < 25000 && exp >= 19000) nvl = "13";
-            else if (exp < 19000 && exp >= 14000) nvl = "12";
-            else if (exp < 14000 && exp >= 9000) nvl = "11";
-            else if (exp < 9000 && exp >= 6000) nvl = "10";
-            else if (exp < 6000 && exp >= 4000) nvl = "9";
-            else if (exp < 4000 && exp >= 2500) nvl = "8";
-            else if (exp < 2500 && exp >= 1500) nvl = "7";
-            else if (exp < 1500 && exp >= 1000) nvl = "6";
-            else if (exp < 1000 && exp >= 700) nvl = "5";
-            else if (exp < 700 && exp >= 500) nvl = "4";
-            else if (exp < 500 && exp >= 250) nvl = "3";
-            else if (exp < 250 && exp >= 100) nvl = "2";
-            else nvl = "1";
-            			
-            document.getElementById("nivel").innerHTML = nvl;
-
-}
-    
-
-
-
-</script>
       
     <span >Nivel</span>
     <span id="nivel" id="nivel" value="1" style="width: 5%; padding: 0px; height: 100%;">1</span>
@@ -488,31 +406,31 @@ function Tabchange(value) {
       <label style="text-align: center;">PS</label>
       <span id="ps_max">0</span>
       <input type="hidden" id="ps_current"     type="number" value="">
-	  <input id="ps_dice" type="number" value="0" style="width: 50%">
+	  <input class="PS" id="ps_dice" type="number" value="0" style="text-align: right; width: 50%">
       <input type="hidden" id="ps_extra" value="">
 	</td> 
 	
 	<td class="stat-block">
       <span style="text-align: center;">Fuerza</span>
-      <input class="attri" id="fuerza" type="number" value="0"  style="width: 30%" max="40" min="0">
+      <input class="attri" id="fuerza" type="number" value="0"  style="text-align: right; width: 30%" max="40" min="0">
       <span id="fuerza_bonus" value="">0</span>
     </td>
 	
 	 <td class="stat-block">
       <label style="text-align: center;">Destreza</label>
-      <input class="attri" id="destreza" type="number" value="0" style="width: 30%" max="40" min="0">
+      <input class="attri" id="destreza" type="number" value="0" style="text-align: right; width: 30%" max="40" min="0">
       <span id="destreza_bonus">0</span>
     </td>
 	
     <td class="stat-block">
       <label style="text-align: center;">Sabiduría</label>
-      <input class="attri" id="sabiduria" type="number" value="0" style="width: 30%" max="40" min="0">
+      <input class="attri PE" id="sabiduria" type="number" value="0" style="text-align: right; width: 30%" max="40" min="0">
       <span id="sabiduria_bonus">0</span>
     </td>
 	
 	<td class="stat-block">
       <label style="text-align: center;">Carisma</label>
-      <input class="attri" id="carisma" type="number" value="0" style="width: 30%" max="40" min="0">
+      <input class="attri" id="carisma" type="number" value="0" style="text-align: right; width: 30%" max="40" min="0">
       <span id="carisma_bonus">0</span>
      </td> 
 	 
@@ -534,33 +452,33 @@ function Tabchange(value) {
 	 <td class="stat-block">
       <label style="text-align: center;">PE</label>
       <span id="pe_max">0</span>
-      <input type="hidden" id="pe_current"     type="number" value="">
-      <input id="pe_dice" type="number" value="0" style="width: 50%">
+      <input type="hidden" id="pe_current" type="number" value="">
+      <input class="PE" id="pe_dice" type="number" value="0" style="text-align: right; width: 50%">
      <input type="hidden" id="pe_extra" value="">
     </td>
 	
 	    <td class="stat-block">
       <span style="text-align: center;">Vitalidad</span>
-      <input class="attri" id="vitalidad" type="number" value="0" style="width: 30%" max="40" min="0">
+      <input class="attri PS" id="vitalidad" type="number" value="0" style="text-align: right; width: 30%" max="40" min="0">
       <span id="vitalidad_bonus">0</span>
     </td>
 	
     <td class="stat-block">
       <label style="text-align: center;">Agilidad</label>
-      <input class="attri" id="agilidad" type="number" value="0" style="width: 30%" max="40" min="0">
+      <input class="attri" id="agilidad" type="number" value="0" style="text-align: right; width: 30%" max="40" min="0">
       <span id="agilidad_bonus">0</span>
     </td>	
 	
  <td class="stat-block">
       <label style="text-align: center;">Inteligencia</label>
-      <input class="attri" id="inteligencia" type="number" value="0" style="width: 30%" max="40" min="0">
+      <input class="attri PE" id="inteligencia" type="number" value="0" style="text-align: right; width: 30%" max="40" min="0">
       <span id="inteligencia_bonus">0</span>
 
     </td>
 
      <td class="stat-block">
       <label style="text-align: center;">Karma</label>
-      <input id="karma" type="number" value="0" style="width: 37%">
+      <input id="karma" type="number" value="0" style="text-align: right; width: 37%">
 	 </td>
 
 	<td class="stat-block">
@@ -570,366 +488,13 @@ function Tabchange(value) {
 		  
 	  <td class="stat-block">
       <label style="text-align: center;">Reconocimiento</label>
-      <input id="reco" type="number" value="" style="width: 30%">
+      <input id="reco" type="number" value="" style="text-align: right; width: 30%">
     </td>
 	
 	
 	
 	</tr>        
 </table>
-
-<script>
-	const bon = document.querySelectorAll('.attri');
-    function calctodos() {
-	
-	function calcularbono(item) {
-   	let stat_bonus = 0;
-    var stat_base = item.value;
-	let bonusname = item.id + "_bonus"
-    if (stat_base >= 10) stat_bonus = Math.floor((stat_base - 10) / 2) || 0;
-    else stat_bonus = stat_base - 10 || 0;
-            
-	document.getElementById(bonusname).innerHTML = stat_bonus;
-	}
-	bon.forEach(calcularbono);
-};
-
-bon.forEach(calctodos); 
-$('.attri').change(calctodos);
-
-</script>   
-<script>
-
-
-   
-    $('.modificadores').change(function() {
-        
-            let raza = $('#raza').value;
-            let clase = $('#clase').value;
-            let sclase = $('#subclase').value;
-            console.log(raza)
-            
-            if (raza == 1) {
-                ps_raza = 7;
-                pe_raza = 3;
-            }
-        else if(raza == 2) {
-            ps_raza = 8;
-            pe_raza = 2;
-        }
-        else if(raza == 3) {
-            ps_raza = 6;
-            pe_raza = 4;
-        }
-        else if(raza == 4) {
-            ps_raza = 4;
-            pe_raza = 4;
-        }
-        else if(raza == 5) {
-            ps_raza = 9;
-            pe_raza = 2;
-        }
-        else if(raza == 6) {
-            ps_raza = 3;
-            pe_raza = 5;
-        }
-        else if(raza == 7) {
-            ps_raza = 10;
-            pe_raza = 2;
-        }
-        else if(raza == 8) {
-            ps_raza = 5;
-            pe_raza = 5;
-        }
-        else if(raza == 9) {
-            ps_raza = 10;
-            pe_raza = 4;
-        }
-        else if(raza == 10) {
-            ps_raza = 9;
-            pe_raza = 2;
-        }
-        else if(raza == 11) {
-            ps_raza = 5;
-            pe_raza = 5;
-        }
-        else {
-            ps_raza = 1;
-            pe_raza = 1;
-        }
-        
-        
-            if (clase == 1) {
-                ps_clase = 7;
-                pe_clase = 2;
-            }
-        else if(clase == 2) {
-            ps_clase = 7;
-            pe_clase = 2;
-        }
-        else if(clase == 3) {
-            ps_clase = 3;
-            pe_clase = 2;
-        }
-        else if(clase == 4) {
-            ps_clase = 5;
-            pe_clase = 2;
-        }
-        else if(clase == 5) {
-            ps_clase = 7;
-            pe_clase = 2;
-        }
-        else if(clase == 6) {
-            ps_clase = 4;
-            pe_clase = 3;
-        }
-        else if(clase == 7) {
-            ps_clase = 8;
-            pe_clase = 2;
-        }
-        else if(clase == 8) {
-            ps_clase = 5;
-            pe_clase = 4;
-        }
-        else if(clase == 9) {
-            ps_clase = 7;
-            pe_clase = 3;
-        }
-        else if(clase == 10) {
-            ps_clase = 4;
-            pe_clase = 3;
-        }
-        else if(clase == 11) {
-            ps_clase = 4;
-            pe_clase = 4;
-        }
-        else if(clase == 12) {
-            ps_clase = 9;
-            pe_clase = 2;
-        }
-        else if(clase == 13) {
-            ps_clase = 10;
-            pe_clase = 3;
-        }
-        else if(clase == 14) {
-            ps_clase = 4;
-            pe_clase = 4;
-        }
-        else if(clase == 15) {
-            ps_clase = 6;
-            pe_clase = 3;
-        }
-        else if(clase == 16) {
-            ps_clase = 2;
-            pe_clase = 4;
-        }
-        else if(clase == 17) {
-            ps_clase = 2;
-            pe_clase = 5;
-        }
-        else if(clase == 18) {
-            ps_clase = 4;
-            pe_clase = 4;
-        }
-        else if(clase == 19) {
-            ps_clase = 4;
-            pe_clase = 4;
-        }
-        else if(clase == 20) {
-            ps_clase = 4;
-            pe_clase = 5;
-        }
-        else if(clase == 21) {
-            ps_clase = 2;
-            pe_clase = 5;
-        }
-        else if(clase == 22) {
-            ps_clase = 4;
-            pe_clase = 4;
-        }
-        else if(clase == 23) {
-            ps_clase = 7;
-            pe_clase = 3;
-        }
-        else if(clase == 24) {
-            ps_clase = 9;
-            pe_clase = 1;
-        }
-        else if(clase == 25) {
-            ps_clase = 8;
-            pe_clase = 4;
-        }
-        else if(clase == 26) {
-            ps_clase = 6;
-            pe_clase = 3;
-        }
-        else if(clase == 27) {
-            ps_clase = 9;
-            pe_clase = 3;
-        }
-        else if(clase == 28) {
-            ps_clase = 3;
-            pe_clase = 5;
-        }
-        else if(clase == 29) {
-            ps_clase = 7;
-            pe_clase = 5;
-        }
-        else if(clase == 30) {
-            ps_clase = 7;
-            pe_clase = 5;
-        }
-        else if(clase == 31) {
-            ps_clase = 5;
-            pe_clase = 5;
-        }
-        else {
-            ps_clase = 1;
-            pe_clase = 1;
-        }
-        
-        
-        if (sclase == 1) {
-                ps_sclase = 3;
-                pe_sclase = 2;
-            }
-        else if(sclase == 2) {
-            ps_sclase = 4;
-            pe_sclase = 1;
-        }
-        else if(sclase == 3) {
-            ps_sclase = 2;
-            pe_sclase = 1;
-        }
-        else if(sclase == 4) {
-            ps_sclase = 3;
-            pe_sclase = 1;
-        }
-        else if(sclase == 5) {
-            ps_sclase = 3;
-            pe_sclase = 1;
-        }
-        else if(sclase == 6) {
-            ps_sclase = 2;
-            pe_sclase = 2;
-        }
-        else if(sclase == 7) {
-            ps_sclase = 4;
-            pe_sclase = 1;
-        }
-        else if(sclase == 8) {
-            ps_sclase = 3;
-            pe_sclase = 2
-        }
-        else if(sclase == 9) {
-            ps_sclase = 4;
-            pe_sclase = 2;
-        }
-        else if(sclase == 10) {
-            ps_sclase = 2;
-            pe_sclase = 2;
-        }
-        else if(sclase == 11) {
-            ps_sclase = 2;
-            pe_sclase = 2;
-        }
-        else if(sclase == 12) {
-            ps_sclase = 5;
-            pe_sclase = 1;
-        }
-        else if(sclase == 13) {
-            ps_sclase = 7;
-            pe_sclase = 1;
-        }
-        else if(sclase == 14) {
-            ps_sclase = 2;
-            pe_sclase = 2;
-        }
-        else if(sclase == 15) {
-            ps_sclase = 3;
-            pe_sclase = 2;
-        }
-        else if(sclase == 16) {
-            ps_sclase = 2;
-            pe_sclase = 2;
-        }
-        else if(sclase == 17) {
-            ps_sclase = 2;
-            pe_sclase = 3;
-        }
-        else if(sclase == 18) {
-            ps_sclase = 2;
-            pe_sclase = 2;
-        }
-        else if(sclase == 19) {
-            ps_sclase = 2;
-            pe_sclase = 2;
-        }
-        else if(sclase == 20) {
-            ps_sclase = 2;
-            pe_sclase = 3;
-        }
-        else if(sclase == 21) {
-            ps_sclase = 1;
-            pe_sclase = 4;
-        }
-        else if(sclase == 22) {
-            ps_sclase = 2;
-            pe_sclase = 2;
-        }
-        else if(sclase == 23) {
-            ps_sclase = 3;
-            pe_sclase = 2;
-        }
-        else if(sclase == 24) {
-            ps_sclase = 5;
-            pe_sclase = 2;
-        }
-        else if(sclase == 25) {
-            ps_sclase = 4;
-            pe_sclase = 3;
-        }
-        else if(sclase == 26) {
-            ps_sclase = 4;
-            pe_sclase = 2;
-        }
-        else if(sclase == 27) {
-            ps_sclase = 6;
-            pe_sclase = 2;
-        }
-        else if(sclase == 28) {
-            ps_sclase = 3;
-            pe_sclase = 3;
-        }
-        else if(sclase == 29) {
-            ps_sclase = 4;
-            pe_sclase = 4;
-        }
-        else if(sclase == 30) {
-            ps_sclase = 4;
-            pe_sclase = 3;
-        }
-        else if(sclase == 31) {
-            ps_sclase = 2;
-            pe_sclase = 5;
-        }
-        else {
-            ps_sclase = 0;
-            pe_sclase = 0;
-        }
-        
-            
-            let ps_bon = ps_raza + ps_clase + ps_sclase;
-            let pe_bon = pe_raza + pe_clase + pe_sclase;
-
-            
-			document.getElementById("ps_extra").innerHTML = ps_bon;
-            document.getElementById("pe_extra").innerHTML = pe_bon;
-        });
-
-    
-</script>
-
 
     <div class="caracteres">
         <div class="diosyrasgo">
@@ -2356,6 +1921,12 @@ $('.attri').change(calctodos);
     
     </div>
 
-     
+    <script type="text/javascript" src="js/sheetmods.js"></script>
+    <script type="text/javascript" src="js/bonostat.js"></script>
+    <script type="text/javascript" src="js/PSPEmod.js"></script>
+    <script type="text/javascript" src="js/pscalc.js"></script>
+    <script type="text/javascript" src="js/pecalc.js"></script>
+
+
 </body>
 </html>
