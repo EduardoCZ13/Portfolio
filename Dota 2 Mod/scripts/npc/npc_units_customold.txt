@@ -615,7 +615,7 @@
 //=================================================================================	
 // Noivern
 //=================================================================================
-	"npc_dota_neutral_harpy_scout"	
+	"noibat"	
 	{
 		// General
 		//----------------------------------------------------------------
@@ -687,7 +687,7 @@
 	}
 
 
-	"npc_dota_neutral_harpy_storm"	
+	"Noivern"	
 	{
 		// General
 		//----------------------------------------------------------------
@@ -1842,7 +1842,7 @@
 ///////////////////////////////////////
 
 
-	"npc_dota_neutral_mud_golem_split_doom"
+	"Geodude_doom"
 	{										
 		// General
 		//----------------------------------------------------------------
@@ -1914,7 +1914,7 @@
 		"HasInventory"				"1"
 	}
 	
-	"npc_dota_neutral_mud_golem_split"
+	"Geodude"
 	{										
 		// General
 		//----------------------------------------------------------------
@@ -1986,7 +1986,7 @@
 		"HasInventory"				"1"
 	}
 	
-	"npc_dota_neutral_mud_golem"
+	"Graveler"
 	{										
 		// General
 		//----------------------------------------------------------------
@@ -2058,7 +2058,7 @@
 		"HasInventory"				"1"
 	}
 	
-	"npc_dota_neutral_rock_golem"
+	"Golem"
 	{										
 		// General
 		//----------------------------------------------------------------
@@ -2389,7 +2389,7 @@
 		// Abilities
 		//----------------------------------------------------------------
 		
-		"Ability1"					"weaver_the_swarm"			// Ability 1.
+		"Ability1"					"sandking_scorpion_strike"			// Ability 1.
 		"Ability2"					""			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability6"					""			// Ability 4.
@@ -2468,7 +2468,7 @@
 		// Abilities
 		//----------------------------------------------------------------
 		
-		"Ability1"					"weaver_the_swarm"			// Ability 1.
+		"Ability1"					"sandking_scorpion_strike"			// Ability 1.
 		"Ability2"					"broodmother_spin_web"			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability6"					""			// Ability 4.
@@ -2548,7 +2548,7 @@
 		// Abilities
 		//----------------------------------------------------------------
 		
-		"Ability1"					"weaver_the_swarm"			// Ability 1.
+		"Ability1"					"sandking_scorpion_strike"			// Ability 1.
 		"Ability2"					"broodmother_spin_web"		// Ability 2.
 		"Ability3"					"sandking_burrowstrike"			// Ability 3.
 		"Ability6"					""			// Ability 4.
@@ -2626,7 +2626,7 @@
 		// Abilities
 		//----------------------------------------------------------------
 		
-		"Ability1"					"weaver_the_swarm"			// Ability 1.
+		"Ability1"					"sandking_scorpion_strike"			// Ability 1.
 		"Ability2"					"broodmother_spin_web"		// Ability 2.
 		"Ability3"					"sandking_burrowstrike"			// Ability 3.
 		"Ability6"					"viper_poison_attack"			// Ability 4.

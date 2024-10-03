@@ -1,0 +1,1 @@
+Quick project using Python to download a db and import it into an sql server to later use it to create some queries based on simple questions. 
